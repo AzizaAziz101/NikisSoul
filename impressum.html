@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum – Niki's Soul Café</title>
+  <meta name="description" content="Impressum von Niki's Soul Café, Südwestkorso 59, 14197 Berlin." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+</head>
+<body>
+
+  <!-- ─── Navigation ───────────────────────────── -->
+  <header class="site-header sticky top-0 z-50 backdrop-blur border-t border-b border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 keyline" style="position:relative;">
+      <div class="h-20 flex items-center justify-between">
+
+        <a href="index.html" class="brand-link flex items-center gap-3">
+          <span class="logo-mark" aria-hidden="true">N</span>
+          <span class="brand-name text-xl font-medium tracking-normal" style="font-family:'Cormorant Garamond',serif;">Niki&rsquo;s <span class="brand-accent">Soul</span> Café</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-9 text-xs font-semibold tracking-[.1em] uppercase">
+          <a href="index.html" class="py-2 text-stone-500 hover:text-stone-900">Startseite</a>
+          <a href="index.html#eindruecke" class="py-2 text-stone-500 hover:text-stone-900">Über uns</a>
+          <a href="index.html#karte" class="py-2 text-stone-500 hover:text-stone-900">Karte</a>
+          <a href="index.html#kontakt" class="py-2 text-stone-500 hover:text-stone-900">Kontakt</a>
+        </nav>
+
+        <a href="index.html#kontakt" class="btn-contact-header hidden md:inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium">
+          Tisch reservieren
+        </a>
+
+        <!-- Animierter Hamburger-Button -->
+        <button id="mob-btn" class="lg:hidden" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mob-overlay">
+          <span class="icon-bar bar-1"></span>
+          <span class="icon-bar bar-2"></span>
+          <span class="icon-bar bar-3"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── Backdrop ───────────────────────────────── -->
+  <div id="mob-backdrop" class="mob-backdrop" aria-hidden="true"></div>
+
+  <!-- ─── Slide-in Mobilmenü ──────────────────────── -->
+  <div id="mob-overlay" class="mob-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
+    <button class="mob-close" onclick="closeMob()" aria-label="Menü schließen">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="mob-inner">
+      <div>
+        <span class="eyebrow mob-eyebrow">Navigation</span>
+        <nav>
+        <a href="index.html" class="mob-nav-link" onclick="closeMob()">Startseite</a>
+        <a href="index.html#eindruecke" class="mob-nav-link" onclick="closeMob()">Über uns</a>
+        <a href="index.html#karte" class="mob-nav-link" onclick="closeMob()">Karte</a>
+        <a href="index.html#kontakt" class="mob-nav-link" onclick="closeMob()">Kontakt</a>
+        </nav>
+      </div>
+
+      <div class="mob-footer">
+        <span class="eyebrow mob-eyebrow" style="margin-bottom:.75rem;">Kontakt</span>
+        <a href="tel:+4915120229017" class="btn-primary rounded-full px-5 py-2.5 text-sm font-medium text-center mb-1">Tisch reservieren</a>
+        <a href="mailto:hallo@nikis-soul-cafe.de" class="mob-email">hallo@nikis-soul-cafe.de</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Impressum ──────────────────────────────── -->
+  <section class="chapter light">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
+      <header class="chapter-head reveal">
+        <div class="chapter-meta">
+          <span class="eyebrow">Rechtliches</span>
+        </div>
+        <h1 class="chapter-title">Impressum</h1>
+      </header>
+      <hr class="chapter-rule">
+
+      <div class="legal-content reveal">
+        <h2>Angaben gemäß § 5 TMG</h2>
+        <p>
+          Niki&rsquo;s Soul Café<br>
+          [Vollständiger Name der Inhaberin / des Inhabers]<br>
+          Südwestkorso 59<br>
+          14197 Berlin
+        </p>
+
+        <h2>Kontakt</h2>
+        <p>
+          Telefon: <a href="tel:+4915120229017">01512 0229017</a><br>
+          E-Mail: <a href="mailto:hallo@nikis-soul-cafe.de">hallo@nikis-soul-cafe.de</a>
+        </p>
+
+        <h2>Umsatzsteuer-ID</h2>
+        <p>
+          Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
+          [USt-IdNr. einfügen, falls vorhanden]
+        </p>
+
+        <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+        <p>
+          [Name der verantwortlichen Person]<br>
+          Südwestkorso 59<br>
+          14197 Berlin
+        </p>
+
+        <h2>EU-Streitschlichtung</h2>
+        <p>
+          Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS)
+          bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>.
+          Unsere E-Mail-Adresse finden Sie oben in diesem Impressum.
+        </p>
+
+        <h2>Verbraucherstreitbeilegung</h2>
+        <p>
+          Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor
+          einer Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+
+        <div class="legal-note">
+          <strong>Hinweis:</strong> Diese Seite ist als Vorlage angelegt. Die mit
+          Klammern markierten Felder (vollständiger Name der verantwortlichen Person,
+          USt-IdNr.) müssen vor Veröffentlichung noch ausgefüllt werden. Bei Fragen zur
+          korrekten rechtlichen Gestaltung empfiehlt sich eine kurze Prüfung durch eine
+          Steuerberatung oder Rechtsberatung.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ───────────────────────────────── -->
+  <footer class="site-footer" style="border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 keyline-dark keyline-foot" style="position:relative;">
+
+      <div class="grid md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-x-10 gap-y-12 pb-14 border-b border-stone-800">
+        <div>
+          <span class="text-white font-semibold text-lg" style="font-family:'Cormorant Garamond',serif; letter-spacing:.06em;">NIKI'S SOUL CAFÉ</span>
+          <p class="text-stone-300 text-sm leading-[1.85] mt-4" style="max-width:32ch;">
+            Ein kleiner Ort für große Dankbarkeit: frisch gerösteter Kaffee,
+            hausgemachtes Frühstück und Kuchen, mitten im Kiez von Berlin.
+          </p>
+        </div>
+
+        <div>
+          <span class="footer-col-label">Karte</span>
+          <nav class="flex flex-col gap-3 mt-4">
+            <a href="index.html#karte" class="footer-link">Kaffee &amp; Espresso</a>
+            <a href="index.html#karte" class="footer-link">Frühstück &amp; Brunch</a>
+            <a href="index.html#karte" class="footer-link">Kuchen &amp; Gebäck</a>
+            <a href="index.html#karte" class="footer-link">Mittagstisch</a>
+          </nav>
+        </div>
+
+        <div>
+          <span class="footer-col-label">Café</span>
+          <nav class="flex flex-col gap-3 mt-4">
+            <a href="index.html#eindruecke" class="footer-link">Über uns</a>
+            <a href="index.html#kontakt" class="footer-link">Kontakt</a>
+          </nav>
+        </div>
+
+        <div>
+          <span class="footer-col-label">Kontakt</span>
+          <div class="flex flex-col gap-3 mt-4">
+            <a href="tel:+4915120229017" class="footer-link">01512 0229017</a>
+            <a href="mailto:hallo@nikis-soul-cafe.de" class="footer-link">hallo@nikis-soul-cafe.de</a>
+            <a href="index.html#kontakt" class="footer-link" style="color:var(--brand-bright);">Anfahrt &amp; Öffnungszeiten <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-400 text-sm">
+        <span>&copy; 2026 Niki's Soul Café. Alle Rechte vorbehalten.</span>
+        <div class="flex gap-6">
+          <a href="impressum.html" class="footer-link" style="display:inline;">Impressum</a>
+          <a href="datenschutz.html" class="footer-link" style="display:inline;">Datenschutz</a>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs leading-[1.8]" style="color:var(--ink-faint); max-width:78ch;">
+        Sämtliche Inhalte dieser Website – Texte, Bilder, Grafiken, das Design,
+        die Gestaltung sowie der zugrunde liegende Quellcode – sind
+        urheberrechtlich geschützt (§§&nbsp;2&nbsp;ff. UrhG). Jede
+        Vervielfältigung, Bearbeitung, Übernahme oder Nachbildung – auch
+        auszugsweise und unabhängig von der Technik – bedarf der vorherigen
+        schriftlichen Zustimmung von Niki&rsquo;s Soul Café.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- ─── JavaScript ────────────────────────────── -->
+  <script>
+    /* ── Slide-in Mobilmenü ── */
+    const mobBtn      = document.getElementById('mob-btn');
+    const mobOverlay  = document.getElementById('mob-overlay');
+    const mobBackdrop = document.getElementById('mob-backdrop');
+
+    function closeMob() {
+      mobOverlay.classList.remove('open');
+      mobBackdrop.classList.remove('open');
+      mobBtn.classList.remove('open');
+      mobBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    mobBtn.addEventListener('click', () => {
+      const open = mobOverlay.classList.toggle('open');
+      mobBackdrop.classList.toggle('open', open);
+      mobBtn.classList.toggle('open', open);
+      mobBtn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    mobBackdrop.addEventListener('click', closeMob);
+
+    /* Header: feines Glas, das beim Scrollen minimal schrumpft */
+    (function headerOnScroll() {
+      const header = document.querySelector('.site-header');
+      if (!header) return;
+      const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    /* Scroll-Reveal für Kapitel-Inhalte */
+    (function revealOnScroll() {
+      const els = document.querySelectorAll('.reveal, .reveal-stagger');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('is-in'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+    })();
+  </script>
+
+</body>
+</html>

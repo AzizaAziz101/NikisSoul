@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Niki's Soul Café – Frühstück &amp; Brunch in Berlin</title>
+  <meta name="description" content="Niki's Soul Café in Berlin – Frühstücks- und Brunchcafé mit frisch gerösteter Kaffee, hausgemachtem Frühstück und Kuchen. Herzlich, unkompliziert, am Südwestkorso." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+</head>
+<body>
+
+  <!-- ─── Navigation ───────────────────────────── -->
+  <header class="site-header sticky top-0 z-50 backdrop-blur border-t border-b border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 keyline" style="position:relative;">
+      <div class="h-20 flex items-center justify-between">
+
+        <a href="#" class="brand-link flex items-center gap-3">
+          <span class="logo-mark" aria-hidden="true">N</span>
+          <span class="brand-name text-xl font-medium tracking-normal" style="font-family:'Cormorant Garamond',serif;">Niki&rsquo;s <span class="brand-accent">Soul</span> Café</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-9 text-xs font-semibold tracking-[.1em] uppercase">
+          <a href="#" class="py-2 text-stone-500 hover:text-stone-900">Startseite</a>
+
+          <div class="relative group">
+            <button class="inline-flex items-center gap-1.5 py-2 text-stone-500 hover:text-stone-900 uppercase focus:outline-none" aria-haspopup="true" aria-expanded="false">
+              Über uns
+              <svg class="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <div class="pointer-events-none absolute left-0 top-full mt-3 w-56 bg-white border border-stone-200 shadow-sm opacity-0 translate-y-1 transition duration-150 ease-out">
+              <div class="py-2 normal-case tracking-normal font-medium">
+                <a href="#eindruecke" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Das Café</a>
+                <a href="#eindruecke" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Team</a>
+                <a href="#kontakt" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Jobs</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative group">
+            <button class="inline-flex items-center gap-1.5 py-2 text-stone-500 hover:text-stone-900 uppercase focus:outline-none" aria-haspopup="true" aria-expanded="false">
+              Karte
+              <svg class="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <div class="pointer-events-none absolute left-0 top-full mt-3 w-64 bg-white border border-stone-200 shadow-sm opacity-0 translate-y-1 transition duration-150 ease-out
+                         group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto focus-within:opacity-100 focus-within:translate-y-0">
+              <div class="py-2 normal-case tracking-normal font-medium">
+                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Kaffee &amp; Espresso</a>
+                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Frühstück &amp; Brunch</a>
+                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Kuchen &amp; Gebäck</a>
+                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Kalte Getränke</a>
+                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Mittagstisch</a>
+              </div>
+            </div>
+          </div>
+
+          <a href="#kontakt" class="py-2 text-stone-500 hover:text-stone-900">Kontakt</a>
+        </nav>
+
+        <a href="#kontakt" class="btn-contact-header hidden md:inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium">
+          Tisch reservieren
+        </a>
+
+        <!-- Animierter Hamburger-Button -->
+        <button id="mob-btn" class="lg:hidden" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mob-overlay">
+          <span class="icon-bar bar-1"></span>
+          <span class="icon-bar bar-2"></span>
+          <span class="icon-bar bar-3"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─── Backdrop ───────────────────────────────── -->
+  <div id="mob-backdrop" class="mob-backdrop" aria-hidden="true"></div>
+
+  <!-- ─── Slide-in Mobilmenü ──────────────────────── -->
+  <div id="mob-overlay" class="mob-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
+    <button class="mob-close" onclick="closeMob()" aria-label="Menü schließen">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="mob-inner">
+      <div>
+        <span class="eyebrow mob-eyebrow">Navigation</span>
+        <nav>
+        <a href="#" class="mob-nav-link" onclick="closeMob()">Startseite</a>
+
+        <div class="mob-nav-link" id="mob-about-btn" role="button" tabindex="0">
+          <span>Über uns</span>
+          <svg class="mob-chevron" id="mob-about-chev" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
+        </div>
+        <div class="mob-sub hidden" id="mobile-about-menu">
+          <a href="#eindruecke" onclick="closeMob()">Das Café</a>
+          <a href="#eindruecke" onclick="closeMob()">Team</a>
+          <a href="#kontakt" onclick="closeMob()">Jobs</a>
+        </div>
+
+        <div class="mob-nav-link" id="mob-services-btn" role="button" tabindex="0">
+          <span>Karte</span>
+          <svg class="mob-chevron" id="mob-services-chev" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
+        </div>
+        <div class="mob-sub hidden" id="mobile-services-menu">
+          <a href="#karte" onclick="closeMob()">Kaffee &amp; Espresso</a>
+          <a href="#karte" onclick="closeMob()">Frühstück &amp; Brunch</a>
+          <a href="#karte" onclick="closeMob()">Kuchen &amp; Gebäck</a>
+          <a href="#karte" onclick="closeMob()">Kalte Getränke</a>
+          <a href="#karte" onclick="closeMob()">Mittagstisch</a>
+        </div>
+
+        <a href="#kontakt" class="mob-nav-link" onclick="closeMob()">Kontakt</a>
+        </nav>
+      </div>
+
+      <div class="mob-footer">
+        <span class="eyebrow mob-eyebrow" style="margin-bottom:.75rem;">Kontakt</span>
+        <a href="tel:+4915120229017" class="btn-primary rounded-full px-5 py-2.5 text-sm font-medium text-center mb-1">Tisch reservieren</a>
+        <a href="mailto:hallo@nikis-soul-cafe.de" class="mob-email">hallo@nikis-soul-cafe.de</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Hero ──────────────────────────────────── -->
+  <section class="hero">
+
+    <div class="hero-media">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="cafe1-poster.jpg" aria-hidden="true">
+        <source src="Cafe1.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="hero-frame" aria-hidden="true"></div>
+
+    <div class="hero-inner max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style="position:relative;">
+
+      <span class="hero-eyebrow">Café · Berlin · seit 2025</span>
+
+      <h1 class="hero-headline">Jeder Morgen ist ein <em>Geschenk.</em></h1>
+
+      <p class="hero-sub">
+        Der Duft von frisch geröstetem Kaffee, ein Augenblick der Stille
+        und die leise Gewissheit, dass dieser Moment genügt. Mitten im Kiez,
+        bei Niki's Soul Café.
+      </p>
+
+      <div class="hero-actions">
+        <a href="tel:+4915120229017" class="btn-primary hero-btn rounded-full">Tisch reservieren</a>
+        <a href="#karte" class="hero-secondary">Zur Karte <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <span class="hero-scroll" aria-hidden="true"></span>
+    </div>
+  </section>
+
+  <!-- ─── Eindrücke ─────────────────────────────── -->
+  <section id="eindruecke" class="chapter eindruecke">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
+      <header class="chapter-head reveal">
+        <div class="chapter-meta">
+          <span class="eyebrow">Augenblicke</span>
+        </div>
+        <h2 class="chapter-title">Augenblicke, für die man dankbar ist</h2>
+        <p class="chapter-lead">
+          Frühstück, Bowls und die wechselnde Tagesküche – mit Hingabe
+          angerichtet und zum Dableiben gedacht. Ein paar Teller aus einer
+          ganz gewöhnlichen, wunderbaren Woche bei Niki's Soul Café.
+        </p>
+      </header>
+
+      <div class="dish-reel reveal">
+        <button class="reel-nav reel-prev" type="button" aria-label="Zurück">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+
+        <ul class="reel-track">
+          <li class="reel-card">
+            <button class="reel-card-btn" type="button" aria-label="Açaí Bowl in Großansicht öffnen" data-note="Der Start in einen dankbaren Tag.">
+              <img src="Screenshot1.png" alt="Açaí Bowl mit Beeren, Banane, Apfel und Granola" loading="eager" />
+              <div class="reel-info">
+                <h3>Açaí Bowl</h3>
+              </div>
+            </button>
+          </li>
+          <li class="reel-card">
+            <button class="reel-card-btn" type="button" aria-label="French Toast in Großansicht öffnen" data-note="Süß und herzhaft in einem Bissen.">
+              <img src="frenchtoast.jpg" alt="French Toast mit Spiegelei, Bacon, Blaubeeren und Sprossen, dazu ein Schälchen Konfitüre" loading="lazy" />
+              <div class="reel-info">
+                <h3>French Toast</h3>
+              </div>
+            </button>
+          </li>
+          <li class="reel-card">
+            <button class="reel-card-btn" type="button" aria-label="Avocado &amp; Ei in Großansicht öffnen" data-note="Einfach, ehrlich, genau richtig.">
+              <img src="Screenshot3.png" alt="Avocado, Ei und Blattsalat mit Kirschtomaten und Zitrone" loading="lazy" />
+              <div class="reel-info">
+                <h3>Avocado &amp; Ei</h3>
+              </div>
+            </button>
+          </li>
+          <li class="reel-card">
+            <button class="reel-card-btn" type="button" aria-label="Blaubeer-Tarte &amp; Iced Latte in Großansicht öffnen" data-note="Eine kleine Pause, ganz bewusst genossen.">
+              <img src="Speise10.jpg" alt="Blaubeer-Tarte und Iced Latte auf dem Tisch vor dem Café" loading="lazy" />
+              <div class="reel-info">
+                <h3>Blaubeer-Tarte &amp; Iced Latte</h3>
+              </div>
+            </button>
+          </li>
+          <li class="reel-card">
+            <button class="reel-card-btn" type="button" aria-label="Avocado-Toast in Großansicht öffnen" data-note="Frisch, wie jeder neue Morgen.">
+              <img src="Speise11.png" alt="Avocado-Toast mit Sprossen, Blattsalat und Kirschtomaten auf blau glasiertem Teller" loading="lazy" />
+              <div class="reel-info">
+                <h3>Avocado-Toast</h3>
+              </div>
+            </button>
+          </li>
+          <li class="reel-card">
+            <button class="reel-card-btn" type="button" aria-label="Gulasch vom Mittagstisch in Großansicht öffnen" data-note="Wärme, die man schmecken kann.">
+              <img src="Speise12.png" alt="Gulasch mit geröstetem Brot, Kartoffelsalat und Sauerrahm auf einem Holzbrett" loading="lazy" />
+              <div class="reel-info">
+                <h3>Gulasch vom Mittagstisch</h3>
+              </div>
+            </button>
+          </li>
+        </ul>
+
+        <button class="reel-nav reel-next" type="button" aria-label="Weiter">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Lightbox: Großansicht der Eindrücke ───────── -->
+  <div class="lightbox" id="dish-lightbox" role="dialog" aria-modal="true" aria-label="Bild in Großansicht" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Schließen">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Vorheriges Bild">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="lightbox-stage">
+      <img class="lightbox-img" src="" alt="" />
+      <div class="lightbox-caption">
+        <h3 class="lightbox-title"></h3>
+        <p class="lightbox-note"></p>
+      </div>
+    </div>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Nächstes Bild">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- ─── Karte ─────────────────────────────────── -->
+  <section id="karte" class="chapter light">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
+      <header class="chapter-head reveal">
+        <div class="chapter-meta">
+          <span class="chapter-index">I</span>
+          <span class="eyebrow">Karte</span>
+        </div>
+        <h2 class="chapter-title">Unsere Karte</h2>
+        <p class="chapter-lead">
+          Jede Tasse beginnt mit einer Entscheidung: nur das auf die Karte zu
+          nehmen, wovon wir wirklich überzeugt sind. Hausgemacht, wo immer es
+          geht, und mit Dankbarkeit zubereitet.
+        </p>
+      </header>
+      <hr class="chapter-rule">
+
+      <div class="grid md:grid-cols-2 gap-x-16 gap-y-14 reveal-stagger">
+
+        <div class="service-col">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 8h1a4 4 0 0 1 0 8h-1"/>
+              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <h3>Kaffee &amp; Espresso</h3>
+          <p>Espresso, Cappuccino, Flat White und Filterkaffee aus frisch gerösteten Bohnen. Hafer-, Soja- oder Kuhmilch. Wer es ohne Koffein mag, bekommt einen richtig guten Entkoffeinierten – kein Kompromiss, sondern eine eigene Wahl auf der Karte.</p>
+        </div>
+
+        <div class="service-col">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 18a5 5 0 0 0-10 0"/>
+              <line x1="12" y1="2" x2="12" y2="9"/><polyline points="8 6 12 2 16 6"/>
+              <line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/>
+              <line x1="4.2" y1="10.2" x2="5.6" y2="11.6"/><line x1="18.4" y1="10.2" x2="19.8" y2="11.6"/>
+              <line x1="2" y1="22" x2="22" y2="22"/>
+            </svg>
+          </div>
+          <h3>Frühstück &amp; Brunch</h3>
+          <p>Von der einfachen Stulle bis zur vollen Frühstücksplatte mit Rührei, Avocado, Obst und warmem Brot. Am Wochenende gibt es Brunch bis 15 Uhr – für größere Runden empfehlen wir eine Reservierung.</p>
+        </div>
+
+        <div class="service-col">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 21h16"/>
+              <path d="M5 21v-8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8"/>
+              <path d="M4 15c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/>
+              <line x1="12" y1="4" x2="12" y2="8"/><circle cx="12" cy="3" r="1"/>
+            </svg>
+          </div>
+          <h3>Kuchen &amp; Gebäck</h3>
+          <p>Croissants und Zimtschnecken aus eigener Backstube, dazu wechselnde Kuchen – Karotte, Käse-Sahne, Schoko und saisonales Obst.</p>
+        </div>
+
+        <div class="service-col">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 4h12l-1.4 15.1a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9z"/>
+              <line x1="6.4" y1="9" x2="17.6" y2="9"/>
+              <line x1="15" y1="2" x2="12" y2="9"/>
+            </svg>
+          </div>
+          <h3>Kalte Getränke &amp; Limonaden</h3>
+          <p>Hausgemachte Limonaden, Eiskaffee und frisch gepresste Säfte. Im Sommer Eistee und Matcha über Eis.</p>
+        </div>
+
+        <div class="service-col md:col-span-2">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 11h18a9 9 0 0 1-18 0z"/>
+              <path d="M12 3c1.4 1 1.4 3 0 4"/><path d="M8 4.5c1 .8 1 2.2 0 3"/><path d="M16 4.5c1 .8 1 2.2 0 3"/>
+            </svg>
+          </div>
+          <h3>Mittagstisch &amp; Herzhaftes</h3>
+          <p style="max-width:62ch;">Wochentags von 12 bis 15 Uhr: eine wechselnde warme Tagesempfehlung, Quiche, Suppen und belegte Focaccia. Immer mit einer vegetarischen und einer veganen Option. Zum Mitnehmen im Mehrwegbehälter oder in Ruhe bei uns – ein Blick auf die Tafel am Eingang verrät, was heute in der Küche steht.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Torten & Kuchen ─────────────────────────── -->
+  <section class="chapter light">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
+      <div class="grid md:grid-cols-[1.2fr_1fr] gap-x-16 gap-y-14 items-center">
+        <header class="chapter-head reveal" style="margin-bottom:0;">
+          <div class="chapter-meta">
+            <span class="chapter-index">II</span>
+            <span class="eyebrow">Mit Liebe gebacken</span>
+          </div>
+          <h2 class="chapter-title">Selbstgebackene Torten &amp; Kuchen</h2>
+          <p class="chapter-lead">
+            Jede Torte, die unseren Tresen verlässt, trägt ein Stück
+            Dankbarkeit in sich. Emma backt sie von Hand, aus Zutaten, die
+            sie mit Sorgfalt auswählt – Karotte, Käse-Sahne, Schoko und was
+            die Saison gerade schenkt. Kein Blech verlässt die Küche, ohne
+            dass sie überzeugt ist: Dieses Stück macht jemandem den Tag ein
+            bisschen schöner.
+          </p>
+        </header>
+
+        <figure class="baker-portrait reveal">
+          <div class="baker-frame">
+            <img src="Emma.png" alt="Emma, unsere Bäckerin, präsentiert zwei hausgebackene Torten im Café" loading="lazy" />
+          </div>
+          <figcaption>Emma — mit Herz und Schürze</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Gästestimmen ───────────────────────────── -->
+  <section class="paper chapter referenzen">
+    <svg class="ref-shapes" viewBox="0 0 460 430" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <circle class="disc" cx="165" cy="160" r="148"/>
+      <circle class="disc" cx="300" cy="140" r="148"/>
+      <circle class="disc" cx="235" cy="270" r="148"/>
+      <circle class="ring" cx="165" cy="160" r="148"/>
+      <circle class="ring ring--gold" cx="300" cy="140" r="148"/>
+      <circle class="ring" cx="235" cy="270" r="148"/>
+    </svg>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
+      <header class="chapter-head reveal">
+        <div class="chapter-meta">
+          <span class="chapter-index">III</span>
+          <span class="eyebrow">Dankbare Worte</span>
+        </div>
+        <h2 class="chapter-title">Worte, die uns berühren</h2>
+        <p class="chapter-lead">
+          Am schönsten lässt sich ein Café über die Menschen beschreiben, die
+          immer wiederkommen. Ein paar dankbare Worte aus unserem Gästebuch
+          und von Google, mit freundlicher Erlaubnis geteilt.
+        </p>
+      </header>
+
+      <div class="reveal-stagger">
+        <div class="testimonial-row">
+          <p class="testimonial-text">„Der beste Cappuccino in Laufweite – und die Zimtschnecken sind gefährlich gut. Ich komme fast jeden Morgen vor der Arbeit vorbei.“</p>
+          <p class="testimonial-name">Lena K. — Stammgast</p>
+        </div>
+        <div class="testimonial-row">
+          <p class="testimonial-text">„Wir sind mit zwei kleinen Kindern reingekommen und wurden so herzlich empfangen, dass wir geblieben sind, bis der Kuchen alle war.“</p>
+          <p class="testimonial-name">Familie M. — Sonntagsbrunch</p>
+        </div>
+        <div class="testimonial-row">
+          <p class="testimonial-text">„Ich arbeite hier regelmäßig mit dem Laptop. Guter Kaffee, schnelles WLAN, und niemand schaut komisch, wenn man etwas länger bleibt.“</p>
+          <p class="testimonial-name">Sven B. — Freelancer aus dem Kiez</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ────────────────────────────────────── -->
+  <section class="chapter light">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
+      <div class="max-w-3xl">
+      <header class="chapter-head reveal">
+        <div class="chapter-meta">
+          <span class="chapter-index">IV</span>
+          <span class="eyebrow">Gut zu wissen</span>
+        </div>
+        <h2 class="chapter-title">Häufige Fragen</h2>
+      </header>
+
+      <div class="reveal-stagger">
+        <details class="faq-item" name="faq-group" open>
+          <summary>Kann ich einen Tisch reservieren?
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-panel"><p>Ja – besonders für den Wochenendbrunch empfehlen wir das. Ruf uns einfach an oder schreib eine kurze Mail mit Datum, Uhrzeit und Personenzahl.</p></div>
+        </details>
+        <details class="faq-item" name="faq-group">
+          <summary>Habt ihr vegane und glutenfreie Optionen?
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-panel"><p>Immer. Pflanzenmilch gibt es ohne Aufpreis, und im Kuchentresen steht täglich mindestens ein veganes und ein glutenfreies Stück. Beim Mittagstisch ist stets eine vegane Option dabei.</p></div>
+        </details>
+        <details class="faq-item" name="faq-group">
+          <summary>Kann ich bei euch mit dem Laptop arbeiten?
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-panel"><p>Gern, unter der Woche vormittags und nachmittags. Beim Wochenendbrunch bitten wir darum, die Tische fürs Essen frei zu halten.</p></div>
+        </details>
+        <details class="faq-item" name="faq-group">
+          <summary>Sind Hunde willkommen?
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-panel"><p>Ja, angeleinte Hunde dürfen mit rein. Einen Napf mit Wasser stellen wir hin.</p></div>
+        </details>
+        <details class="faq-item" name="faq-group">
+          <summary>Macht ihr Kuchen auf Bestellung oder Catering?
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="faq-panel"><p>Torten und Bleche für Geburtstage oder kleine Feiern gern mit ein paar Tagen Vorlauf. Für Catering im Büro sprich uns direkt an, dann stellen wir etwas Passendes zusammen.</p></div>
+        </details>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="seam seam--pd" aria-hidden="true">
+
+  <!-- ─── Kontakt ───────────────────────────────── -->
+  <section id="kontakt" class="chapter chapter--night" style="background:#24123a;">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline-dark kontakt-bg" style="position:relative;">
+      <header class="chapter-head reveal">
+        <div class="chapter-meta">
+          <span class="chapter-index">V</span>
+          <span class="eyebrow">Kontakt</span>
+        </div>
+        <h2 class="chapter-title">Komm vorbei, ganz wie du bist.</h2>
+        <p class="chapter-lead">
+          Am besten lernt man uns bei einer Tasse Kaffee kennen. Für
+          Reservierungen, Catering-Anfragen oder einfach ein dankbares Hallo –
+          wir freuen uns, von dir zu hören.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8 mb-4">
+          <a href="mailto:hallo@nikis-soul-cafe.de" class="btn-primary rounded-full px-6 py-2.5 text-sm font-medium">E-Mail schreiben</a>
+          <a href="tel:+4915120229017" class="btn-secondary-inverse rounded-full px-6 py-2.5 text-sm font-medium">Anrufen</a>
+        </div>
+        <p class="hero-trust" style="color:rgba(255,255,255,.6);">Reservierung empfohlen für den Wochenendbrunch</p>
+      </header>
+      <hr class="chapter-rule" style="margin-bottom:clamp(2.5rem,5vw,3.5rem);">
+      <div class="grid md:grid-cols-3 gap-0 md:divide-x md:divide-white/15">
+        <div class="info-col pb-8 md:pb-0 md:pr-10">
+          <span class="col-label">Adresse</span>
+          <span>Südwestkorso 59</span>
+          <span>14197 Berlin</span>
+        </div>
+        <div class="info-col py-8 md:py-0 md:px-10">
+          <span class="col-label">Öffnungszeiten</span>
+          <div class="mt-1">
+            <div class="hours-row"><span>Mo – Di</span><span>09:00 – 17:00 Uhr</span></div>
+            <div class="hours-row"><span>Mi</span><span>09:00 – 16:30 Uhr</span></div>
+            <div class="hours-row"><span>Do</span><span>09:00 – 15:00 Uhr</span></div>
+            <div class="hours-row"><span>Fr – So</span><span>10:00 – 17:00 Uhr</span></div>
+          </div>
+        </div>
+        <div class="info-col pt-8 md:pt-0 md:pl-10">
+          <span class="col-label">Direkt</span>
+          <a href="tel:+4915120229017">01512 0229017</a>
+          <a href="mailto:hallo@nikis-soul-cafe.de">hallo@nikis-soul-cafe.de</a>
+          <span class="info-note">Wir antworten meist noch<br>am selben Tag.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ───────────────────────────────── -->
+  <footer class="site-footer" style="border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 keyline-dark keyline-foot" style="position:relative;">
+
+      <div class="grid md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-x-10 gap-y-12 pb-14 border-b border-stone-800">
+        <div>
+          <span class="text-white font-semibold text-lg" style="font-family:'Cormorant Garamond',serif; letter-spacing:.06em;">NIKI'S SOUL CAFÉ</span>
+          <p class="text-stone-300 text-sm leading-[1.85] mt-4" style="max-width:32ch;">
+            Ein kleiner Ort für große Dankbarkeit: frisch gerösteter Kaffee,
+            hausgemachtes Frühstück und Kuchen, mitten im Kiez von Berlin.
+          </p>
+        </div>
+
+        <div>
+          <span class="footer-col-label">Karte</span>
+          <nav class="flex flex-col gap-3 mt-4">
+            <a href="#karte" class="footer-link">Kaffee &amp; Espresso</a>
+            <a href="#karte" class="footer-link">Frühstück &amp; Brunch</a>
+            <a href="#karte" class="footer-link">Kuchen &amp; Gebäck</a>
+            <a href="#karte" class="footer-link">Mittagstisch</a>
+          </nav>
+        </div>
+
+        <div>
+          <span class="footer-col-label">Café</span>
+          <nav class="flex flex-col gap-3 mt-4">
+            <a href="#eindruecke" class="footer-link">Über uns</a>
+            <a href="#eindruecke" class="footer-link">Team</a>
+            <a href="#kontakt" class="footer-link">Jobs</a>
+            <a href="#kontakt" class="footer-link">Kontakt</a>
+          </nav>
+        </div>
+
+        <div>
+          <span class="footer-col-label">Kontakt</span>
+          <div class="flex flex-col gap-3 mt-4">
+            <a href="tel:+4915120229017" class="footer-link">01512 0229017</a>
+            <a href="mailto:hallo@nikis-soul-cafe.de" class="footer-link">hallo@nikis-soul-cafe.de</a>
+            <a href="#kontakt" class="footer-link" style="color:var(--brand-bright);">Anfahrt &amp; Öffnungszeiten <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-400 text-sm">
+        <span>&copy; 2026 Niki's Soul Café. Alle Rechte vorbehalten.</span>
+        <div class="flex gap-6">
+          <a href="impressum.html" class="footer-link" style="display:inline;">Impressum</a>
+          <a href="datenschutz.html" class="footer-link" style="display:inline;">Datenschutz</a>
+        </div>
+      </div>
+
+      <p class="mt-8 text-xs leading-[1.8]" style="color:var(--ink-faint); max-width:78ch;">
+        Sämtliche Inhalte dieser Website – Texte, Bilder, Grafiken, das Design,
+        die Gestaltung sowie der zugrunde liegende Quellcode – sind
+        urheberrechtlich geschützt (§§&nbsp;2&nbsp;ff. UrhG). Jede
+        Vervielfältigung, Bearbeitung, Übernahme oder Nachbildung – auch
+        auszugsweise und unabhängig von der Technik – bedarf der vorherigen
+        schriftlichen Zustimmung von Niki&rsquo;s Soul Café.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- ─── JavaScript ────────────────────────────── -->
+  <script>
+    /* ── Slide-in Mobilmenü ── */
+    const mobBtn      = document.getElementById('mob-btn');
+    const mobOverlay  = document.getElementById('mob-overlay');
+    const mobBackdrop = document.getElementById('mob-backdrop');
+
+    function closeMob() {
+      mobOverlay.classList.remove('open');
+      mobBackdrop.classList.remove('open');
+      mobBtn.classList.remove('open');
+      mobBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    mobBtn.addEventListener('click', () => {
+      const open = mobOverlay.classList.toggle('open');
+      mobBackdrop.classList.toggle('open', open);
+      mobBtn.classList.toggle('open', open);
+      mobBtn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    mobBackdrop.addEventListener('click', closeMob);
+
+    /* ── Mobile Sub-Menüs ── */
+    function setupMobSub(btnId, panelId, chevId) {
+      const btn   = document.getElementById(btnId);
+      const panel = document.getElementById(panelId);
+      const chev  = document.getElementById(chevId);
+      let open = false;
+      btn.addEventListener('click', () => {
+        open = !open;
+        panel.classList.toggle('hidden', !open);
+        if (chev) chev.style.transform = open ? 'rotate(180deg)' : '';
+      });
+    }
+    setupMobSub('mob-about-btn',    'mobile-about-menu',    'mob-about-chev');
+    setupMobSub('mob-services-btn', 'mobile-services-menu', 'mob-services-chev');
+
+    /* ── Desktop-Dropdowns ── */
+    function setupDelayedDropdown(groupSelector, menuSelector, delay = 500) {
+      const group = document.querySelector(groupSelector);
+      const menu = group.querySelector(menuSelector);
+      let hideTimeout;
+      group.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout);
+        menu.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-1');
+        menu.classList.add('opacity-100', 'translate-y-0');
+      });
+      group.addEventListener('mouseleave', () => {
+        hideTimeout = setTimeout(() => {
+          menu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-1');
+          menu.classList.remove('opacity-100', 'translate-y-0');
+        }, delay);
+      });
+    }
+    setupDelayedDropdown('.group:nth-of-type(1)', 'div');
+    setupDelayedDropdown('.group:nth-of-type(2)', 'div');
+
+    /* Scroll-Reveal für Kapitel-Inhalte (inkl. gestaffelter Gruppen) */
+    (function revealOnScroll() {
+      const els = document.querySelectorAll('.reveal, .reveal-stagger');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('is-in'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+    })();
+
+    /* Header: feines Glas, das beim Scrollen minimal schrumpft und sich verdichtet */
+    (function headerOnScroll() {
+      const header = document.querySelector('.site-header');
+      if (!header) return;
+      const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    /* Hero: dezenter Parallax-Effekt des Hintergrunds beim Scrollen */
+    (function heroParallax() {
+      const hero  = document.querySelector('.hero');
+      const media = document.querySelector('.hero-media');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!hero || !media || reduce) return;
+      let ticking = false;
+      const update = () => {
+        const rect = hero.getBoundingClientRect();
+        const progress = Math.min(Math.max(-rect.top / rect.height, 0), 1);
+        media.style.transform = `translate3d(0, ${progress * rect.height * 0.08}px, 0)`;
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+    })();
+
+    /* Eindrücke: eine Reihe zum Durchblättern, wie man sie von
+       Streaming-Startseiten kennt. Pfeile links/rechts scrollen die
+       Reihe seitenweise, am Anfang/Ende blenden sie sich aus – sonst
+       macht der native Scroll (inkl. Wischen) die ganze Arbeit. */
+    (function dishReel() {
+      const reel  = document.querySelector('.dish-reel');
+      if (!reel) return;
+      const track   = reel.querySelector('.reel-track');
+      const prevBtn = reel.querySelector('.reel-prev');
+      const nextBtn = reel.querySelector('.reel-next');
+      if (!track || !prevBtn || !nextBtn) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function scrollByPage(dir) {
+        track.scrollBy({ left: dir * track.clientWidth * 0.85, behavior: reduce ? 'auto' : 'smooth' });
+      }
+      prevBtn.addEventListener('click', () => scrollByPage(-1));
+      nextBtn.addEventListener('click', () => scrollByPage(1));
+
+      let ticking = false;
+      function updateNavVisibility() {
+        const maxScroll = track.scrollWidth - track.clientWidth - 2;
+        prevBtn.style.visibility = track.scrollLeft <= 2 ? 'hidden' : 'visible';
+        nextBtn.style.visibility = track.scrollLeft >= maxScroll ? 'hidden' : 'visible';
+        ticking = false;
+      }
+      track.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(updateNavVisibility); ticking = true; }
+      }, { passive: true });
+      window.addEventListener('resize', updateNavVisibility);
+      updateNavVisibility();
+    })();
+
+    /* Lightbox: Karten der Bilderreihe öffnen das Foto in Großansicht,
+       mit Pfeilen, Tastatur (Escape/←/→), Klick auf den Hintergrund
+       zum Schließen und sauberem Fokus-Management. */
+    (function lightbox() {
+      const triggers = Array.from(document.querySelectorAll('.reel-card-btn'));
+      const box = document.getElementById('dish-lightbox');
+      if (!triggers.length || !box) return;
+
+      const items = triggers.map(btn => {
+        const img = btn.querySelector('img');
+        const title = btn.querySelector('h3');
+        return {
+          src: img.src,
+          alt: img.alt,
+          title: title ? title.textContent : '',
+          note: btn.dataset.note || ''
+        };
+      });
+
+      const imgEl    = box.querySelector('.lightbox-img');
+      const titleEl  = box.querySelector('.lightbox-title');
+      const noteEl   = box.querySelector('.lightbox-note');
+      const closeBtn = box.querySelector('.lightbox-close');
+      const prevBtn  = box.querySelector('.lightbox-prev');
+      const nextBtn  = box.querySelector('.lightbox-next');
+      let index = 0;
+      let lastFocused = null;
+
+      function render() {
+        imgEl.src = items[index].src;
+        imgEl.alt = items[index].alt;
+        titleEl.textContent = items[index].title;
+        noteEl.textContent = items[index].note;
+      }
+      function open(i) {
+        index = i;
+        render();
+        lastFocused = document.activeElement;
+        box.classList.add('is-open');
+        box.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+      function close() {
+        box.classList.remove('is-open');
+        box.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      }
+      function next() { index = (index + 1) % items.length; render(); }
+      function prev() { index = (index - 1 + items.length) % items.length; render(); }
+
+      triggers.forEach((btn, i) => btn.addEventListener('click', () => open(i)));
+      closeBtn.addEventListener('click', close);
+      nextBtn.addEventListener('click', next);
+      prevBtn.addEventListener('click', prev);
+      box.addEventListener('click', (e) => { if (e.target === box) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (!box.classList.contains('is-open')) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft')  prev();
+      });
+    })();
+
+    /* Hero-Video zuverlässig starten (einige Browser brauchen den Play-Anstoß per JS) */
+    (function heroVideo() {
+      const v = document.querySelector('.hero-video');
+      if (!v) return;
+      v.muted = true;                       // Property, nicht nur Attribut → erlaubt Autoplay
+      const play = () => { const p = v.play(); if (p) p.catch(() => {}); };
+      play();
+      v.addEventListener('canplay', play, { once: true });
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) play(); });
+    })();
+
+    /* Hero-Höhe fixieren – verhindert Springen beim Ein-/Ausblenden der
+       mobilen Adressleiste (Chrome & Firefox auf Android). */
+    (function lockHeroHeight() {
+      const root = document.documentElement;
+      let lastW = window.innerWidth;
+      const apply = () => root.style.setProperty('--hero-lock', window.innerHeight + 'px');
+      apply();
+      window.addEventListener('resize', () => {
+        if (Math.abs(window.innerWidth - lastW) > 60) {
+          lastW = window.innerWidth;
+          apply();
+        }
+      }, { passive: true });
+      window.addEventListener('orientationchange', () => setTimeout(apply, 250));
+    })();
+  </script>
+
+</body>
+</html>

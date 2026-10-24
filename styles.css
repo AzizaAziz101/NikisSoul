@@ -1,0 +1,765 @@
+/* ─────────────────────────────────────────────────────────────
+   Niki's Soul Café – Berlin
+   Lila · Weiß · Pink – klassisch, ruhig, zeitlos.
+   Lila trägt die Seite, Weiß gibt Luft (helle Kapitel), Pink setzt
+   die wenigen Akzente. Serifen-Headlines, Sans-Fließtext, viel Raum.
+   © 2026 Niki's Soul Café. Texte und Gestaltung
+   urheberrechtlich geschützt. Übernahme – auch auszugsweise –
+   nur mit schriftlicher Genehmigung.
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Tokens ──────────────────────────────── */
+:root {
+  --void:#241330;          /* tiefes, mattes Lila – Seite */
+  --surface:#2c1a40;       /* Lila – Kapitelfläche        */
+  --surface-2:#352247;     /* Lila – Menüs                */
+
+  --ink:#fdfbff;           /* Text primär   (Weiß)     */
+  --ink-soft:#dccfee;      /* Text sekundär            */
+  --ink-faint:#a996c4;     /* Text leise               */
+
+  --brand:#e8488f;         /* Pink – Buttons & Akzentflächen */
+  --brand-bright:#e8a9c9;  /* gedecktes Rosé – seltener Text-Akzent */
+  --brand-ink:#ffffff;     /* Text auf Pink */
+
+  --edge:rgba(255,255,255,.16);        /* weiße Haarlinie   */
+  --edge-strong:rgba(255,255,255,.42); /* Kanten & Diagonalen */
+
+  --paper:var(--surface);
+  --night:var(--void);
+
+  --ease-out:cubic-bezier(.16,1,.3,1); /* fließende, präzise Easing-Kurve für alle Interaktionen */
+}
+
+/* ── Basis ───────────────────────────────── */
+html, body { overflow-x:clip; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0; padding:0; font-family:'Inter',sans-serif;
+  color:var(--ink); background:var(--void);
+}
+h1,h2,h3,h4 { font-family:'Cormorant Garamond','Roboto Slab',serif; letter-spacing:-0.01em; }
+a { transition: color .15s, background-color .15s, border-color .15s; }
+::selection { background:var(--brand); color:var(--brand-ink); }
+
+/* Helle Kapitel (Weiß): dieselben Bausteine, nur die Tokens kippen.
+   Lila wird zur Schrift, Pink dunkelt für Lesbarkeit leicht nach. */
+.light {
+  background:#ffffff;
+  --ink:#2b1744;
+  --ink-soft:#5a4578;
+  --ink-faint:#8f7fa8;
+  --brand-bright:#d6307d;
+  --edge:rgba(43,23,68,.14);
+  --edge-strong:rgba(43,23,68,.42);
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+}
+
+/* ── Buttons – flach, mit feinem Lift bei Hover ─── */
+.btn-primary, .btn-secondary, .btn-secondary-inverse, .btn-contact-header {
+  display:inline-flex; align-items:center; justify-content:center;
+  transition:background-color .25s var(--ease-out), color .25s var(--ease-out),
+             border-color .25s var(--ease-out), transform .3s var(--ease-out),
+             box-shadow .35s var(--ease-out);
+  will-change:transform;
+}
+.btn-primary {
+  background-color:var(--brand); color:var(--brand-ink);
+  font-weight:600; letter-spacing:.03em;
+}
+.btn-primary:hover, .btn-contact-header:hover {
+  background-color:var(--brand-bright);
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px -12px rgba(232,72,143,.45);
+}
+.btn-secondary {
+  border:1px solid var(--edge-strong); color:var(--ink); letter-spacing:.04em;
+}
+.btn-secondary:hover { background-color:var(--brand); color:var(--brand-ink); border-color:var(--brand); transform:translateY(-2px); }
+.btn-secondary-inverse {
+  border:1px solid var(--edge-strong); color:var(--ink); letter-spacing:.04em;
+}
+.btn-secondary-inverse:hover { background-color:var(--brand); color:var(--brand-ink); border-color:var(--brand); transform:translateY(-2px); }
+.btn-contact-header {
+  background:var(--brand); color:var(--brand-ink); border:0;
+  font-weight:600; letter-spacing:.03em;
+}
+.btn-primary:active, .btn-secondary:active, .btn-secondary-inverse:active, .btn-contact-header:active {
+  transform:translateY(0) scale(.97);
+  box-shadow:none;
+}
+
+/* ── Eyebrow ─────────────────────────────── */
+.eyebrow {
+  display:block; font-family:'Inter',sans-serif;
+  font-size:.68rem; font-weight:600;
+  letter-spacing:.25em; text-transform:uppercase;
+  color:var(--ink-soft); margin-bottom:.6rem;
+}
+
+/* Haarlinie mit Diagonal-Auftakt (für .rule) */
+.rule {
+  position:relative; border:none; height:1px; margin:0;
+  background:var(--edge);
+}
+.rule::before {
+  content:""; position:absolute; left:0; top:50%;
+  width:22px; height:1px; background:var(--ink-soft);
+  transform-origin:left center; transform:translateY(-.5px) rotate(-45deg);
+}
+
+/* ── Header – feines Glas, das beim Scrollen leicht schrumpft ── */
+.site-header {
+  background:rgba(43,23,68,.78);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-top-color:var(--edge) !important;
+  border-bottom-color:var(--edge) !important;
+  transition:background-color .4s var(--ease-out), box-shadow .4s var(--ease-out);
+}
+.site-header.is-scrolled {
+  background:rgba(43,23,68,.95);
+  box-shadow:0 1px 0 var(--edge), 0 18px 36px -22px rgba(20,8,36,.55);
+}
+.site-header .h-20 { transition:height .35s var(--ease-out); }
+.site-header.is-scrolled .h-20 { height:4.25rem; }
+
+.site-header nav a,
+.site-header nav button { color:var(--ink-soft); }
+.site-header nav a:hover,
+.site-header nav button:hover { color:var(--ink); }
+.site-header .brand-name { color:var(--ink) !important; }
+
+/* Feiner, goldener Scheidestrich zwischen den Hauptpunkten –
+   wie Einträge auf einer gedruckten Speisekarte. */
+.site-header nav > *:not(:first-child) { position:relative; }
+.site-header nav > *:not(:first-child)::before {
+  content:""; position:absolute; left:-1.125rem; top:50%;
+  width:1px; height:13px; transform:translateY(-50%);
+  background:var(--edge-strong);
+}
+
+/* Nav-Links: feine Haarlinie zieht sich beim Hover von links auf */
+.site-header nav > a,
+.site-header nav > div > button {
+  position:relative;
+}
+.site-header nav > a::after,
+.site-header nav > div > button::after {
+  content:""; position:absolute; left:0; bottom:.3rem; height:1px; width:0;
+  background:var(--brand-bright);
+  transition:width .3s var(--ease-out);
+}
+.site-header nav > a:hover::after,
+.site-header nav > div:hover > button::after {
+  width:100%;
+}
+.site-header nav button svg { color:var(--ink-soft); }
+
+.site-header .group > div {
+  background:var(--surface-2); border-color:var(--edge) !important;
+  border-top:2px solid var(--brand) !important;
+}
+.site-header .group a { color:var(--ink-soft) !important; }
+.site-header .group a:hover { background:var(--brand) !important; color:var(--brand-ink) !important; }
+
+/* Wortmarke: Monogramm wie ein kleines Siegel, mit feinem Doppelring */
+.brand-link { position:relative; }
+.brand-link::after {
+  content:""; position:absolute; left:0; right:100%; bottom:-7px; height:1px;
+  background:var(--brand-bright); transition:right .4s var(--ease-out);
+}
+.brand-link:hover::after { right:0; }
+
+.brand-name .brand-accent {
+  font-style:italic; color:var(--brand-bright); margin:0 .14em; font-size:1.1em;
+}
+
+.logo-mark {
+  width:2.5rem; height:2.5rem; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand); border-radius:50%;
+  box-shadow:0 0 0 1px var(--void), 0 0 0 2px var(--edge-strong);
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:600; font-style:italic;
+  font-size:1.25rem; letter-spacing:.02em;
+  color:var(--brand-ink);
+  transition:width .35s var(--ease-out), height .35s var(--ease-out), font-size .35s var(--ease-out);
+}
+.site-header.is-scrolled .logo-mark { width:2.15rem; height:2.15rem; font-size:1.05rem; }
+
+.hero-trust { font-size:.78rem; color:var(--ink-faint); font-weight:400; }
+
+/* ── Hero ─────────────────────────────────── */
+.hero {
+  position:relative;
+  min-height:90vh;
+  min-height:90svh;
+  min-height:var(--hero-lock, 90svh);
+  display:flex; align-items:stretch;
+  background:var(--void); overflow:hidden;
+}
+.hero-media {
+  position:absolute; left:0; right:0; top:-8%; height:116%;
+  background:var(--void) url('cafe1-poster.jpg') center / cover no-repeat;
+  will-change:transform;
+}
+@media (prefers-reduced-motion:reduce) { .hero-media { top:0; height:100%; } }
+.hero-media img,
+.hero-media video {
+  width:100%; height:100%; display:block;
+  object-fit:cover; object-position:center 20%;
+}
+@media (max-width:767px) {
+  .hero-media img,
+  .hero-media video { object-position:70% 20%; }
+}
+/* Vignette: ruhige Mitte, dunkle Ränder – wie Kerzenlicht in einem Raum */
+.hero-media::after {
+  content:''; position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 48%, rgba(43,23,68,.42) 0%, rgba(43,23,68,.74) 70%, rgba(43,23,68,.9) 100%),
+    linear-gradient(to bottom, rgba(43,23,68,.55) 0%, rgba(43,23,68,0) 22%, rgba(43,23,68,0) 70%, var(--void) 100%);
+}
+
+/* Stiller Innenrahmen – wie der Einband eines Buches, ganz ohne Schmuck */
+.hero-frame {
+  position:absolute; z-index:2; pointer-events:none;
+  inset:clamp(.9rem, 2.2vw, 1.75rem);
+  border:1px solid var(--edge-strong);
+}
+
+.hero-inner {
+  position:relative; z-index:3; width:100%;
+  padding-top:clamp(5rem, 10vh, 7rem); padding-bottom:clamp(5rem, 10vh, 7rem);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+}
+
+/* Eyebrow mit flankierenden Haarlinien – still, nicht pink */
+.hero-eyebrow {
+  display:flex; align-items:center; gap:1.1rem;
+  font-family:'Inter',sans-serif;
+  font-size:.72rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--ink-soft); margin-bottom:2.3rem;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content:''; width:clamp(1.5rem, 4vw, 3rem); height:1px; flex:none;
+  background:var(--edge-strong);
+}
+
+.hero-headline {
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:500;
+  font-size:clamp(2.8rem, 7.5vw, 6rem);
+  line-height:1.04; letter-spacing:.005em;
+  color:var(--ink); margin:0 0 2rem; max-width:16ch;
+  text-wrap:balance;
+}
+.hero-headline em { font-style:italic; font-weight:500; }
+
+.hero-sub {
+  font-size:clamp(1rem,1.3vw,1.12rem); line-height:1.85; font-weight:300;
+  color:var(--ink-soft); max-width:50ch; margin:0 0 2.6rem;
+  text-wrap:pretty;
+}
+
+.hero-actions {
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:1.1rem 2.25rem;
+}
+.hero-btn { padding:.8rem 1.9rem; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; }
+
+.hero-secondary {
+  font-family:'Inter',sans-serif;
+  font-size:.76rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-soft); text-decoration:none;
+}
+.hero-secondary:hover { color:#fff; }
+
+/* Pfeil-Glyphen gleiten beim Hover sanft nach rechts */
+.arrow { display:inline-block; transition:transform .3s var(--ease-out); }
+a:hover .arrow { transform:translateX(4px); }
+
+/* Fußzeile des Hero: Hinweis + stille Scroll-Linie */
+.hero-meta {
+  position:absolute; left:0; right:0; bottom:clamp(1.9rem, 4vw, 3rem); z-index:3;
+  font-family:'Inter',sans-serif;
+  font-size:.66rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--ink-faint);
+  display:flex; flex-direction:column; align-items:center; gap:.9rem;
+}
+.hero-scroll {
+  width:1px; height:2.6rem; position:relative; overflow:hidden; background:var(--edge);
+}
+.hero-scroll::after {
+  content:''; position:absolute; left:0; top:-100%; width:100%; height:100%;
+  background:var(--ink-soft);
+  animation:scrollCue 2.4s var(--ease-out) infinite;
+}
+@keyframes scrollCue {
+  0%   { top:-100%; }
+  60%  { top:100%; }
+  100% { top:100%; }
+}
+@media (prefers-reduced-motion:reduce) { .hero-scroll::after { animation:none; top:0; } }
+@media (max-width:640px) {
+  .hero-meta { display:none; }
+  .hero-frame { inset:.75rem; }
+}
+
+/* ── Eindrücke: eine Reihe zum Durchblättern, wie man sie von
+   Streaming-Startseiten kennt – aber mit warmen, persönlichen Worten
+   statt bloßer Titel, damit sie nach Niki's Soul Café aussieht und
+   nicht nach einer Bibliothek. */
+.eindruecke { background:var(--void); }
+
+.dish-reel { position:relative; }
+
+.reel-track {
+  display:flex; gap:1.1rem; list-style:none; margin:0;
+  padding:1.3rem .3rem 1.6rem;
+  overflow-x:auto; scroll-snap-type:x proximity; scroll-padding-left:.3rem;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+.reel-track::-webkit-scrollbar { display:none; }
+@media (prefers-reduced-motion:reduce) { .reel-track { scroll-behavior:auto; } }
+
+/* Schlicht: Bild oben, Name darunter. Keine Verläufe, keine Ziffern,
+   keine Ecken, keine Animation auf dem Bild – der Name liegt nie auf
+   dem Foto, sondern immer auf fester Kartenfläche, damit er unter
+   jeder Bedingung lesbar ist. */
+.reel-card {
+  flex:0 0 auto; width:min(72vw, 15.5rem);
+  scroll-snap-align:start; overflow:hidden;
+  background:var(--surface);
+}
+
+.reel-card-btn {
+  display:block; width:100%; padding:0; margin:0; border:0;
+  background:none; cursor:pointer; font:inherit; text-align:left;
+  appearance:none; -webkit-appearance:none;
+}
+.reel-card-btn:focus-visible { outline:2px solid var(--brand-bright); outline-offset:3px; }
+
+.reel-card img {
+  display:block; width:100%; aspect-ratio:4 / 5;
+  object-fit:cover; object-position:center 38%;
+}
+
+.reel-info { padding:.9rem 1rem 1rem; }
+.reel-info h3 {
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:600; font-size:1.1rem;
+  color:var(--ink); margin:0;
+}
+
+.reel-nav {
+  position:absolute; top:50%; z-index:3; transform:translateY(-50%);
+  width:2.75rem; height:2.75rem; border-radius:50%; padding:0;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(20,8,34,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.32); color:#fff; cursor:pointer;
+  opacity:0; transition:opacity .3s var(--ease-out), border-color .25s var(--ease-out), background-color .25s var(--ease-out);
+}
+.dish-reel:hover .reel-nav { opacity:1; }
+.reel-prev { left:-.3rem; }
+.reel-next { right:-.3rem; }
+.reel-nav:hover { border-color:var(--brand-bright); color:var(--brand-bright); }
+
+@media (hover:none) { .reel-nav { opacity:1; } }
+@media (max-width:640px) {
+  .reel-card { width:min(76vw, 14rem); }
+  .reel-nav { display:none; }
+}
+
+/* ── Lightbox: ein Bild in Großansicht, mit Pfeilen und Tastatur ── */
+.lightbox {
+  position:fixed; inset:0; z-index:300;
+  display:flex; align-items:center; justify-content:center;
+  padding:clamp(1.25rem, 5vw, 3.5rem);
+  background:rgba(15,8,24,.94); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .35s var(--ease-out), visibility 0s linear .35s;
+}
+.lightbox.is-open {
+  opacity:1; visibility:visible; pointer-events:auto;
+  transition:opacity .35s var(--ease-out), visibility 0s linear 0s;
+}
+
+.lightbox-stage {
+  display:flex; flex-direction:column; align-items:center; gap:1.1rem;
+  max-width:100%; max-height:100%;
+  transform:scale(.97); transition:transform .35s var(--ease-out);
+}
+.lightbox.is-open .lightbox-stage { transform:scale(1); }
+
+.lightbox-img {
+  display:block; max-width:min(88vw, 56rem); max-height:72vh;
+  width:auto; height:auto; object-fit:contain;
+  box-shadow:0 40px 70px -24px rgba(0,0,0,.6);
+}
+.lightbox-caption { text-align:center; }
+.lightbox-title {
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:600;
+  font-size:1.5rem; color:var(--ink); margin:0 0 .4rem;
+}
+.lightbox-note {
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-style:italic; font-weight:400;
+  font-size:1.05rem; color:var(--ink-soft); margin:0;
+}
+
+.lightbox-close, .lightbox-nav {
+  position:absolute; z-index:1; top:50%; transform:translateY(-50%);
+  width:2.9rem; height:2.9rem; border-radius:50%; padding:0; margin:0;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(20,8,34,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.32); color:#fff; cursor:pointer;
+  appearance:none; -webkit-appearance:none;
+  transition:border-color .25s var(--ease-out), color .25s var(--ease-out);
+}
+.lightbox-close:hover, .lightbox-nav:hover { border-color:var(--brand-bright); color:var(--brand-bright); }
+.lightbox-close {
+  top:clamp(1.25rem, 5vw, 2.5rem); right:clamp(1.25rem, 5vw, 2.5rem);
+  transform:none;
+}
+.lightbox-prev { left:clamp(.5rem, 3vw, 2rem); }
+.lightbox-next { right:clamp(.5rem, 3vw, 2rem); }
+
+@media (max-width:640px) {
+  .lightbox-prev, .lightbox-next { width:2.4rem; height:2.4rem; }
+}
+
+/* ═══ Kapitel-System ═══════════════════════ */
+.paper { background:var(--surface); }
+.chapter { position:relative; border-top:1px solid var(--edge); }
+.chapter:first-of-type { border-top:0; }
+
+/* keine Seams – harter Schnitt zwischen den Flächen */
+.seam { display:none; }
+
+/* Kapitel-Kopf */
+.chapter-head { max-width:44rem; margin-bottom:clamp(2.75rem,5.5vw,4.25rem); }
+.chapter-meta { display:flex; align-items:center; gap:.95rem; margin-bottom:1.4rem; }
+/* Kapitelnummer als stille, römische Ziffer – wie im Buchdruck */
+.chapter-index {
+  display:inline-block;
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:600; font-style:italic;
+  font-size:1.15rem; letter-spacing:.05em; color:var(--ink-soft);
+}
+.chapter-meta .eyebrow { margin:0; }
+.chapter-meta::after {
+  content:''; flex:1 1 auto; height:1px; background:var(--edge);
+}
+.chapter-title {
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:400;
+  font-size:clamp(1.95rem,3.7vw,2.85rem); line-height:1.08; letter-spacing:-.018em;
+  color:var(--ink); margin:0 0 1.35rem;
+}
+.chapter-lead {
+  font-size:clamp(.96rem,1.05vw,1.06rem); line-height:1.85; font-weight:400;
+  color:var(--ink-soft); margin:0;
+}
+/* Kapitel-Trennlinie: Diagonal-Auftakt links, Raute rechts – beides flach */
+.chapter-rule {
+  position:relative; border:0; height:1px; overflow:visible;
+  background:var(--edge); margin:0 0 clamp(2.5rem,5vw,3.5rem);
+}
+.chapter-rule::before {
+  content:""; position:absolute; left:0; top:50%;
+  width:26px; height:1px; background:var(--ink-soft);
+  transform-origin:left center; transform:translateY(-.5px) rotate(-45deg);
+}
+.chapter-rule::after {
+  content:""; position:absolute; right:0; top:50%;
+  width:5px; height:5px; margin-top:-3px;
+  background:var(--ink-soft); transform:rotate(45deg);
+}
+
+/* Nacht-Variante (Kontakt) */
+.chapter--night .chapter-meta::after { background:var(--edge); }
+.chapter--night .chapter-title { color:#fff; }
+.chapter--night .chapter-lead { color:var(--ink-soft); }
+.chapter--night .chapter-rule { background:var(--edge); }
+
+/* Scroll-Reveal */
+.reveal { opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.reveal.is-in { opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+
+/* Gestaffeltes Reveal – jedes Kind einer Gruppe tritt leicht versetzt auf,
+   statt dass die ganze Reihe gleichzeitig aufblitzt. */
+.reveal-stagger > * {
+  opacity:0; transform:translateY(16px);
+  transition:opacity .6s var(--ease-out), transform .6s var(--ease-out);
+}
+.reveal-stagger.is-in > * { opacity:1; transform:none; }
+.reveal-stagger > *:nth-child(1) { transition-delay:.02s; }
+.reveal-stagger > *:nth-child(2) { transition-delay:.1s; }
+.reveal-stagger > *:nth-child(3) { transition-delay:.18s; }
+.reveal-stagger > *:nth-child(4) { transition-delay:.26s; }
+.reveal-stagger > *:nth-child(5) { transition-delay:.34s; }
+@media (prefers-reduced-motion:reduce) {
+  .reveal-stagger > * { opacity:1; transform:none; transition:none; }
+}
+
+/* ── Karte / Angebot ──────────────────────── */
+.service-col { padding-top:2rem; border-top:2px solid var(--edge); }
+.service-icon { color:var(--ink); margin-bottom:1.15rem; }
+.service-col h3 {
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-size:1.16rem; font-weight:600;
+  letter-spacing:-.01em; margin-bottom:.75rem; color:var(--ink);
+}
+.service-col p { font-size:.93rem; color:var(--ink-soft); line-height:1.85; }
+
+/* ── Torten & Kuchen: ein stilles Porträt, wie ein gerahmtes Foto
+   auf dem Kaminsims – keine Effekte, nur Emma und ihre Torten. */
+.baker-portrait { margin:0; max-width:26rem; }
+.baker-frame { overflow:hidden; border:1px solid var(--edge); }
+.baker-frame img { display:block; width:100%; height:auto; }
+.baker-portrait figcaption {
+  margin-top:1.1rem;
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-style:italic; font-weight:500;
+  font-size:1.05rem; color:var(--ink-soft);
+}
+@media (max-width:767px) { .baker-portrait { max-width:22rem; } }
+
+/* ── Gästestimmen ─────────────────────────── */
+.referenzen { position:relative; overflow:hidden; }
+.referenzen > div { position:relative; z-index:1; }
+.ref-shapes {
+  position:absolute; z-index:0; pointer-events:none;
+  top:clamp(-6rem,-3vw,-2.5rem); right:-13rem;
+  width:min(53rem,116vw); height:auto;
+}
+.ref-shapes .disc  { display:none; }
+.ref-shapes .ring  { fill:none; stroke:var(--ink); stroke-opacity:.18; stroke-width:1; }
+.ref-shapes .ring--gold { stroke:var(--brand-bright); stroke-opacity:.16; }
+@media (max-width:767px) { .ref-shapes { top:-3.5rem; right:-17rem; width:36rem; } }
+
+.testimonial-row { padding:clamp(2rem,4vw,2.75rem) 0; border-top:1px solid var(--edge); }
+.testimonial-row:last-child { border-bottom:1px solid var(--edge); }
+.testimonial-text {
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:400; font-style:italic;
+  font-size:clamp(1.12rem,1.55vw,1.35rem); color:var(--ink); line-height:1.66; max-width:54ch;
+}
+.testimonial-text::before {
+  content:'“'; font-family:'Cormorant Garamond','Roboto Slab',serif; font-style:normal;
+  color:var(--ink-soft); font-size:1.4em; line-height:0; margin-right:.12em; vertical-align:-.35em;
+}
+.testimonial-name {
+  font-size:.7rem; color:var(--ink-faint); margin-top:1.35rem;
+  letter-spacing:.16em; text-transform:uppercase;
+}
+
+/* ── FAQ ──────────────────────────────────── */
+.faq-item { border-bottom:1px solid var(--edge); }
+.faq-item:first-child { border-top:1px solid var(--edge); }
+.faq-item summary {
+  list-style:none; cursor:pointer; padding:1.55rem 0;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  font-size:1.02rem; font-weight:500; color:var(--ink);
+  transition:color .15s;
+}
+.faq-item summary:hover { color:var(--brand-bright); }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-chevron { flex-shrink:0; color:var(--ink-faint); transition:transform .35s var(--ease-out), color .15s; }
+.faq-item[open] .faq-chevron { transform:rotate(180deg); color:var(--brand-bright); }
+
+/* Fließendes Auf- und Zuklappen statt des harten Browser-Sprungs:
+   die Höhe des Panels wird per CSS-Grid-Track animiert, der Inhalt
+   (mit overflow:hidden) liefert dafür die nötige Mindestgröße von 0. */
+.faq-item > .faq-panel {
+  display:grid !important;
+  grid-template-rows:0fr;
+  overflow:hidden;
+  transition:grid-template-rows .5s var(--ease-out);
+}
+.faq-item[open] > .faq-panel { grid-template-rows:1fr; }
+.faq-item .faq-panel p {
+  overflow:hidden; min-height:0; margin:0;
+  font-size:.93rem; color:var(--ink-soft); line-height:1.85;
+  padding:0 0 1.7rem; max-width:64ch;
+}
+
+/* ── Kontakt ──────────────────────────────── */
+.info-col a, .info-col span {
+  display:block; font-size:.9rem; font-weight:500; color:var(--ink); line-height:1.9; transition:color .15s;
+}
+.info-col a:hover { color:var(--brand-bright); }
+.info-col .col-label {
+  font-size:.65rem; font-weight:600; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--ink-faint); margin-bottom:.4rem; display:block;
+}
+.hours-row { display:flex; gap:1rem; line-height:1.9; }
+.hours-row span { font-size:.82rem; font-weight:400; color:var(--ink-soft); white-space:nowrap; }
+.hours-row span:first-child { color:var(--ink-faint); min-width:6.5rem; }
+.kontakt-bg {
+  background:
+    linear-gradient(rgba(36,18,58,.86), rgba(36,18,58,.86)),
+    url('416782850_11662228.jpg') center 22% / cover no-repeat;
+}
+.info-col .info-note {
+  margin-top:1rem; font-size:.8rem; font-weight:400; color:var(--ink-faint); line-height:1.7;
+}
+
+/* ── Footer ───────────────────────────────── */
+.site-footer {
+  background:var(--void);
+  border-top:1px solid var(--edge) !important;
+  border-bottom:1px solid var(--edge) !important;
+}
+.site-footer .border-b { border-bottom-color:var(--edge) !important; }
+.site-footer .text-white  { color:var(--ink) !important; }
+.site-footer .text-stone-300 { color:var(--ink-soft) !important; }
+.site-footer .text-stone-400 { color:var(--ink-faint) !important; }
+.footer-col-label {
+  font-size:.7rem; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-faint);
+}
+.footer-link { display:block; font-size:.925rem; color:var(--ink-soft); line-height:1.9; text-decoration:none; }
+.footer-link:hover { color:var(--ink); }
+
+/* ── Keylines – vertikaler Satzspiegel-Rahmen ──
+   Lila Haarlinien links/rechts, kurzer 45°-Anschlag
+   oben an jeder Rahmenlinie. Alles flach. */
+.keyline, .keyline-dark { position:relative; }
+.keyline      { border-left:1px solid var(--edge); border-right:1px solid var(--edge); }
+.keyline-dark { border-left:1px solid var(--edge); border-right:1px solid var(--edge); }
+
+.keyline::before, .keyline::after,
+.keyline-dark::before, .keyline-dark::after {
+  content:""; position:absolute; top:-1px;
+  width:15px; height:1px; pointer-events:none;
+  background:var(--edge-strong);
+}
+.keyline::before, .keyline-dark::before { left:-1px;  transform-origin:left center;  transform:rotate(45deg); }
+.keyline::after,  .keyline-dark::after  { right:-1px; transform-origin:right center; transform:rotate(-45deg); }
+
+.keyline-foot::before, .keyline-foot::after { top:auto; bottom:-1px; }
+.keyline-foot::before { transform-origin:left center;  transform:rotate(-45deg); }
+.keyline-foot::after  { transform-origin:right center; transform:rotate(45deg); }
+
+/* ── Mobiles Menü ─────────────────────────── */
+@media (min-width:1024px) {
+  #mob-btn     { display:none !important; }
+  #mob-overlay { display:none !important; }
+}
+
+.mob-overlay {
+  position:fixed; top:0; right:0; bottom:0;
+  width:min(360px, 100vw);
+  z-index:200;
+  background:var(--surface);
+  border-left:2px solid var(--brand);
+  transform:translateX(100%);
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+  display:flex; flex-direction:column;
+}
+.mob-overlay.open { transform:translateX(0); }
+
+.mob-backdrop {
+  position:fixed; inset:0; z-index:199;
+  background:rgba(30,15,50,.7);
+  opacity:0; pointer-events:none;
+  transition:opacity .3s ease;
+}
+.mob-backdrop.open { opacity:1; pointer-events:auto; }
+
+.mob-inner {
+  display:flex; flex-direction:column; justify-content:space-between;
+  height:100%; padding:5.5rem 1.85rem 2.25rem; overflow-y:auto;
+}
+
+.mob-inner nav > * {
+  opacity:0; transform:translateX(10px);
+  transition:opacity .35s ease, transform .35s ease;
+}
+.mob-overlay.open .mob-inner nav > * { opacity:1; transform:translateX(0); }
+.mob-inner nav > *:nth-child(1) { transition-delay:.05s; }
+.mob-inner nav > *:nth-child(2) { transition-delay:.09s; }
+.mob-inner nav > *:nth-child(4) { transition-delay:.13s; }
+.mob-inner nav > *:nth-child(6) { transition-delay:.17s; }
+
+.mob-eyebrow { margin-bottom:1.4rem; }
+
+.mob-close {
+  position:absolute; top:1.6rem; right:1.6rem; z-index:1;
+  width:2.25rem; height:2.25rem; display:flex; align-items:center; justify-content:center;
+  background:none; border:none; padding:0; cursor:pointer; color:var(--ink-soft);
+}
+
+.mob-nav-link {
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:'Inter',sans-serif;
+  font-size:1.05rem; font-weight:500; color:var(--ink);
+  padding:.9rem 0; border-bottom:1px solid var(--edge);
+  cursor:pointer; text-decoration:none;
+}
+
+.mob-chevron {
+  width:16px; height:16px; stroke:var(--ink-faint);
+  fill:none; stroke-width:2; stroke-linecap:round;
+  transition:transform .2s; flex-shrink:0;
+}
+
+.mob-sub {
+  padding:.4rem 0 .5rem 1.1rem; margin-left:.1rem;
+  border-left:1px solid var(--edge);
+}
+.mob-sub a {
+  display:block; font-family:'Inter',sans-serif;
+  font-size:.9rem; color:var(--ink-soft);
+  padding:.5rem 0; text-decoration:none;
+}
+.mob-sub.hidden { display:none; }
+
+.mob-footer {
+  padding-top:1.75rem; margin-top:.5rem; border-top:1px solid var(--edge);
+  display:flex; flex-direction:column; gap:.4rem;
+}
+.mob-footer > * {
+  opacity:0; transform:translateX(10px);
+  transition:opacity .35s ease, transform .35s ease;
+}
+.mob-overlay.open .mob-footer > * { opacity:1; transform:translateX(0); }
+.mob-footer > *:nth-child(1) { transition-delay:.2s; }
+.mob-footer > *:nth-child(2) { transition-delay:.24s; }
+.mob-footer > *:nth-child(3) { transition-delay:.28s; }
+.mob-footer .mob-email {
+  font-size:.85rem; color:var(--ink-soft);
+  font-family:'Inter',sans-serif; text-decoration:none;
+}
+
+/* Hamburger → X */
+.icon-bar {
+  display:block; width:22px; height:1.5px;
+  background:var(--ink); border-radius:0;
+  transition:transform .2s, opacity .15s;
+  transform-origin:center;
+}
+#mob-btn { display:flex; flex-direction:column; gap:5px; padding:.35rem; background:none; border:none; cursor:pointer; }
+#mob-btn.open .bar-1 { transform:translateY(6.5px) rotate(45deg); }
+#mob-btn.open .bar-2 { opacity:0; }
+#mob-btn.open .bar-3 { transform:translateY(-6.5px) rotate(-45deg); }
+
+/* Anchor-Offset */
+section[id] { scroll-margin-top:80px; }
+
+/* ── Rechtstexte (Impressum, Datenschutz) ─────────── */
+.legal-content { max-width:62ch; }
+.legal-content h2 {
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:600; font-size:1.35rem;
+  color:var(--ink); margin:2.6rem 0 .9rem; letter-spacing:-.01em;
+}
+.legal-content h2:first-child { margin-top:0; }
+.legal-content p { font-size:.95rem; line-height:1.85; color:var(--ink-soft); margin:0 0 1.1rem; }
+.legal-content ul { margin:0 0 1.1rem; padding-left:1.3rem; }
+.legal-content li { font-size:.95rem; line-height:1.85; color:var(--ink-soft); margin-bottom:.4rem; }
+.legal-content a { color:var(--brand-bright); text-decoration:underline; text-underline-offset:2px; }
+.legal-note {
+  margin:2.2rem 0 0; padding:1.1rem 1.3rem;
+  border-left:2px solid var(--brand);
+  background:var(--surface-2);
+  font-size:.85rem; line-height:1.75; color:var(--ink-faint);
+}
+.light .legal-note { background:rgba(43,23,68,.04); }
+.legal-note strong { color:var(--ink); }
