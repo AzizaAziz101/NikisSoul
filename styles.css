@@ -356,10 +356,7 @@ a:hover .arrow { transform:translateX(4px); }
     transition:opacity .4s ease;
   }
   .reel-hint.is-hidden { opacity:0; }
-  .reel-hint-hand { display:inline-block; animation:reel-swipe 1.6s ease-in-out infinite; }
 }
-@keyframes reel-swipe { 0%,100% { transform:translateX(0); } 50% { transform:translateX(8px); } }
-@media (prefers-reduced-motion:reduce) { .reel-hint-hand { animation:none; } }
 
 /* ── Lightbox: ein Bild in Großansicht, mit Pfeilen und Tastatur ── */
 .lightbox {
