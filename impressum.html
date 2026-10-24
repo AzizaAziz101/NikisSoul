@@ -15,65 +15,12 @@
 </head>
 <body>
 
-  <!-- ─── Navigation ───────────────────────────── -->
-  <header class="site-header sticky top-0 z-50 backdrop-blur border-t border-b border-stone-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 keyline" style="position:relative;">
-      <div class="h-20 flex items-center justify-between">
+  <!-- ─── Zurück ───────────────────────────────── -->
+  <a href="index.html" class="back-link" aria-label="Zurück zur Startseite">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    <span>Zurück</span>
+  </a>
 
-        <a href="index.html" class="brand-link flex items-center gap-3">
-          <span class="logo-mark logo-mark--img"><img src="Logo.png" alt="" width="48" height="48" /></span>
-          <span class="brand-name text-xl font-medium tracking-normal" style="font-family:'Cormorant Garamond',serif;">Niki&rsquo;s <span class="brand-accent">Soul</span> Café</span>
-        </a>
-
-        <nav class="hidden lg:flex items-center gap-9 text-xs font-semibold tracking-[.1em] uppercase">
-          <a href="index.html" class="py-2 text-stone-500 hover:text-stone-900">Startseite</a>
-          <a href="index.html#eindruecke" class="py-2 text-stone-500 hover:text-stone-900">Über uns</a>
-          <a href="index.html#karte" class="py-2 text-stone-500 hover:text-stone-900">Karte</a>
-          <a href="index.html#kontakt" class="py-2 text-stone-500 hover:text-stone-900">Kontakt</a>
-        </nav>
-
-        <a href="index.html#kontakt" class="btn-contact-header hidden md:inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium">
-          Tisch reservieren
-        </a>
-
-        <!-- Animierter Hamburger-Button -->
-        <button id="mob-btn" class="lg:hidden" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mob-overlay">
-          <span class="icon-bar bar-1"></span>
-          <span class="icon-bar bar-2"></span>
-          <span class="icon-bar bar-3"></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ─── Backdrop ───────────────────────────────── -->
-  <div id="mob-backdrop" class="mob-backdrop" aria-hidden="true"></div>
-
-  <!-- ─── Slide-in Mobilmenü ──────────────────────── -->
-  <div id="mob-overlay" class="mob-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
-    <button class="mob-close" onclick="closeMob()" aria-label="Menü schließen">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
-    <div class="mob-inner">
-      <div>
-        <span class="eyebrow mob-eyebrow">Navigation</span>
-        <nav>
-        <a href="index.html" class="mob-nav-link" onclick="closeMob()">Startseite</a>
-        <a href="index.html#eindruecke" class="mob-nav-link" onclick="closeMob()">Über uns</a>
-        <a href="index.html#karte" class="mob-nav-link" onclick="closeMob()">Karte</a>
-        <a href="index.html#kontakt" class="mob-nav-link" onclick="closeMob()">Kontakt</a>
-        </nav>
-      </div>
-
-      <div class="mob-footer">
-        <span class="eyebrow mob-eyebrow" style="margin-bottom:.75rem;">Kontakt</span>
-        <a href="tel:+4915120229017" class="btn-primary rounded-full px-5 py-2.5 text-sm font-medium text-center mb-1">Tisch reservieren</a>
-        <a href="mailto:hallo@nikis-soul-cafe.de" class="mob-email">hallo@nikis-soul-cafe.de</a>
-      </div>
-    </div>
-  </div>
 
   <!-- ─── Impressum ──────────────────────────────── -->
   <section class="chapter light">
@@ -201,29 +148,6 @@
 
   <!-- ─── JavaScript ────────────────────────────── -->
   <script>
-    /* ── Slide-in Mobilmenü ── */
-    const mobBtn      = document.getElementById('mob-btn');
-    const mobOverlay  = document.getElementById('mob-overlay');
-    const mobBackdrop = document.getElementById('mob-backdrop');
-
-    function closeMob() {
-      mobOverlay.classList.remove('open');
-      mobBackdrop.classList.remove('open');
-      mobBtn.classList.remove('open');
-      mobBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-
-    mobBtn.addEventListener('click', () => {
-      const open = mobOverlay.classList.toggle('open');
-      mobBackdrop.classList.toggle('open', open);
-      mobBtn.classList.toggle('open', open);
-      mobBtn.setAttribute('aria-expanded', String(open));
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-
-    mobBackdrop.addEventListener('click', closeMob);
-
     /* Header: feines Glas, das beim Scrollen minimal schrumpft */
     (function headerOnScroll() {
       const header = document.querySelector('.site-header');
