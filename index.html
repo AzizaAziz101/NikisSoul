@@ -238,6 +238,8 @@
         <button class="reel-nav reel-next" type="button" aria-label="Weiter">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
+
+        <p class="reel-hint" aria-hidden="true"><span class="reel-hint-hand">👉</span> Wischen für mehr Bilder</p>
       </div>
     </div>
   </section>
@@ -696,6 +698,8 @@
       function scrollByPage(dir) {
         track.scrollBy({ left: dir * track.clientWidth * 0.85, behavior: reduce ? 'auto' : 'smooth' });
       }
+      const hint = reel.querySelector('.reel-hint');
+      if (hint) track.addEventListener('scroll', () => hint.classList.add('is-hidden'), { once: true, passive: true });
       prevBtn.addEventListener('click', () => scrollByPage(-1));
       nextBtn.addEventListener('click', () => scrollByPage(1));
 
