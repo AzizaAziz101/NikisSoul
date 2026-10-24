@@ -20,6 +20,7 @@
 
   --brand:#e8488f;         /* Pink – Buttons & Akzentflächen */
   --brand-bright:#e8a9c9;  /* gedecktes Rosé – seltener Text-Akzent */
+  --logo-pink:#c15fd8;     /* Orchideen-Pink aus dem Logo – Nav-Akzente */
   --brand-ink:#ffffff;     /* Text auf Pink */
 
   --edge:rgba(255,255,255,.16);        /* weiße Haarlinie   */
@@ -148,7 +149,7 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 .site-header nav > a::after,
 .site-header nav > div > button::after {
   content:""; position:absolute; left:0; bottom:.3rem; height:1px; width:0;
-  background:var(--brand-bright);
+  background:var(--logo-pink);
   transition:width .3s var(--ease-out);
 }
 .site-header nav > a:hover::after,
@@ -168,12 +169,12 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 .brand-link { position:relative; }
 .brand-link::after {
   content:""; position:absolute; left:0; right:100%; bottom:-7px; height:1px;
-  background:var(--brand-bright); transition:right .4s var(--ease-out);
+  background:var(--logo-pink); transition:right .4s var(--ease-out);
 }
 .brand-link:hover::after { right:0; }
 
 .brand-name .brand-accent {
-  font-style:italic; color:var(--brand-bright); margin:0 .14em; font-size:1.1em;
+  font-style:italic; color:var(--logo-pink); margin:0 .14em; font-size:1.1em;
 }
 
 .logo-mark {
@@ -186,7 +187,10 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
   color:var(--brand-ink);
   transition:width .35s var(--ease-out), height .35s var(--ease-out), font-size .35s var(--ease-out);
 }
+.logo-mark--img { width:3rem; height:3rem; overflow:hidden; background:#2a0a5e; }
+.logo-mark--img img { width:100%; height:100%; object-fit:cover; object-position:47% center; transform:scale(1.18); }
 .site-header.is-scrolled .logo-mark { width:2.15rem; height:2.15rem; font-size:1.05rem; }
+.site-header.is-scrolled .logo-mark--img { width:2.6rem; height:2.6rem; }
 
 .hero-trust { font-size:.78rem; color:var(--ink-faint); font-weight:400; }
 
@@ -256,6 +260,7 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
   text-wrap:balance;
 }
 .hero-headline em { font-style:italic; font-weight:500; }
+.hero-headline .hero-dot { color:var(--logo-pink); }
 
 .hero-sub {
   font-size:clamp(1rem,1.3vw,1.12rem); line-height:1.85; font-weight:300;
