@@ -31,15 +31,15 @@
           <div class="relative group">
             <button class="inline-flex items-center gap-1.5 py-2 text-stone-500 hover:text-stone-900 uppercase focus:outline-none" aria-haspopup="true" aria-expanded="false">
               Über uns
-              <svg class="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
               </svg>
             </button>
-            <div class="pointer-events-none absolute left-0 top-full mt-3 w-56 bg-white border border-stone-200 shadow-sm opacity-0 translate-y-1 transition duration-150 ease-out">
+            <div class="dd">
               <div class="py-2 normal-case tracking-normal font-medium">
-                <a href="#eindruecke" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Das Café</a>
-                <a href="#eindruecke" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Team</a>
-                <a href="#kontakt" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Jobs</a>
+                <a href="#cafe" class="block px-4 py-2.5 text-sm text-stone-700">Das Café</a>
+                <a href="#eindruecke" class="block px-4 py-2.5 text-sm text-stone-700">Team</a>
+                <a href="#kontakt" class="block px-4 py-2.5 text-sm text-stone-700">Jobs</a>
               </div>
             </div>
           </div>
@@ -47,18 +47,17 @@
           <div class="relative group">
             <button class="inline-flex items-center gap-1.5 py-2 text-stone-500 hover:text-stone-900 uppercase focus:outline-none" aria-haspopup="true" aria-expanded="false">
               Karte
-              <svg class="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
               </svg>
             </button>
-            <div class="pointer-events-none absolute left-0 top-full mt-3 w-64 bg-white border border-stone-200 shadow-sm opacity-0 translate-y-1 transition duration-150 ease-out
-                         group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto focus-within:opacity-100 focus-within:translate-y-0">
+            <div class="dd">
               <div class="py-2 normal-case tracking-normal font-medium">
-                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Kaffee &amp; Espresso</a>
-                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Frühstück &amp; Brunch</a>
-                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Kuchen &amp; Gebäck</a>
-                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Kalte Getränke</a>
-                <a href="#karte" class="block px-4 py-2.5 text-sm text-stone-700 hover:bg-[#f3eefb] hover:text-stone-900">Mittagstisch</a>
+                <a href="#speisekarte" data-menu-tab="kaffee" class="block px-4 py-2.5 text-sm text-stone-700">Kaffee &amp; Espresso</a>
+                <a href="#speisekarte" data-menu-tab="fruehstueck" class="block px-4 py-2.5 text-sm text-stone-700">Frühstück &amp; Brunch</a>
+                <a href="#speisekarte" data-menu-tab="kuchen" class="block px-4 py-2.5 text-sm text-stone-700">Kuchen &amp; Gebäck</a>
+                <a href="#speisekarte" data-menu-tab="getraenke" class="block px-4 py-2.5 text-sm text-stone-700">Kalte Getränke</a>
+                <a href="#speisekarte" data-menu-tab="mittag" class="block px-4 py-2.5 text-sm text-stone-700">Mittagstisch</a>
               </div>
             </div>
           </div>
@@ -101,7 +100,7 @@
           <svg class="mob-chevron" id="mob-about-chev" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
         </div>
         <div class="mob-sub hidden" id="mobile-about-menu">
-          <a href="#eindruecke" onclick="closeMob()">Das Café</a>
+          <a href="#cafe" onclick="closeMob()">Das Café</a>
           <a href="#eindruecke" onclick="closeMob()">Team</a>
           <a href="#kontakt" onclick="closeMob()">Jobs</a>
         </div>
@@ -111,11 +110,11 @@
           <svg class="mob-chevron" id="mob-services-chev" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
         </div>
         <div class="mob-sub hidden" id="mobile-services-menu">
-          <a href="#karte" onclick="closeMob()">Kaffee &amp; Espresso</a>
-          <a href="#karte" onclick="closeMob()">Frühstück &amp; Brunch</a>
-          <a href="#karte" onclick="closeMob()">Kuchen &amp; Gebäck</a>
-          <a href="#karte" onclick="closeMob()">Kalte Getränke</a>
-          <a href="#karte" onclick="closeMob()">Mittagstisch</a>
+          <a href="#speisekarte" data-menu-tab="kaffee" onclick="closeMob()">Kaffee &amp; Espresso</a>
+          <a href="#speisekarte" data-menu-tab="fruehstueck" onclick="closeMob()">Frühstück &amp; Brunch</a>
+          <a href="#speisekarte" data-menu-tab="kuchen" onclick="closeMob()">Kuchen &amp; Gebäck</a>
+          <a href="#speisekarte" data-menu-tab="getraenke" onclick="closeMob()">Kalte Getränke</a>
+          <a href="#speisekarte" data-menu-tab="mittag" onclick="closeMob()">Mittagstisch</a>
         </div>
 
         <a href="#kontakt" class="mob-nav-link" onclick="closeMob()">Kontakt</a>
@@ -132,35 +131,54 @@
 
   <!-- ─── Hero ──────────────────────────────────── -->
   <section class="hero">
+    <div class="beam" aria-hidden="true"><i></i></div>
+    <div class="beam-core" aria-hidden="true"></div>
+    <canvas id="dust" aria-hidden="true"></canvas>
 
-    <div class="hero-media">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="cafe1-poster.jpg" aria-hidden="true">
-        <source src="Cafe1.mp4" type="video/mp4" />
-      </video>
-    </div>
+    <div class="hero-inner max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <div class="hero-frame" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="hero-name">Niki&rsquo;s <em>Soul</em> Café<span class="hero-since">seit 2025</span></p>
 
-    <div class="hero-inner max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" style="position:relative;">
+        <h1 class="hero-headline">Jeder Morgen ist ein <em>Geschenk<span class="hero-dot">.</span></em></h1>
 
-      <span class="hero-eyebrow">Café · Berlin · seit 2025</span>
+        <p class="hero-sub">Frühstück, Kaffee und Kuchen &ndash; hausgemacht und mit Herz. Komm vorbei, nimm dir Zeit und fühl dich bei uns zu Hause.</p>
 
-      <h1 class="hero-headline">Jeder Morgen ist ein <em>Geschenk<span class="hero-dot">.</span></em></h1>
+        <div class="hero-actions">
+          <a href="tel:+4915120229017" class="btn-primary hero-btn rounded-full">Tisch reservieren</a>
+          <a href="#speisekarte" class="hero-secondary">Zur Speisekarte <span class="arrow">→</span></a>
+        </div>
+      </div>
 
-      <p class="hero-sub">
-        Der Duft von frisch geröstetem Kaffee, ein Augenblick der Stille
-        und die leise Gewissheit, dass dieser Moment genügt. Mitten im Kiez,
-        bei Niki's Soul Café.
-      </p>
-
-      <div class="hero-actions">
-        <a href="tel:+4915120229017" class="btn-primary hero-btn rounded-full">Tisch reservieren</a>
-        <a href="#karte" class="hero-secondary">Zur Karte <span class="arrow">→</span></a>
+      <div class="hero-visual">
+        <div class="hero-video-card">
+          <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="cafe1-poster.jpg" aria-hidden="true">
+            <source src="Cafe1.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero-meta">
-      <span class="hero-scroll" aria-hidden="true"></span>
+  <!-- ─── Das Café ──────────────────────────────── -->
+  <section id="cafe" class="chapter light">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
+      <div class="grid md:grid-cols-2 gap-x-16 gap-y-12 items-center">
+        <div class="reveal">
+          <div class="chapter-meta">
+            <span class="eyebrow">Das Café</span>
+          </div>
+          <h2 class="chapter-title">Ein kleiner Ort für große Dankbarkeit.</h2>
+          <p class="chapter-lead">
+            Frisch gerösteter Kaffee, hausgemachtes Frühstück und Kuchen von
+            Hand gebacken &ndash; mitten im Kiez am Südwestkorso. Komm vorbei,
+            nimm dir Zeit und fühl dich willkommen.
+          </p>
+        </div>
+        <figure class="cafe-photo reveal">
+          <img src="aussenansicht.jpg" alt="Außenansicht von Niki&rsquo;s Soul Café" loading="lazy" />
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -172,19 +190,12 @@
           <span class="eyebrow">Augenblicke</span>
         </div>
         <h2 class="chapter-title"><span class="accent-word">Augenblicke</span>, für die man dankbar ist</h2>
-        <p class="chapter-lead">
-          Frühstück, Bowls und die wechselnde Tagesküche – mit Hingabe
-          angerichtet und zum Dableiben gedacht. Ein paar Teller aus einer
-          ganz gewöhnlichen, wunderbaren Woche bei Niki's Soul Café.
-        </p>
+        <p class="chapter-lead">Frisch angerichtet, zum Dableiben gedacht.</p>
       </header>
 
       <div class="dish-reel reveal">
-        <button class="reel-nav reel-prev" type="button" aria-label="Zurück">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
 
-        <ul class="reel-track">
+        <ul class="reel-track" tabindex="0" role="region" aria-roledescription="Karussell" aria-label="Bilder aus dem Café">
           <li class="reel-card">
             <button class="reel-card-btn" type="button" aria-label="Açaí Bowl in Großansicht öffnen" data-note="Der Start in einen dankbaren Tag.">
               <img src="Screenshot1.png" alt="Açaí Bowl mit Beeren, Banane, Apfel und Granola" loading="eager" />
@@ -235,11 +246,13 @@
           </li>
         </ul>
 
-        <button class="reel-nav reel-next" type="button" aria-label="Weiter">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-
-        <p class="reel-hint" aria-hidden="true"><span class="reel-hint-hand">👉</span> Wischen für mehr Bilder</p>
+        <div class="reel-controls">
+          <div class="reel-progress" aria-hidden="true"><span class="reel-progress-thumb"></span></div>
+          <div class="reel-btns">
+            <button class="reel-btn reel-prev" type="button" aria-label="Zurück"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <button class="reel-btn reel-next" type="button" aria-label="Weiter"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -264,87 +277,82 @@
     </button>
   </div>
 
-  <!-- ─── Karte ─────────────────────────────────── -->
-  <section id="karte" class="chapter light">
+  <!-- ─── Speisekarte (aufklappbar) ───────────────── -->
+  <section id="speisekarte" class="chapter menu-section">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
       <header class="chapter-head reveal">
-        <div class="chapter-meta">
-          <span class="chapter-index">I</span>
-          <span class="eyebrow">Karte</span>
-        </div>
-        <h2 class="chapter-title">Unsere Karte</h2>
-        <p class="chapter-lead">
-          Jede Tasse beginnt mit einer Entscheidung: nur das auf die Karte zu
-          nehmen, wovon wir wirklich überzeugt sind. Hausgemacht, wo immer es
-          geht, und mit Dankbarkeit zubereitet.
-        </p>
+        <h2 class="chapter-title">Speisekarte</h2>
+        <p class="chapter-lead">Alle Gerichte und Getränke auf einen Blick &ndash; zum Aufklappen, nach Kategorien sortiert.</p>
       </header>
-      <hr class="chapter-rule">
 
-      <div class="grid md:grid-cols-2 gap-x-16 gap-y-14 reveal-stagger">
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-panel">
+        <span>Speisekarte öffnen<small>Frühstück, Kaffee, Kuchen, Getränke &amp; Mittagstisch</small></span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
 
-        <div class="service-col">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 8h1a4 4 0 0 1 0 8h-1"/>
-              <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/>
-              <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
-            </svg>
-          </div>
-          <h3>Kaffee &amp; Espresso</h3>
-          <p>Espresso, Cappuccino, Flat White und Filterkaffee aus frisch gerösteten Bohnen. Hafer-, Soja- oder Kuhmilch. Wer es ohne Koffein mag, bekommt einen richtig guten Entkoffeinierten – kein Kompromiss, sondern eine eigene Wahl auf der Karte.</p>
+      <div class="menu-panel" id="menu-panel" hidden>
+        <div class="menu-tabs" role="tablist" aria-label="Kategorien">
+          <button class="menu-tab" role="tab" id="tab-kaffee" aria-controls="pane-kaffee" aria-selected="true" data-tab="kaffee" type="button">Kaffee &amp; Espresso</button>
+          <button class="menu-tab" role="tab" id="tab-fruehstueck" aria-controls="pane-fruehstueck" aria-selected="false" data-tab="fruehstueck" type="button">Frühstück &amp; Brunch</button>
+          <button class="menu-tab" role="tab" id="tab-kuchen" aria-controls="pane-kuchen" aria-selected="false" data-tab="kuchen" type="button">Kuchen &amp; Gebäck</button>
+          <button class="menu-tab" role="tab" id="tab-getraenke" aria-controls="pane-getraenke" aria-selected="false" data-tab="getraenke" type="button">Kalte Getränke</button>
+          <button class="menu-tab" role="tab" id="tab-mittag" aria-controls="pane-mittag" aria-selected="false" data-tab="mittag" type="button">Mittagstisch &amp; Herzhaftes</button>
         </div>
-
-        <div class="service-col">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 18a5 5 0 0 0-10 0"/>
-              <line x1="12" y1="2" x2="12" y2="9"/><polyline points="8 6 12 2 16 6"/>
-              <line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/>
-              <line x1="4.2" y1="10.2" x2="5.6" y2="11.6"/><line x1="18.4" y1="10.2" x2="19.8" y2="11.6"/>
-              <line x1="2" y1="22" x2="22" y2="22"/>
-            </svg>
-          </div>
-          <h3>Frühstück &amp; Brunch</h3>
-          <p>Von der einfachen Stulle bis zur vollen Frühstücksplatte mit Rührei, Avocado, Obst und warmem Brot. Am Wochenende gibt es Brunch bis 15 Uhr – für größere Runden empfehlen wir eine Reservierung.</p>
+        <div class="menu-pane" role="tabpanel" id="pane-kaffee" aria-labelledby="tab-kaffee">
+          <p class="menu-pane-note">Alle Milchalternativen ohne Aufpreis.</p>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Espresso</span><span class="menu-item-dots"></span><span class="menu-item-price">2,60 €</span></div><p class="menu-item-desc">Frisch gerösteter Bohnenkaffee, kräftig und rund.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Cappuccino</span><span class="menu-item-dots"></span><span class="menu-item-price">3,80 €</span></div><p class="menu-item-desc">Espresso mit cremigem Milchschaum.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Flat White</span><span class="menu-item-dots"></span><span class="menu-item-price">4,20 €</span></div><p class="menu-item-desc">Doppelter Espresso, samtige Milch.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Filterkaffee</span><span class="menu-item-dots"></span><span class="menu-item-price">3,20 €</span></div><p class="menu-item-desc">Frisch aufgebrüht, auf Wunsch mit Nachschlag.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Latte Macchiato</span><span class="menu-item-dots"></span><span class="menu-item-price">4,20 €</span></div><p class="menu-item-desc">Hafer-, Soja- oder Kuhmilch.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Entkoffeiniert</span><span class="menu-item-dots"></span><span class="menu-item-price">+ 0,00 €</span></div><p class="menu-item-desc">Espresso oder Cappuccino, ohne Kompromiss.</p></li>
+          </ul>
         </div>
-
-        <div class="service-col">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 21h16"/>
-              <path d="M5 21v-8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8"/>
-              <path d="M4 15c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1"/>
-              <line x1="12" y1="4" x2="12" y2="8"/><circle cx="12" cy="3" r="1"/>
-            </svg>
-          </div>
-          <h3>Kuchen &amp; Gebäck</h3>
-          <p>Croissants und Zimtschnecken aus eigener Backstube, dazu wechselnde Kuchen – Karotte, Käse-Sahne, Schoko und saisonales Obst.</p>
+        <div class="menu-pane" role="tabpanel" id="pane-fruehstueck" aria-labelledby="tab-fruehstueck" hidden>
+          <p class="menu-pane-note">Am Wochenende Brunch bis 15 Uhr.</p>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Açaí Bowl<span class="menu-tag">VEGAN</span></span><span class="menu-item-dots"></span><span class="menu-item-price">9,90 €</span></div><p class="menu-item-desc">Beeren, Banane, Apfel und Granola.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">French Toast</span><span class="menu-item-dots"></span><span class="menu-item-price">11,50 €</span></div><p class="menu-item-desc">Spiegelei, Bacon, Blaubeeren, Sprossen, Konfitüre.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Avocado &amp; Ei<span class="menu-tag">VEGGIE</span></span><span class="menu-item-dots"></span><span class="menu-item-price">10,80 €</span></div><p class="menu-item-desc">Avocado, Ei, Blattsalat, Kirschtomaten, Zitrone.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Avocado-Toast<span class="menu-tag">VEGAN</span></span><span class="menu-item-dots"></span><span class="menu-item-price">9,80 €</span></div><p class="menu-item-desc">Sprossen, Blattsalat und Kirschtomaten.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Frühstücksplatte</span><span class="menu-item-dots"></span><span class="menu-item-price">14,90 €</span></div><p class="menu-item-desc">Rührei, Avocado, Obst und warmes Brot.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Stulle des Tages</span><span class="menu-item-dots"></span><span class="menu-item-price">6,50 €</span></div><p class="menu-item-desc">Wechselnder Belag, frisch zubereitet.</p></li>
+          </ul>
         </div>
-
-        <div class="service-col">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 4h12l-1.4 15.1a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9z"/>
-              <line x1="6.4" y1="9" x2="17.6" y2="9"/>
-              <line x1="15" y1="2" x2="12" y2="9"/>
-            </svg>
-          </div>
-          <h3>Kalte Getränke &amp; Limonaden</h3>
-          <p>Hausgemachte Limonaden, Eiskaffee und frisch gepresste Säfte. Im Sommer Eistee und Matcha über Eis.</p>
+        <div class="menu-pane" role="tabpanel" id="pane-kuchen" aria-labelledby="tab-kuchen" hidden>
+          <p class="menu-pane-note">Täglich mindestens ein veganes und ein glutenfreies Stück.</p>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Zimtschnecke</span><span class="menu-item-dots"></span><span class="menu-item-price">3,60 €</span></div><p class="menu-item-desc">Aus eigener Backstube.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Croissant</span><span class="menu-item-dots"></span><span class="menu-item-price">2,90 €</span></div><p class="menu-item-desc">Buttrig, knusprig, ofenwarm.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Karottenkuchen</span><span class="menu-item-dots"></span><span class="menu-item-price">4,60 €</span></div><p class="menu-item-desc">Saftig, mit Frischkäse-Creme.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Käse-Sahne-Torte</span><span class="menu-item-dots"></span><span class="menu-item-price">4,80 €</span></div><p class="menu-item-desc">Von Emma von Hand gebacken.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Schokoladenkuchen</span><span class="menu-item-dots"></span><span class="menu-item-price">4,80 €</span></div><p class="menu-item-desc">Dunkel und dicht.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Blaubeer-Tarte</span><span class="menu-item-dots"></span><span class="menu-item-price">4,90 €</span></div><p class="menu-item-desc">Mürbeteig mit saisonalen Früchten.</p></li>
+          </ul>
         </div>
-
-        <div class="service-col md:col-span-2">
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 11h18a9 9 0 0 1-18 0z"/>
-              <path d="M12 3c1.4 1 1.4 3 0 4"/><path d="M8 4.5c1 .8 1 2.2 0 3"/><path d="M16 4.5c1 .8 1 2.2 0 3"/>
-            </svg>
-          </div>
-          <h3>Mittagstisch &amp; Herzhaftes</h3>
-          <p style="max-width:62ch;">Wochentags von 12 bis 15 Uhr: eine wechselnde warme Tagesempfehlung, Quiche, Suppen und belegte Focaccia. Immer mit einer vegetarischen und einer veganen Option. Zum Mitnehmen im Mehrwegbehälter oder in Ruhe bei uns – ein Blick auf die Tafel am Eingang verrät, was heute in der Küche steht.</p>
+        <div class="menu-pane" role="tabpanel" id="pane-getraenke" aria-labelledby="tab-getraenke" hidden>
+          <p class="menu-pane-note">Hausgemacht, wo immer es geht.</p>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Hausgemachte Limonade</span><span class="menu-item-dots"></span><span class="menu-item-price">4,20 €</span></div><p class="menu-item-desc">Wechselnde Sorten.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Iced Latte</span><span class="menu-item-dots"></span><span class="menu-item-price">4,60 €</span></div><p class="menu-item-desc">Espresso, Milch, Eis.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Eiskaffee</span><span class="menu-item-dots"></span><span class="menu-item-price">5,20 €</span></div><p class="menu-item-desc">Mit Vanilleeis und Sahne.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Frisch gepresster Saft</span><span class="menu-item-dots"></span><span class="menu-item-price">4,80 €</span></div><p class="menu-item-desc">Orange oder saisonal.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Matcha auf Eis<span class="menu-tag">VEGAN</span></span><span class="menu-item-dots"></span><span class="menu-item-price">4,90 €</span></div><p class="menu-item-desc">Mit Hafermilch.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Eistee</span><span class="menu-item-dots"></span><span class="menu-item-price">3,80 €</span></div><p class="menu-item-desc">Hausgemacht, leicht gesüßt.</p></li>
+          </ul>
         </div>
-
+        <div class="menu-pane" role="tabpanel" id="pane-mittag" aria-labelledby="tab-mittag" hidden>
+          <p class="menu-pane-note">Wochentags 12 – 15 Uhr, immer mit vegetarischer und veganer Option.</p>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Tagesempfehlung</span><span class="menu-item-dots"></span><span class="menu-item-price">10,90 €</span></div><p class="menu-item-desc">Warm, wechselnd – siehe Tafel am Eingang.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Gulasch</span><span class="menu-item-dots"></span><span class="menu-item-price">12,50 €</span></div><p class="menu-item-desc">Geröstetes Brot, Kartoffelsalat, Sauerrahm.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Quiche<span class="menu-tag">VEGGIE</span></span><span class="menu-item-dots"></span><span class="menu-item-price">8,90 €</span></div><p class="menu-item-desc">Mit Blattsalat, täglich wechselnd.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Suppe des Tages</span><span class="menu-item-dots"></span><span class="menu-item-price">6,90 €</span></div><p class="menu-item-desc">Mit Brot.</p></li>
+            <li class="menu-item"><div class="menu-item-top"><span class="menu-item-name">Belegte Focaccia</span><span class="menu-item-dots"></span><span class="menu-item-price">7,50 €</span></div><p class="menu-item-desc">Frisch belegt, auch zum Mitnehmen.</p></li>
+          </ul>
+        </div>
+        <p class="menu-foot">Alle Preise in Euro inkl. MwSt. Bei Allergien oder Unverträglichkeiten fragt bitte unser Team.</p>
       </div>
     </div>
   </section>
@@ -471,7 +479,7 @@
   <hr class="seam seam--pd" aria-hidden="true">
 
   <!-- ─── Kontakt ───────────────────────────────── -->
-  <section id="kontakt" class="chapter chapter--night" style="background:#24123a;">
+  <section id="kontakt" class="chapter chapter--night" >
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline-dark kontakt-bg" style="position:relative;">
       <header class="chapter-head reveal">
         <div class="chapter-meta">
@@ -532,10 +540,10 @@
         <div>
           <span class="footer-col-label">Karte</span>
           <nav class="flex flex-col gap-3 mt-4">
-            <a href="#karte" class="footer-link">Kaffee &amp; Espresso</a>
-            <a href="#karte" class="footer-link">Frühstück &amp; Brunch</a>
-            <a href="#karte" class="footer-link">Kuchen &amp; Gebäck</a>
-            <a href="#karte" class="footer-link">Mittagstisch</a>
+            <a href="#speisekarte" data-menu-tab="kaffee" class="footer-link">Kaffee &amp; Espresso</a>
+            <a href="#speisekarte" data-menu-tab="fruehstueck" class="footer-link">Frühstück &amp; Brunch</a>
+            <a href="#speisekarte" data-menu-tab="kuchen" class="footer-link">Kuchen &amp; Gebäck</a>
+            <a href="#speisekarte" data-menu-tab="mittag" class="footer-link">Mittagstisch</a>
           </nav>
         </div>
 
@@ -619,26 +627,6 @@
     setupMobSub('mob-about-btn',    'mobile-about-menu',    'mob-about-chev');
     setupMobSub('mob-services-btn', 'mobile-services-menu', 'mob-services-chev');
 
-    /* ── Desktop-Dropdowns ── */
-    function setupDelayedDropdown(groupSelector, menuSelector, delay = 500) {
-      const group = document.querySelector(groupSelector);
-      const menu = group.querySelector(menuSelector);
-      let hideTimeout;
-      group.addEventListener('mouseenter', () => {
-        clearTimeout(hideTimeout);
-        menu.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-1');
-        menu.classList.add('opacity-100', 'translate-y-0');
-      });
-      group.addEventListener('mouseleave', () => {
-        hideTimeout = setTimeout(() => {
-          menu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-1');
-          menu.classList.remove('opacity-100', 'translate-y-0');
-        }, delay);
-      });
-    }
-    setupDelayedDropdown('.group:nth-of-type(1)', 'div');
-    setupDelayedDropdown('.group:nth-of-type(2)', 'div');
-
     /* Scroll-Reveal für Kapitel-Inhalte (inkl. gestaffelter Gruppen) */
     (function revealOnScroll() {
       const els = document.querySelectorAll('.reveal, .reveal-stagger');
@@ -655,66 +643,180 @@
       els.forEach(el => io.observe(el));
     })();
 
-    /* Header: feines Glas, das beim Scrollen minimal schrumpft und sich verdichtet */
-    (function headerOnScroll() {
-      const header = document.querySelector('.site-header');
-      if (!header) return;
-      const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
-      onScroll();
-      window.addEventListener('scroll', onScroll, { passive: true });
+    /* Speisekarte: auf-/zuklappen, Reiter, Deep-Links aus der Navigation */
+    (function menuBook() {
+      const toggle = document.getElementById('menu-toggle');
+      const panel  = document.getElementById('menu-panel');
+      if (!toggle || !panel) return;
+      const tabs  = Array.from(panel.querySelectorAll('.menu-tab'));
+      const panes = Array.from(panel.querySelectorAll('.menu-pane'));
+      const label = toggle.querySelector('span');
+      function setOpen(open) {
+        panel.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        label.firstChild.textContent = open ? 'Speisekarte schließen' : 'Speisekarte öffnen';
+      }
+      function showTab(key) {
+        tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === key)));
+        panes.forEach(p => { p.hidden = p.id !== 'pane-' + key; });
+      }
+      toggle.addEventListener('click', () => setOpen(panel.hidden));
+      tabs.forEach(t => t.addEventListener('click', () => showTab(t.dataset.tab)));
+      document.querySelectorAll('[data-menu-tab]').forEach(a => a.addEventListener('click', () => {
+        setOpen(true); showTab(a.dataset.menuTab);
+      }));
+      document.querySelectorAll('a[href="#speisekarte"]:not([data-menu-tab])').forEach(a => a.addEventListener('click', () => setOpen(true)));
     })();
 
-    /* Hero: dezenter Parallax-Effekt des Hintergrunds beim Scrollen */
-    (function heroParallax() {
-      const hero  = document.querySelector('.hero');
-      const media = document.querySelector('.hero-media');
+    /* Hero: Sternenstaub im Lichtkegel (Canvas). Der Kegel sitzt mobil in der
+       Mitte, ab 900px über der rechten Spalte. Läuft nur, solange der Hero
+       im Bild ist. Bei "Bewegung reduzieren" driften die Partikel nur halb so schnell. */
+    (function heroDust() {
+      const hero = document.querySelector('.hero');
+      const cv = document.getElementById('dust');
+      if (!hero || !cv || !cv.getContext) return;
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!hero || !media || reduce) return;
-      let ticking = false;
-      const update = () => {
-        const rect = hero.getBoundingClientRect();
-        const progress = Math.min(Math.max(-rect.top / rect.height, 0), 1);
-        media.style.transform = `translate3d(0, ${progress * rect.height * 0.08}px, 0)`;
-        ticking = false;
-      };
-      window.addEventListener('scroll', () => {
-        if (!ticking) { requestAnimationFrame(update); ticking = true; }
-      }, { passive: true });
+      const wide = window.matchMedia('(min-width: 900px)');
+      const ctx = cv.getContext('2d');
+      let W = 0, H = 0, beamX = 0, P = [], raf = 0, last = 0, visible = true;
+
+      function size() {
+        const r = hero.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = r.width; H = r.height;
+        const copy = hero.querySelector('.hero-copy');
+        if (copy) {
+          const cr = copy.getBoundingClientRect();
+          beamX = cr.left - r.left + cr.width / 2;
+          hero.style.setProperty('--beam-x', beamX + 'px');
+        }
+        cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      function spawn() {
+        const n = W < 700 ? 40 : 107; P = [];
+        for (let i = 0; i < n; i++) {
+          const z = Math.random();
+          P.push({ x: Math.random() * W, y: Math.random() * H, z,
+            r: 0.8 + z * 1.4 + (Math.random() < 0.1 ? 1.5 : 0),
+            vx: (Math.random() - 0.5) * 9 * (0.4 + z), vy: (Math.random() - 0.4) * 7 * (0.4 + z),
+            ph: Math.random() * 6.283, ps: 0.4 + Math.random() * 0.9 });
+        }
+      }
+      /* Helligkeit des Strahls an Position x,y – folgt der Kegelform von .beam */
+      function beamAt(x, y) {
+        const t = (y + 0.12 * H) / (1.25 * H); if (t < 0 || t > 1) return 0;
+        const isWide = wide.matches;
+        const bw = isWide ? Math.min(W * 0.8, 1100) : Math.min(W * 1.1, 1500);
+        const cx = beamX || W * (isWide ? 0.75 : 0.5);
+        const hw = bw * (0.03 + 0.47 * t) * 1.05;
+        const d = Math.abs(x - cx) / hw; if (d >= 1) return 0;
+        let f = 1 - d; f = f * f * (3 - 2 * f);
+        return f * Math.max(0, 1 - t * 0.85);
+      }
+      function frame(now, still) {
+        const dt = (still ? 0 : Math.min((now - last) / 1000, 0.05)) * (reduce ? 0.5 : 1); last = now;
+        const s = now / 1000; ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#fff';
+        for (const p of P) {
+          p.x += (p.vx + Math.sin(s * p.ps + p.ph) * 4 * (0.5 + p.z)) * dt;
+          p.y += (p.vy + Math.cos(s * p.ps * 0.8 + p.ph) * 3 * (0.5 + p.z)) * dt;
+          if (p.x < -4) p.x = W + 4; else if (p.x > W + 4) p.x = -4;
+          if (p.y < -4) p.y = H + 4; else if (p.y > H + 4) p.y = -4;
+          const f = beamAt(p.x, p.y); if (f < 0.01) continue;
+          const tw = 0.6 + 0.4 * Math.sin(s * p.ps * 2.2 + p.ph);
+          ctx.globalAlpha = Math.min(1, f * tw * (0.4 + 0.6 * p.z) * 5.5);
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+        }
+      }
+      function loop(now) { frame(now); raf = visible ? requestAnimationFrame(loop) : 0; }
+      function start() { if (!raf && visible && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(loop); } }
+
+      size(); spawn();
+      if ('ResizeObserver' in window) new ResizeObserver(size).observe(hero.querySelector('.hero-copy'));
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
+      requestAnimationFrame(() => cv.classList.add('is-on'));
+      new IntersectionObserver((e) => { visible = e[0].isIntersecting; if (visible) start(); }).observe(hero);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) start(); });
+      start();
+      let lastW = W;
+      window.addEventListener('resize', () => {
+        size(); if (Math.abs(W - lastW) > 40) { spawn(); lastW = W; }
+      });
     })();
 
-    /* Eindrücke: eine Reihe zum Durchblättern, wie man sie von
-       Streaming-Startseiten kennt. Pfeile links/rechts scrollen die
-       Reihe seitenweise, am Anfang/Ende blenden sie sich aus – sonst
-       macht der native Scroll (inkl. Wischen) die ganze Arbeit. */
+    /* Bilderstrecke: Pfeile, Fortschrittsbalken, Maus-Ziehen, Pfeiltasten.
+       Das Scrollen selbst macht der Browser (Scroll-Snap); Pfeile und
+       Balken lesen nur den Zustand. Die Steuerleiste verschwindet, wenn
+       alles in die Ansicht passt. */
     (function dishReel() {
-      const reel  = document.querySelector('.dish-reel');
+      const reel = document.querySelector('.dish-reel');
       if (!reel) return;
-      const track   = reel.querySelector('.reel-track');
+      const track = reel.querySelector('.reel-track');
       const prevBtn = reel.querySelector('.reel-prev');
       const nextBtn = reel.querySelector('.reel-next');
-      if (!track || !prevBtn || !nextBtn) return;
+      const controls = reel.querySelector('.reel-controls');
+      const thumb = reel.querySelector('.reel-progress-thumb');
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const behavior = reduce ? 'auto' : 'smooth';
 
-      function scrollByPage(dir) {
-        track.scrollBy({ left: dir * track.clientWidth * 0.85, behavior: reduce ? 'auto' : 'smooth' });
+      function step() {
+        const card = track.querySelector('.reel-card');
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return card.getBoundingClientRect().width + gap;
       }
-      const hint = reel.querySelector('.reel-hint');
-      if (hint) track.addEventListener('scroll', () => hint.classList.add('is-hidden'), { once: true, passive: true });
-      prevBtn.addEventListener('click', () => scrollByPage(-1));
-      nextBtn.addEventListener('click', () => scrollByPage(1));
+      function go(dir) {
+        const per = Math.max(1, Math.floor(track.clientWidth / step()));
+        track.scrollBy({ left: dir * step() * per, behavior });
+      }
+      prevBtn.addEventListener('click', () => go(-1));
+      nextBtn.addEventListener('click', () => go(1));
 
       let ticking = false;
-      function updateNavVisibility() {
-        const maxScroll = track.scrollWidth - track.clientWidth - 2;
-        prevBtn.style.visibility = track.scrollLeft <= 2 ? 'hidden' : 'visible';
-        nextBtn.style.visibility = track.scrollLeft >= maxScroll ? 'hidden' : 'visible';
+      function update() {
         ticking = false;
+        const max = track.scrollWidth - track.clientWidth;
+        controls.hidden = max <= 2;
+        const pos = max > 0 ? Math.min(Math.max(track.scrollLeft / max, 0), 1) : 0;
+        const ratio = track.scrollWidth ? track.clientWidth / track.scrollWidth : 1;
+        thumb.style.width = (ratio * 100) + '%';
+        thumb.style.transform = 'translateX(' + (pos * (1 / ratio - 1) * 100) + '%)';
+        prevBtn.disabled = track.scrollLeft <= 2;
+        nextBtn.disabled = track.scrollLeft >= max - 2;
       }
-      track.addEventListener('scroll', () => {
-        if (!ticking) { requestAnimationFrame(updateNavVisibility); ticking = true; }
-      }, { passive: true });
-      window.addEventListener('resize', updateNavVisibility);
-      updateNavVisibility();
+      track.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+      if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);
+      window.addEventListener('resize', update);
+      update();
+
+      track.addEventListener('keydown', (e) => {
+        if (e.target !== track) return;
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); go(-1); }
+      });
+
+      /* Maus-Ziehen (Touch und Stift scrollen nativ) */
+      let down = false, moved = false, startX = 0, startLeft = 0;
+      track.addEventListener('pointerdown', (e) => {
+        if (e.pointerType !== 'mouse' || e.button !== 0) return;
+        down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+      });
+      window.addEventListener('pointermove', (e) => {
+        if (!down) return;
+        const dx = e.clientX - startX;
+        if (!moved && Math.abs(dx) > 5) { moved = true; track.classList.add('is-dragging'); }
+        if (moved) track.scrollLeft = startLeft - dx;
+      });
+      function end() {
+        if (!down) return;
+        down = false;
+        if (moved) {
+          track.classList.remove('is-dragging');
+          const s = step();
+          track.scrollTo({ left: Math.round(track.scrollLeft / s) * s, behavior });
+        }
+      }
+      window.addEventListener('pointerup', end);
+      window.addEventListener('pointercancel', end);
+      track.addEventListener('click', (e) => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
     })();
 
     /* Lightbox: Karten der Bilderreihe öffnen das Foto in Großansicht,

@@ -1,8 +1,9 @@
 /* ─────────────────────────────────────────────────────────────
    Niki's Soul Café – Berlin
-   Lila · Weiß · Pink – klassisch, ruhig, zeitlos.
-   Lila trägt die Seite, Weiß gibt Luft (helle Kapitel), Pink setzt
-   die wenigen Akzente. Serifen-Headlines, Sans-Fließtext, viel Raum.
+   Schwarz · Weiß · Lila – klar, kontrastreich, technisch sauber
+   (Maßstab: nvidia.com). Schwarz trägt die Seite, Weiß gibt Luft
+   (helle Kapitel), Lila setzt die wenigen Akzente. Lila lebt nur noch
+   im Logo. Serifen-Headlines, Sans-Fließtext, viel Raum.
    © 2026 Niki's Soul Café. Texte und Gestaltung
    urheberrechtlich geschützt. Übernahme – auch auszugsweise –
    nur mit schriftlicher Genehmigung.
@@ -10,18 +11,18 @@
 
 /* ── Tokens ──────────────────────────────── */
 :root {
-  --void:#241330;          /* tiefes, mattes Lila – Seite */
-  --surface:#2c1a40;       /* Lila – Kapitelfläche        */
-  --surface-2:#352247;     /* Lila – Menüs                */
+  --void:#000000;          /* Schwarz – Seite             */
+  --surface:#121212;       /* Anthrazit – Kapitelfläche   */
+  --surface-2:#1c1c1c;     /* Anthrazit – Menüs, Karten   */
 
-  --ink:#fdfbff;           /* Text primär   (Weiß)     */
-  --ink-soft:#dccfee;      /* Text sekundär            */
-  --ink-faint:#a996c4;     /* Text leise               */
+  --ink:#ffffff;           /* Text primär   (Weiß)     */
+  --ink-soft:#cfcfcf;      /* Text sekundär            */
+  --ink-faint:#8c8c8c;     /* Text leise               */
 
-  --brand:#e8488f;         /* Pink – Buttons & Akzentflächen */
-  --brand-bright:#e8a9c9;  /* gedecktes Rosé – seltener Text-Akzent */
-  --logo-pink:#c15fd8;     /* Orchideen-Pink aus dem Logo – Nav-Akzente */
-  --brand-ink:#ffffff;     /* Text auf Pink */
+  --brand:#c15fd8;         /* Lila – Buttons & Akzentflächen */
+  --brand-bright:#c15fd8;  /* Lila – Text-Akzent */
+  --logo-pink:#c15fd8;     /* Akzent (Altname) */
+  --brand-ink:#000000;     /* Text auf Lila */
 
   --edge:rgba(255,255,255,.16);        /* weiße Haarlinie   */
   --edge-strong:rgba(255,255,255,.42); /* Kanten & Diagonalen */
@@ -30,6 +31,15 @@
   --night:var(--void);
 
   --ease-out:cubic-bezier(.16,1,.3,1); /* fließende, präzise Easing-Kurve für alle Interaktionen */
+}
+
+/* ── Hintergrund-Schein: fester Radialverlauf hinter allen dunklen Kapiteln.
+   Dunkle Sektionen sind transparent, weiße Kapitel und das Kontaktfoto
+   decken ihn ab. Farben hier tauschen, um den Ton zu ändern. */
+:root { --glow-a:#231113; --glow-b:#0a0a0b; --glow-c:#0e0809; }
+body::before {
+  content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:radial-gradient(circle at center, var(--glow-a), var(--glow-b), var(--glow-c));
 }
 
 /* ── Basis ───────────────────────────────── */
@@ -41,18 +51,21 @@ body {
 }
 h1,h2,h3,h4 { font-family:'Cormorant Garamond','Roboto Slab',serif; letter-spacing:-0.01em; }
 a { transition: color .15s, background-color .15s, border-color .15s; }
+/* Navigation: feste Größe, keinerlei Animation */
+.site-header *, .site-header *::before, .site-header *::after,
+.mob-overlay, .mob-overlay *, .mob-backdrop, #mob-btn, #mob-btn * { transition:none !important; animation:none !important; }
 ::selection { background:var(--brand); color:var(--brand-ink); }
 
 /* Helle Kapitel (Weiß): dieselben Bausteine, nur die Tokens kippen.
    Lila wird zur Schrift, Pink dunkelt für Lesbarkeit leicht nach. */
 .light {
   background:#ffffff;
-  --ink:#2b1744;
-  --ink-soft:#5a4578;
-  --ink-faint:#8f7fa8;
-  --brand-bright:#d6307d;
-  --edge:rgba(43,23,68,.14);
-  --edge-strong:rgba(43,23,68,.42);
+  --ink:#111111;
+  --ink-soft:#4a4a4a;
+  --ink-faint:#767676;
+  --brand-bright:#8a2fa6;
+  --edge:rgba(0,0,0,.14);
+  --edge-strong:rgba(0,0,0,.42);
 }
 @media (prefers-reduced-motion:reduce) {
   html { scroll-behavior:auto; }
@@ -61,9 +74,11 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 /* ── Buttons – flach, ohne Hover-Effekt ─── */
 .btn-primary, .btn-secondary, .btn-secondary-inverse, .btn-contact-header {
   display:inline-flex; align-items:center; justify-content:center;
-  background-color:#fff; color:#24123a; border:1.5px solid var(--logo-pink);
-  font-weight:600; letter-spacing:.03em; cursor:pointer;
+  background-color:#fff; color:#000; border:2px solid #fff;
+  border-radius:2px !important;
+  font-weight:700; letter-spacing:.03em; cursor:pointer;
 }
+.btn-primary:hover, .btn-secondary:hover, .btn-secondary-inverse:hover, .btn-contact-header:hover { border-color:var(--brand); }
 
 /* ── Eyebrow ─────────────────────────────── */
 .eyebrow {
@@ -84,160 +99,162 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
   transform-origin:left center; transform:translateY(-.5px) rotate(-45deg);
 }
 
-/* ── Header – feines Glas, das beim Scrollen leicht schrumpft ── */
+/* ── Header – feste Größe, kein Schrumpfen, keine Animation ── */
 .site-header {
-  background:rgba(43,23,68,.78);
-  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  border-top-color:var(--edge) !important;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-top-color:transparent !important;
   border-bottom-color:var(--edge) !important;
-  transition:background-color .4s var(--ease-out), box-shadow .4s var(--ease-out);
 }
-.site-header.is-scrolled {
-  background:rgba(43,23,68,.95);
-  box-shadow:0 1px 0 var(--edge), 0 18px 36px -22px rgba(20,8,36,.55);
-}
-.site-header .h-20 { transition:height .35s var(--ease-out); }
-.site-header.is-scrolled .h-20 { height:4.25rem; }
+.site-header .h-20 { height:5rem; }
 
 .site-header nav a,
 .site-header nav button { color:var(--ink-soft); }
 .site-header nav a:hover,
-.site-header nav button:hover { color:var(--ink); }
+.site-header nav button:hover { color:#fff; }
+.site-header nav > a:hover,
+.site-header nav > div:hover > button { box-shadow:inset 0 -2px 0 var(--brand); }
 .site-header .brand-name { color:var(--ink) !important; }
-
-/* Feiner, goldener Scheidestrich zwischen den Hauptpunkten –
-   wie Einträge auf einer gedruckten Speisekarte. */
-.site-header nav > *:not(:first-child) { position:relative; }
-.site-header nav > *:not(:first-child)::before {
-  content:""; position:absolute; left:-1.125rem; top:50%;
-  width:1px; height:13px; transform:translateY(-50%);
-  background:var(--edge-strong);
-}
-
-/* Nav-Links: feine Haarlinie zieht sich beim Hover von links auf */
-.site-header nav > a,
-.site-header nav > div > button {
-  position:relative;
-}
-.site-header nav > a::after,
-.site-header nav > div > button::after {
-  content:""; position:absolute; left:0; bottom:.3rem; height:1px; width:0;
-  background:var(--logo-pink);
-  transition:width .3s var(--ease-out);
-}
-.site-header nav > a:hover::after,
-.site-header nav > div:hover > button::after {
-  width:100%;
-}
 .site-header nav button svg { color:var(--ink-soft); }
 
+/* Dropdowns: erscheinen sofort beim Hover/Fokus */
 .site-header .group > div {
-  background:var(--surface-2); border-color:var(--edge) !important;
-  border-top:2px solid var(--brand) !important;
+  display:none; position:absolute; left:0; top:100%; margin-top:0 !important;
+  width:16rem; background:var(--surface-2); border:1px solid var(--edge);
+  border-top:2px solid var(--brand);
+  opacity:1 !important; transform:none !important; pointer-events:auto !important;
 }
+.site-header .group:hover > div,
+.site-header .group:focus-within > div { display:block; }
+.site-header .group > div::before { content:""; position:absolute; left:0; right:0; top:-1rem; height:1rem; }
 .site-header .group a { color:var(--ink-soft) !important; }
-.site-header .group a:hover { background:var(--brand) !important; color:var(--brand-ink) !important; }
-
-/* Wortmarke: Monogramm wie ein kleines Siegel, mit feinem Doppelring */
-.brand-link { position:relative; }
-.brand-link::after {
-  content:""; position:absolute; left:0; right:100%; bottom:-7px; height:1px;
-  background:var(--logo-pink); transition:right .4s var(--ease-out);
-}
-.brand-link:hover::after { right:0; }
+.site-header .group a:hover { background:rgba(255,255,255,.06) !important; color:#fff !important; box-shadow:inset 0 0 0 1px var(--brand); }
 
 .brand-name .brand-accent {
   font-style:italic; color:#fff; margin:0 .14em; font-size:1.1em;
 }
 
 .logo-mark {
-  width:2.5rem; height:2.5rem; flex-shrink:0;
+  width:3rem; height:3rem; flex-shrink:0;
   display:flex; align-items:center; justify-content:center;
   background:var(--brand); border-radius:50%;
-  box-shadow:0 0 0 1px var(--void), 0 0 0 2px var(--edge-strong);
   font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:600; font-style:italic;
-  font-size:1.25rem; letter-spacing:.02em;
-  color:var(--brand-ink);
-  transition:width .35s var(--ease-out), height .35s var(--ease-out), font-size .35s var(--ease-out);
+  font-size:1.25rem; color:var(--brand-ink);
 }
 .logo-mark--img { width:3rem; height:3rem; overflow:hidden; background:#2a0a5e; }
 .logo-mark--img img { width:100%; height:100%; object-fit:cover; object-position:47% center; transform:scale(1.18); }
-.site-header.is-scrolled .logo-mark { width:2.15rem; height:2.15rem; font-size:1.05rem; }
-.site-header.is-scrolled .logo-mark--img { width:2.6rem; height:2.6rem; }
 
 .hero-trust { font-size:.78rem; color:var(--ink-faint); font-weight:400; }
 
-/* ── Hero ─────────────────────────────────── */
+/* ── Hero ───────────────────────────────────
+   Mobil: Scheinwerfer + Text oben, Video darunter (eine Spalte).
+   Ab 900px: links das Video, rechts der Lichtkegel mit Sternenstaub
+   und der Headline im Licht. */
 .hero {
-  position:relative;
-  min-height:90vh;
-  min-height:90svh;
-  min-height:var(--hero-lock, 90svh);
-  display:flex; align-items:stretch;
-  background:var(--void); overflow:hidden;
+  position:relative; isolation:isolate; overflow:hidden;
+  display:flex; align-items:center;
+  background:transparent;
 }
-.hero-media {
-  position:absolute; left:0; right:0; top:-8%; height:116%;
-  background:var(--void) url('cafe1-poster.jpg') center / cover no-repeat;
-  will-change:transform;
-}
-@media (prefers-reduced-motion:reduce) { .hero-media { top:0; height:100%; } }
-.hero-media img,
-.hero-media video {
-  width:100%; height:100%; display:block;
-  object-fit:cover; object-position:center 20%;
-}
-@media (max-width:767px) {
-  .hero-media img,
-  .hero-media video { object-position:70% 20%; }
-}
-/* Vignette: ruhige Mitte, dunkle Ränder – wie Kerzenlicht in einem Raum */
-.hero-media::after {
-  content:''; position:absolute; inset:0;
-  background:
-    radial-gradient(ellipse 70% 60% at 50% 48%, rgba(43,23,68,.42) 0%, rgba(43,23,68,.74) 70%, rgba(43,23,68,.9) 100%),
-    linear-gradient(to bottom, rgba(43,23,68,.55) 0%, rgba(43,23,68,0) 22%, rgba(43,23,68,0) 70%, var(--void) 100%);
+@media (min-width:900px) {
+  .hero { min-height:calc(var(--hero-lock, 100svh) - 5rem); }
 }
 
-/* Stiller Innenrahmen – wie der Einband eines Buches, ganz ohne Schmuck */
-.hero-frame {
-  position:absolute; z-index:2; pointer-events:none;
-  inset:clamp(.9rem, 2.2vw, 1.75rem);
-  border:1px solid var(--edge-strong);
+/* Lichtkegel */
+.beam {
+  position:absolute; z-index:0; top:-12%; left:var(--beam-x, 50%);
+  width:min(110vw, 1500px); height:125%; transform:translateX(-50%);
+  filter:blur(34px); pointer-events:none;
+  animation:beamIn 2.4s var(--ease-out) .1s both;
 }
+.beam i {
+  position:absolute; inset:0; clip-path:polygon(47% 0, 53% 0, 100% 100%, 0 100%);
+  background:linear-gradient(180deg, rgba(255,255,255,.26) 0%, rgba(255,255,255,.07) 48%, transparent 82%);
+}
+.beam-core {
+  position:absolute; z-index:0; top:0; left:var(--beam-x, 50%); width:1px; height:24%;
+  background:linear-gradient(180deg, rgba(255,255,255,.7), transparent);
+  pointer-events:none; animation:coreIn 2.4s var(--ease-out) .3s both;
+}
+@keyframes beamIn { from { opacity:0; } to { opacity:1; } }
+@keyframes coreIn { from { opacity:0; } to { opacity:.55; } }
+@media (min-width:900px) {
+  .beam { left:var(--beam-x, 75%); width:min(80vw, 1100px); }
+  .beam-core { left:var(--beam-x, 75%); }
+}
+#dust {
+  position:absolute; inset:0; width:100%; height:100%; z-index:1;
+  pointer-events:none; opacity:0; transition:opacity 2.6s var(--ease-out);
+}
+#dust.is-on { opacity:1; }
 
 .hero-inner {
   position:relative; z-index:3; width:100%;
-  padding-top:clamp(5rem, 10vh, 7rem); padding-bottom:clamp(5rem, 10vh, 7rem);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center;
+  padding-top:clamp(2.5rem, 7vw, 4rem); padding-bottom:clamp(3rem, 8vw, 5rem);
+  display:flex; flex-direction:column; align-items:center; gap:clamp(2.5rem, 7vw, 3.5rem);
+}
+.hero-copy {
+  display:flex; flex-direction:column; align-items:center; text-align:center; width:100%;
+}
+.hero-visual { width:100%; max-width:30rem; }
+.hero-video-card {
+  position:relative; width:100%; aspect-ratio:4 / 3; overflow:hidden;
+  background:var(--surface-2) url('cafe1-poster.jpg') center / cover no-repeat;
+  border:1px solid var(--edge-strong);
+  box-shadow:0 40px 80px -40px rgba(0,0,0,.9);
+}
+.hero-video { display:block; width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+
+@media (min-width:900px) {
+  .hero-inner {
+    display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); align-items:center;
+    gap:clamp(2rem, 5vw, 5rem);
+    padding-top:clamp(2rem, 5vh, 4rem); padding-bottom:clamp(3rem, 7vh, 5rem);
+  }
+  .hero-visual { order:-1; max-width:none; justify-self:start; width:100%; }
+  .hero-video-card {
+    aspect-ratio:4 / 5; width:auto; max-width:100%;
+    height:clamp(22rem, 66svh, 38rem);
+  }
 }
 
-/* Eyebrow mit flankierenden Haarlinien – still, nicht pink */
+/* Name + seit 2025: eine Schrift (Inter, Versalien, gesperrt) */
+.hero-name {
+  font-family:'Inter',sans-serif; font-weight:600;
+  font-size:clamp(.78rem, 1.9vw, .95rem); letter-spacing:.3em; text-transform:uppercase;
+  color:var(--ink); margin:0 0 clamp(1.4rem, 3vw, 2.3rem);
+}
+.hero-name em { font-style:normal; color:var(--logo-pink); }
+.hero-since {
+  display:block; margin-top:.7rem;
+  font-size:.72rem; font-weight:600; letter-spacing:.3em; color:var(--ink-soft);
+}
+
+/* Eyebrow mit flankierenden Haarlinien */
 .hero-eyebrow {
   display:flex; align-items:center; gap:1.1rem;
   font-family:'Inter',sans-serif;
   font-size:.72rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase;
-  color:var(--ink-soft); margin-bottom:2.3rem;
+  color:var(--ink-soft); margin-bottom:clamp(1.4rem, 3vw, 2.3rem);
 }
 .hero-eyebrow::before, .hero-eyebrow::after {
-  content:''; width:clamp(1.5rem, 4vw, 3rem); height:1px; flex:none;
+  content:''; width:clamp(1.25rem, 3vw, 2.5rem); height:1px; flex:none;
   background:var(--edge-strong);
 }
 
 .hero-headline {
   font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:500;
-  font-size:clamp(2.8rem, 7.5vw, 6rem);
+  font-size:clamp(2.6rem, 11vw, 4.2rem);
   line-height:1.04; letter-spacing:.005em;
-  color:var(--ink); margin:0 0 2rem; max-width:16ch;
+  color:var(--ink); margin:0 0 1.4rem; max-width:15ch;
   text-wrap:balance;
 }
+@media (min-width:900px) { .hero-headline { font-size:clamp(3rem, 5.2vw, 5.4rem); } }
 .hero-headline em { font-style:italic; font-weight:500; }
 .hero-headline .hero-dot { color:var(--logo-pink); }
 
 .hero-sub {
-  font-size:clamp(1rem,1.3vw,1.12rem); line-height:1.85; font-weight:300;
-  color:var(--ink-soft); max-width:50ch; margin:0 0 2.6rem;
+  font-size:clamp(1rem,1.3vw,1.12rem); line-height:1.8; font-weight:300;
+  color:var(--ink-soft); max-width:42ch; margin:0 0 2.2rem;
   text-wrap:pretty;
 }
 
@@ -258,112 +275,82 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 .arrow { display:inline-block; transition:transform .3s var(--ease-out); }
 a:hover .arrow { transform:translateX(4px); }
 
-/* Fußzeile des Hero: Hinweis + stille Scroll-Linie */
-.hero-meta {
-  position:absolute; left:0; right:0; bottom:clamp(1.9rem, 4vw, 3rem); z-index:3;
-  font-family:'Inter',sans-serif;
-  font-size:.66rem; letter-spacing:.2em; text-transform:uppercase;
-  color:var(--ink-faint);
-  display:flex; flex-direction:column; align-items:center; gap:.9rem;
-}
-.hero-scroll {
-  width:1px; height:2.6rem; position:relative; overflow:hidden; background:var(--edge);
-}
-.hero-scroll::after {
-  content:''; position:absolute; left:0; top:-100%; width:100%; height:100%;
-  background:var(--ink-soft);
-  animation:scrollCue 2.4s var(--ease-out) infinite;
-}
-@keyframes scrollCue {
-  0%   { top:-100%; }
-  60%  { top:100%; }
-  100% { top:100%; }
-}
-@media (prefers-reduced-motion:reduce) { .hero-scroll::after { animation:none; top:0; } }
-@media (max-width:640px) {
-  .hero-meta { display:none; }
-  .hero-frame { inset:.75rem; }
+@media (prefers-reduced-motion:reduce) {
+  .beam, .beam-core { animation:none; }
+  .beam-core { opacity:.55; }
+  #dust { transition:none; }
 }
 
-/* ── Eindrücke: eine Reihe zum Durchblättern, wie man sie von
-   Streaming-Startseiten kennt – aber mit warmen, persönlichen Worten
-   statt bloßer Titel, damit sie nach Niki's Soul Café aussieht und
-   nicht nach einer Bibliothek. */
-.eindruecke { background:var(--void); }
+/* ── Eindrücke: Bilderstrecke ──
+   Native Scroll-Snap-Spur (Touch, Trackpad, Maus-Ziehen, Tastatur),
+   Karten pro Ansicht per CSS-Variable je Breite. Darunter eine feste
+   Steuerleiste: Fortschrittsbalken + Pfeile (immer sichtbar, am Rand
+   deaktiviert) – kein Hover nötig, auf jedem Gerät bedienbar. */
+.eindruecke { background:transparent; }
 
-.dish-reel { position:relative; }
+.dish-reel { --per:1.35; --gap:1rem; position:relative; }
+@media (min-width:560px)  { .dish-reel { --per:2.3; } }
+@media (min-width:860px)  { .dish-reel { --per:3.3; --gap:1.25rem; } }
+@media (min-width:1100px) { .dish-reel { --per:4; --gap:1.25rem; } }
 
 .reel-track {
-  display:flex; gap:1.1rem; list-style:none; margin:0;
-  padding:1.3rem .3rem 1.6rem;
-  overflow-x:auto; scroll-snap-type:x proximity; scroll-padding-left:.3rem;
-  -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  display:flex; gap:var(--gap); list-style:none; margin:0; padding:0;
+  overflow-x:auto; overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  scrollbar-width:none; cursor:grab;
 }
 .reel-track::-webkit-scrollbar { display:none; }
-@media (prefers-reduced-motion:reduce) { .reel-track { scroll-behavior:auto; } }
+.reel-track:focus-visible { outline:2px solid var(--brand); outline-offset:4px; }
+.reel-track.is-dragging { cursor:grabbing; scroll-snap-type:none; user-select:none; }
+.reel-track.is-dragging * { pointer-events:none; }
 
-/* Schlicht: Bild oben, Name darunter. Keine Verläufe, keine Ziffern,
-   keine Ecken, keine Animation auf dem Bild – der Name liegt nie auf
-   dem Foto, sondern immer auf fester Kartenfläche, damit er unter
-   jeder Bedingung lesbar ist. */
 .reel-card {
-  flex:0 0 auto; width:min(72vw, 15.5rem);
-  scroll-snap-align:start; overflow:hidden;
-  background:var(--surface);
+  flex:0 0 calc((100% - var(--gap) * (var(--per) - 1)) / var(--per));
+  min-width:0; scroll-snap-align:start; background:none;
 }
-
 .reel-card-btn {
-  display:block; width:100%; padding:0; margin:0; border:0;
-  background:none; cursor:pointer; font:inherit; text-align:left;
+  display:block; width:100%; padding:0; margin:0; border:0; background:none;
+  color:inherit; cursor:inherit; font:inherit; text-align:left;
   appearance:none; -webkit-appearance:none;
 }
-.reel-card-btn:focus-visible { outline:2px solid var(--brand-bright); outline-offset:3px; }
-
+.reel-card-btn:focus-visible { outline:2px solid var(--brand); outline-offset:3px; }
 .reel-card img {
-  display:block; width:100%; aspect-ratio:4 / 5;
-  object-fit:cover; object-position:center 38%;
+  display:block; width:100%; aspect-ratio:4 / 5; object-fit:cover; object-position:center 38%;
+  background:var(--surface-2); -webkit-user-drag:none; user-select:none;
 }
-
-.reel-info { padding:.9rem 1rem 1rem; }
+.reel-info { padding:.85rem 0 0; border-top:2px solid transparent; margin-top:-2px; }
+.reel-card-btn:hover .reel-info,
+.reel-card-btn:focus-visible .reel-info { border-top-color:var(--brand); }
 .reel-info h3 {
-  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:600; font-size:1.1rem;
-  color:var(--ink); margin:0;
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:600; font-size:1.15rem;
+  line-height:1.25; color:var(--ink); margin:0;
 }
 
-.reel-nav {
-  position:absolute; top:50%; z-index:3; transform:translateY(-50%);
-  width:2.75rem; height:2.75rem; border-radius:50%; padding:0;
-  display:flex; align-items:center; justify-content:center;
-  background:rgba(20,8,34,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
-  border:1px solid rgba(255,255,255,.32); color:#fff; cursor:pointer;
-  opacity:0; transition:opacity .3s var(--ease-out), border-color .25s var(--ease-out), background-color .25s var(--ease-out);
+.reel-controls { display:flex; align-items:center; gap:1.5rem; margin-top:1.75rem; }
+.reel-progress { position:relative; flex:1 1 auto; height:2px; background:var(--edge); }
+.reel-progress-thumb {
+  position:absolute; top:-1px; left:0; height:4px; width:25%; background:var(--brand);
+  will-change:transform;
 }
-.dish-reel:hover .reel-nav { opacity:1; }
-.reel-prev { left:-.3rem; }
-.reel-next { right:-.3rem; }
-.reel-nav:hover { border-color:var(--brand-bright); color:var(--brand-bright); }
+.reel-btns { display:flex; gap:.5rem; flex:none; }
+.reel-btn {
+  width:2.75rem; height:2.75rem; padding:0; border-radius:0;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  background:#fff; color:#000; border:2px solid #fff;
+}
+.reel-btn:hover:not(:disabled) { border-color:var(--brand); }
+.reel-btn:focus-visible { outline:2px solid var(--brand); outline-offset:2px; }
+.reel-btn:disabled { opacity:.3; cursor:default; }
+.reel-controls[hidden] { display:none; }
 
-@media (hover:none) { .reel-nav { opacity:1; } }
-.reel-hint { display:none; }
-@media (max-width:640px) {
-  .reel-card { width:min(76vw, 14rem); }
-  .reel-nav { display:none; }
-  .reel-hint {
-    display:flex; align-items:center; justify-content:center; gap:.5rem;
-    position:absolute; left:0; right:0; top:100%; margin-top:1rem;
-    font-family:'Inter',sans-serif; font-size:.85rem; font-weight:500;
-    color:var(--ink-soft); pointer-events:none;
-    transition:opacity .4s ease;
-  }
-  .reel-hint.is-hidden { opacity:0; }
-}
+@media (prefers-reduced-motion:reduce) { .reel-track { scroll-behavior:auto; } }
 
 /* ── Lightbox: ein Bild in Großansicht, mit Pfeilen und Tastatur ── */
 .lightbox {
   position:fixed; inset:0; z-index:300;
   display:flex; align-items:center; justify-content:center;
   padding:clamp(1.25rem, 5vw, 3.5rem);
-  background:rgba(15,8,24,.94); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  background:rgba(0,0,0,.94); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
   opacity:0; visibility:hidden; pointer-events:none;
   transition:opacity .35s var(--ease-out), visibility 0s linear .35s;
 }
@@ -398,7 +385,7 @@ a:hover .arrow { transform:translateX(4px); }
   position:absolute; z-index:1; top:50%; transform:translateY(-50%);
   width:2.9rem; height:2.9rem; border-radius:50%; padding:0; margin:0;
   display:flex; align-items:center; justify-content:center;
-  background:rgba(20,8,34,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  background:rgba(0,0,0,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
   border:1px solid rgba(255,255,255,.32); color:#fff; cursor:pointer;
   appearance:none; -webkit-appearance:none;
   transition:border-color .25s var(--ease-out), color .25s var(--ease-out);
@@ -416,7 +403,7 @@ a:hover .arrow { transform:translateX(4px); }
 }
 
 /* ═══ Kapitel-System ═══════════════════════ */
-.paper { background:var(--surface); }
+.paper { background:transparent; }
 .chapter { position:relative; border-top:1px solid var(--edge); }
 .chapter:first-of-type { border-top:0; }
 
@@ -581,7 +568,7 @@ a:hover .arrow { transform:translateX(4px); }
 .hours-row span:first-child { color:var(--ink-faint); min-width:6.5rem; }
 .kontakt-bg {
   background:
-    linear-gradient(rgba(36,18,58,.86), rgba(36,18,58,.86)),
+    linear-gradient(rgba(0,0,0,.86), rgba(0,0,0,.86)),
     url('416782850_11662228.jpg') center 22% / cover no-repeat;
 }
 .info-col .info-note {
@@ -590,7 +577,7 @@ a:hover .arrow { transform:translateX(4px); }
 
 /* ── Footer ───────────────────────────────── */
 .site-footer {
-  background:var(--void);
+  background:transparent;
   border-top:1px solid var(--edge) !important;
   border-bottom:1px solid var(--edge) !important;
 }
@@ -636,16 +623,15 @@ a:hover .arrow { transform:translateX(4px); }
   width:min(360px, 100vw);
   z-index:200;
   background:var(--surface);
-  border-left:2px solid #fff;
+  border-left:1px solid var(--edge);
   transform:translateX(100%);
-  transition:transform .4s cubic-bezier(.16,1,.3,1);
-  display:flex; flex-direction:column;
+    display:flex; flex-direction:column;
 }
 .mob-overlay.open { transform:translateX(0); }
 
 .mob-backdrop {
   position:fixed; inset:0; z-index:199;
-  background:rgba(30,15,50,.7);
+  background:rgba(0,0,0,.7);
   opacity:0; pointer-events:none;
   transition:opacity .3s ease;
 }
@@ -657,14 +643,7 @@ a:hover .arrow { transform:translateX(4px); }
 }
 
 .mob-inner nav > * {
-  opacity:0; transform:translateX(10px);
-  transition:opacity .35s ease, transform .35s ease;
 }
-.mob-overlay.open .mob-inner nav > * { opacity:1; transform:translateX(0); }
-.mob-inner nav > *:nth-child(1) { transition-delay:.05s; }
-.mob-inner nav > *:nth-child(2) { transition-delay:.09s; }
-.mob-inner nav > *:nth-child(4) { transition-delay:.13s; }
-.mob-inner nav > *:nth-child(6) { transition-delay:.17s; }
 
 .mob-eyebrow { margin-bottom:1.4rem; }
 
@@ -704,13 +683,7 @@ a:hover .arrow { transform:translateX(4px); }
   display:flex; flex-direction:column; gap:.4rem;
 }
 .mob-footer > * {
-  opacity:0; transform:translateX(10px);
-  transition:opacity .35s ease, transform .35s ease;
 }
-.mob-overlay.open .mob-footer > * { opacity:1; transform:translateX(0); }
-.mob-footer > *:nth-child(1) { transition-delay:.2s; }
-.mob-footer > *:nth-child(2) { transition-delay:.24s; }
-.mob-footer > *:nth-child(3) { transition-delay:.28s; }
 .mob-footer .mob-email {
   font-size:.85rem; color:var(--ink-soft);
   font-family:'Inter',sans-serif; text-decoration:none;
@@ -748,7 +721,7 @@ section[id] { scroll-margin-top:80px; }
   background:var(--surface-2);
   font-size:.85rem; line-height:1.75; color:var(--ink-faint);
 }
-.light .legal-note { background:rgba(43,23,68,.04); }
+.light .legal-note { background:rgba(0,0,0,.04); }
 .legal-note strong { color:var(--ink); }
 
 .chapter-title .accent-word { color:var(--logo-pink); }
@@ -758,9 +731,65 @@ section[id] { scroll-margin-top:80px; }
   position:fixed; top:1rem; left:1rem; z-index:50;
   display:inline-flex; align-items:center; gap:.6rem;
   min-height:48px; padding:.6rem 1.25rem .6rem 1rem;
-  background:#fff; color:#24123a; border:1.5px solid var(--logo-pink); border-radius:9999px;
-  box-shadow:0 4px 14px rgba(36,18,58,.12);
+  background:#fff; color:#000; border:2px solid #fff; border-radius:2px;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
   font-family:'Inter',sans-serif; font-size:1rem; font-weight:600;
   text-decoration:none; cursor:pointer;
 }
 .back-link svg { width:22px; height:22px; }
+
+/* ── Speisekarte: zum Aufklappen, mit Reitern je Kategorie ── */
+.menu-section { background:transparent; }
+.menu-toggle {
+  display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
+  width:100%; padding:1.4rem 1.6rem; cursor:pointer; text-align:left;
+  background:var(--surface-2); color:var(--ink); border:1px solid var(--edge);
+  border-left:4px solid var(--brand); border-radius:0;
+  font-family:'Inter',sans-serif; font-size:.85rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase;
+}
+.menu-toggle:hover { border-color:var(--brand); }
+.menu-toggle small { display:block; margin-top:.35rem; font-size:.78rem; font-weight:400; letter-spacing:0; text-transform:none; color:var(--ink-soft); }
+.menu-toggle svg { flex:none; color:var(--brand); }
+.menu-toggle[aria-expanded="true"] svg { transform:rotate(180deg); }
+
+.menu-panel { border:1px solid var(--edge); border-top:0; background:rgba(0,0,0,.45); }
+.menu-panel[hidden] { display:none; }
+
+.menu-tabs {
+  display:flex; overflow-x:auto; scrollbar-width:none;
+  border-bottom:1px solid var(--edge);
+}
+.menu-tabs::-webkit-scrollbar { display:none; }
+.menu-tab {
+  flex:none; padding:1.1rem 1.6rem; cursor:pointer; background:none; border:0;
+  border-bottom:3px solid transparent; margin-bottom:-1px;
+  font-family:'Inter',sans-serif; font-size:.74rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint);
+}
+.menu-tab:hover { color:#fff; }
+.menu-tab[aria-selected="true"] { color:#fff; border-bottom-color:var(--brand); }
+
+.menu-pane { padding:clamp(1.5rem,4vw,3rem); }
+.menu-pane[hidden] { display:none; }
+.menu-pane-note { margin:0 0 1.8rem; font-size:.85rem; color:var(--ink-faint); }
+.menu-list { list-style:none; margin:0; padding:0; display:grid; gap:0 clamp(2rem,5vw,4rem); }
+@media (min-width:768px) { .menu-list { grid-template-columns:1fr 1fr; } }
+.menu-item { padding:1.15rem 0; border-bottom:1px solid var(--edge); }
+.menu-item-top { display:flex; align-items:baseline; gap:.8rem; }
+.menu-item-name {
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-size:1.25rem; font-weight:600; color:#fff;
+}
+.menu-item-dots { flex:1; border-bottom:1px dotted var(--edge-strong); transform:translateY(-.25rem); min-width:1rem; }
+.menu-item-price { font-size:.92rem; font-weight:600; color:var(--brand); white-space:nowrap; }
+.menu-item-desc { margin:.3rem 0 0; font-size:.86rem; line-height:1.7; color:var(--ink-soft); max-width:46ch; }
+.menu-tag {
+  display:inline-block; margin-left:.5rem; padding:.05rem .4rem; vertical-align:middle;
+  border:1px solid var(--brand); color:var(--brand);
+  font-family:'Inter',sans-serif; font-size:.6rem; font-weight:700; letter-spacing:.1em;
+}
+.menu-foot { margin:0; padding:1.1rem clamp(1.5rem,4vw,3rem); border-top:1px solid var(--edge); font-size:.78rem; color:var(--ink-faint); }
+
+/* ── Das Café (weißer Einstieg nach dem Hero) ── */
+.cafe-photo { margin:0; }
+.cafe-photo img { display:block; width:100%; aspect-ratio:4 / 3; object-fit:cover; }
