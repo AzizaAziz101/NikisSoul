@@ -22,7 +22,7 @@
 
         <a href="#" class="brand-link flex items-center gap-3">
           <span class="logo-mark logo-mark--img"><img src="Logo.png" alt="" width="48" height="48" /></span>
-          <span class="brand-name text-xl font-medium tracking-normal" style="font-family:'Cormorant Garamond',serif;">Niki&rsquo;s <span class="brand-accent">Soul</span> Café</span>
+          <span class="brand-name text-xl font-medium tracking-normal" style="font-family:'Cormorant Garamond',serif;" aria-label="Niki&rsquo;s Soul Café"><span class="bw" aria-hidden="true"><span style="--d:.15s">Niki&rsquo;s</span></span> <span class="bw" aria-hidden="true"><span class="brand-accent" style="--d:.4s">Soul</span></span> <span class="bw" aria-hidden="true"><span style="--d:.65s">Café</span></span></span>
         </a>
 
         <nav class="hidden lg:flex items-center gap-9 text-xs font-semibold tracking-[.1em] uppercase">
@@ -641,6 +641,15 @@
         });
       }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
       els.forEach(el => io.observe(el));
+    })();
+
+    /* Header: oben weiß, nach dem Scrollen dunkles Glas */
+    (function headerState() {
+      const header = document.querySelector('.site-header');
+      if (!header) return;
+      const update = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+      update();
+      window.addEventListener('scroll', update, { passive: true });
     })();
 
     /* Speisekarte: auf-/zuklappen, Reiter, Deep-Links aus der Navigation */
