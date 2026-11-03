@@ -36,7 +36,7 @@
 /* ── Hintergrund-Schein: fester Radialverlauf hinter allen dunklen Kapiteln.
    Dunkle Sektionen sind transparent, weiße Kapitel und das Kontaktfoto
    decken ihn ab. Farben hier tauschen, um den Ton zu ändern. */
-:root { --glow-a:#3a1486; --glow-b:#150b2a; --glow-c:#190e30; }
+:root { --glow-a:#231113; --glow-b:#0a0a0b; --glow-c:#0e0809; }
 body::before {
   content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
   background:radial-gradient(circle at center, var(--glow-a), var(--glow-b), var(--glow-c));
