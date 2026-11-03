@@ -98,55 +98,24 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
   transform-origin:left center; transform:translateY(-.5px) rotate(-45deg);
 }
 
-/* ── Header – feste Größe. Ganz oben: weiß mit schwarzer Schrift.
-   Nach dem Scrollen (.is-scrolled): dunkles Glas mit weißer Schrift.
-   Animiert wird nur der Farbwechsel und der Schriftzug. ── */
+/* ── Header – feste Größe, dauerhaft einfarbiges UI-Grau, weiße Schrift ── */
 .site-header {
-  --nav-bg:#ffffff;
-  --nav-ink:#000000;
-  --nav-soft:#3d3d3d;
-  --nav-line:rgba(0,0,0,.14);
-  --nav-accent:#8a2fa6;
-  background:rgba(0,0,0,.2);
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  background:#232427;
+  backdrop-filter:none; -webkit-backdrop-filter:none;
   border-top-color:transparent !important;
-  border-bottom-color:var(--nav-line) !important;
-  transition:border-color 1.2s cubic-bezier(.45,0,.2,1);
-}
-/* Übergang: die weiße Fläche fährt wie ein Vorhang nach links weg und gibt
-   das dunkle Glas darunter frei; beim Zurückscrollen fährt sie von links wieder herein. */
-.site-header::after {
-  content:""; position:absolute; inset:0; z-index:-1; background:#fff; pointer-events:none;
-  /* weiche Kante: ein Verlauf als Maske, dessen Fenster nach rechts wandert */
-  -webkit-mask-image:linear-gradient(90deg, #000 0%, #000 33.34%, transparent 66.66%, transparent 100%);
-          mask-image:linear-gradient(90deg, #000 0%, #000 33.34%, transparent 66.66%, transparent 100%);
-  -webkit-mask-size:300% 100%; mask-size:300% 100%;
-  -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
-  -webkit-mask-position:0% 0; mask-position:0% 0;
-  transition:-webkit-mask-position 1.2s cubic-bezier(.45,0,.2,1), mask-position 1.2s cubic-bezier(.45,0,.2,1);
-}
-.site-header.is-scrolled::after { -webkit-mask-position:100% 0; mask-position:100% 0; }
-.site-header.is-scrolled {
-  --nav-bg:rgba(0,0,0,.2);
-  --nav-ink:#ffffff;
-  --nav-soft:#cfcfcf;
-  --nav-line:rgba(255,255,255,.16);
-  --nav-accent:#c15fd8;
+  border-bottom-color:var(--edge) !important;
 }
 .site-header .h-20 { height:5rem; }
 
 .site-header nav a,
-.site-header nav button { color:var(--nav-soft); transition:color .6s ease .3s; }
+.site-header nav button { color:var(--ink-soft); }
 .site-header nav a:hover,
-.site-header nav button:hover { color:var(--nav-ink); }
+.site-header nav button:hover { color:#fff; }
 .site-header nav > a:hover,
 .site-header nav > div:hover > button { box-shadow:inset 0 -2px 0 var(--logo-pink); }
-.site-header nav button svg { color:var(--nav-soft); }
+.site-header nav button svg { color:var(--ink-soft); }
 
-.site-header .btn-contact-header { background-color:#000; color:#fff; border-color:#000; transition:background-color .6s ease .3s, color .6s ease .3s, border-color .6s ease .3s; }
-.site-header.is-scrolled .btn-contact-header { background-color:#fff; color:#000; border-color:#fff; }
 .site-header .btn-contact-header:hover { border-color:var(--logo-pink); }
-.site-header .icon-bar { background:var(--nav-ink); transition:background-color .6s ease .3s; }
 
 /* Dropdowns: erscheinen sofort beim Hover/Fokus, ohne Animation */
 .site-header .group > div, .site-header .group > div * { transition:none !important; }
@@ -162,44 +131,6 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 .site-header .group a { color:#cfcfcf !important; }
 .site-header .group a:hover { background:rgba(255,255,255,.06) !important; color:#fff !important; box-shadow:inset 0 0 0 1px var(--brand); }
 
-/* Schriftzug: jedes Wort fährt einzeln aus einer Maske nach oben ein,
-   danach zieht eine feine Linie darunter auf. Beim Hover wandert die
-   Linie von links nach rechts durch. Farbwechsel läuft mit dem Header. */
-.site-header .brand-name { color:var(--nav-ink) !important; transition:color .6s ease .3s; }
-.brand-link { position:relative; }
-.brand-name .bw { display:inline-block; vertical-align:bottom; }
-.brand-name .bw > span {
-  display:inline-block; opacity:0; transform:translate3d(0,.45em,0); filter:blur(7px);
-  will-change:transform, opacity, filter;
-  animation:brandWord 1.5s cubic-bezier(.22,1,.36,1) forwards; animation-delay:var(--d, 0s);
-}
-@keyframes brandWord {
-  0%   { opacity:0; transform:translate3d(0,.45em,0); filter:blur(7px); }
-  60%  { opacity:1; filter:blur(0); }
-  100% { opacity:1; transform:none; filter:blur(0); }
-}
-.brand-name .brand-accent {
-  font-style:italic; color:var(--nav-accent); margin:0 .14em; font-size:1.1em;
-  transition:color .6s ease .3s;
-}
-.brand-link::after {
-  content:""; position:absolute; left:3.75rem; right:0; bottom:-6px; height:1px;
-  background:var(--nav-accent); transform:scaleX(0); transform-origin:left center;
-  animation:brandLine 1.6s cubic-bezier(.65,0,.35,1) 1s forwards;
-}
-@keyframes brandLine { to { transform:scaleX(1); } }
-.brand-link:hover::after { animation:brandSweep 1.2s cubic-bezier(.65,0,.35,1); transform:scaleX(1); }
-@keyframes brandSweep {
-  0%   { transform:scaleX(1); transform-origin:right center; }
-  45%  { transform:scaleX(0); transform-origin:right center; }
-  55%  { transform:scaleX(0); transform-origin:left center; }
-  100% { transform:scaleX(1); transform-origin:left center; }
-}
-@media (prefers-reduced-motion:reduce) {
-  .brand-name .bw > span { animation:none; opacity:1; transform:none; filter:none; }
-  .brand-link::after { animation:none; transform:scaleX(1); }
-}
-
 .logo-mark {
   width:3rem; height:3rem; flex-shrink:0;
   display:flex; align-items:center; justify-content:center;
@@ -213,45 +144,22 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 .hero-trust { font-size:.78rem; color:var(--ink-faint); font-weight:400; }
 
 /* ── Hero ───────────────────────────────────
-   Mobil: Scheinwerfer + Text oben, Video darunter (eine Spalte).
-   Ab 900px: links das Video, rechts der Lichtkegel mit Sternenstaub
-   und der Headline im Licht. */
+   Mobil: Text oben, Video darunter (eine Spalte).
+   Ab 900px: links das Video, rechts Name und Headline. */
 .hero {
   position:relative; isolation:isolate; overflow:hidden;
   display:flex; align-items:center;
-  background:transparent;
+  /* heller Hero: dieselben Bausteine, nur die Tokens kippen */
+  background:#fff;
+  --ink:#111111; --ink-soft:#4a4a4a; --ink-faint:#767676;
+  --logo-pink:#8a2fa6;
+  --edge:rgba(0,0,0,.14); --edge-strong:rgba(0,0,0,.42);
 }
+.hero .btn-primary { background-color:#000; color:#fff; border-color:#000; }
+.hero .btn-primary:hover { border-color:var(--logo-pink); }
 @media (min-width:900px) {
   .hero { min-height:calc(var(--hero-lock, 100svh) - 5rem); }
 }
-
-/* Lichtkegel */
-.beam {
-  position:absolute; z-index:0; top:-12%; left:var(--beam-x, 50%);
-  width:min(110vw, 1500px); height:125%; transform:translateX(-50%);
-  filter:blur(34px); pointer-events:none;
-  animation:beamIn 2.4s var(--ease-out) .1s both;
-}
-.beam i {
-  position:absolute; inset:0; clip-path:polygon(47% 0, 53% 0, 100% 100%, 0 100%);
-  background:linear-gradient(180deg, rgba(255,255,255,.26) 0%, rgba(255,255,255,.07) 48%, transparent 82%);
-}
-.beam-core {
-  position:absolute; z-index:0; top:0; left:var(--beam-x, 50%); width:1px; height:24%;
-  background:linear-gradient(180deg, rgba(255,255,255,.7), transparent);
-  pointer-events:none; animation:coreIn 2.4s var(--ease-out) .3s both;
-}
-@keyframes beamIn { from { opacity:0; } to { opacity:1; } }
-@keyframes coreIn { from { opacity:0; } to { opacity:.55; } }
-@media (min-width:900px) {
-  .beam { left:var(--beam-x, 75%); width:min(80vw, 1100px); }
-  .beam-core { left:var(--beam-x, 75%); }
-}
-#dust {
-  position:absolute; inset:0; width:100%; height:100%; z-index:1;
-  pointer-events:none; opacity:0; transition:opacity 2.6s var(--ease-out);
-}
-#dust.is-on { opacity:1; }
 
 .hero-inner {
   position:relative; z-index:3; width:100%;
@@ -262,11 +170,22 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
   display:flex; flex-direction:column; align-items:center; text-align:center; width:100%;
 }
 .hero-visual { width:100%; max-width:30rem; }
+.hero-stack { position:relative; isolation:isolate; width:100%; }
+.hero-shape { position:absolute; z-index:-1; pointer-events:none; }
+.hero-stack { --off:.9rem; }
+.hero-shape--block {
+  inset:0; background:#27055c;
+  transform:translate(var(--off), var(--off));
+}
+.hero-shape--ring {
+  width:clamp(5rem, 22vw, 8rem); aspect-ratio:1; border-radius:50%;
+  border:2px solid #27055c; top:-1.1rem; left:-1.1rem;
+}
 .hero-video-card {
   position:relative; width:100%; aspect-ratio:4 / 3; overflow:hidden;
   background:var(--surface-2) url('cafe1-poster.jpg') center / cover no-repeat;
   border:1px solid var(--edge-strong);
-  box-shadow:0 40px 80px -40px rgba(0,0,0,.9);
+  box-shadow:0 40px 70px -40px rgba(40,10,60,.45);
 }
 .hero-video { display:block; width:100%; height:100%; object-fit:cover; object-position:center 20%; }
 
@@ -281,18 +200,24 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
     aspect-ratio:4 / 5; width:auto; max-width:100%;
     height:clamp(22rem, 66svh, 38rem);
   }
+  .hero-stack { width:fit-content; max-width:100%; }
+  .hero-stack { --off:1.6rem; }
+  .hero-shape--ring { width:9rem; top:-2.4rem; left:-2.4rem; }
 }
 
-/* Name + seit 2025: eine Schrift (Inter, Versalien, gesperrt) */
+/* Name + seit 2025: eine Schrift (Inter, Versalien, gesperrt) – das Erste, was man liest */
 .hero-name {
-  font-family:'Inter',sans-serif; font-weight:600;
-  font-size:clamp(.78rem, 1.9vw, .95rem); letter-spacing:.3em; text-transform:uppercase;
-  color:var(--ink); margin:0 0 clamp(1.4rem, 3vw, 2.3rem);
+  font-family:'Inter',sans-serif; font-weight:700;
+  font-size:clamp(1.05rem, 3.4vw, 1.7rem); letter-spacing:.32em; text-transform:uppercase;
+  color:var(--ink); margin:0 0 clamp(2rem, 4vw, 3rem);
 }
-.hero-name em { font-style:normal; color:var(--logo-pink); }
+.hero-name em { font-style:normal; color:inherit; }
 .hero-since {
-  display:block; margin-top:.7rem;
-  font-size:.72rem; font-weight:600; letter-spacing:.3em; color:var(--ink-soft);
+  display:flex; align-items:center; justify-content:center; gap:1.1rem; margin-top:1rem;
+  font-size:clamp(.72rem, 1.6vw, .85rem); font-weight:600; letter-spacing:.34em; color:#27055c;
+}
+.hero-since::before, .hero-since::after {
+  content:''; width:clamp(1.5rem, 4vw, 3rem); height:1px; flex:none; background:var(--edge-strong);
 }
 
 /* Eyebrow mit flankierenden Haarlinien */
@@ -309,12 +234,12 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 
 .hero-headline {
   font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:500;
-  font-size:clamp(2.6rem, 11vw, 4.2rem);
+  font-size:clamp(2.1rem, 8.8vw, 3.4rem);
   line-height:1.04; letter-spacing:.005em;
   color:var(--ink); margin:0 0 1.4rem; max-width:15ch;
   text-wrap:balance;
 }
-@media (min-width:900px) { .hero-headline { font-size:clamp(3rem, 5.2vw, 5.4rem); } }
+@media (min-width:900px) { .hero-headline { font-size:clamp(2.5rem, 4.1vw, 4.3rem); } }
 .hero-headline em { font-style:italic; font-weight:500; }
 .hero-headline .hero-dot { color:var(--logo-pink); }
 
@@ -335,17 +260,25 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
   font-size:.76rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
   color:var(--ink-soft); text-decoration:none;
 }
-.hero-secondary:hover { color:#fff; }
+.hero-secondary:hover { color:var(--ink); }
+
+/* Einstieg: ruhig gestaffelt, von weich auslaufender Kurve getragen.
+   Erst baut sich das Bild samt Formen auf, dann folgen Name, Headline
+   und Buttons im Abstand von je etwa einer Zehntelsekunde. */
+@keyframes heroUp   { from { opacity:0; transform:translate3d(0,22px,0); } to { opacity:1; transform:none; } }
+@keyframes heroWipe { from { clip-path:inset(0 0 100% 0); } to { clip-path:inset(0 0 0 0); } }
+@keyframes heroSlide{ from { opacity:0; transform:translate(0,0); } to { opacity:1; transform:translate(var(--off), var(--off)); } }
+@keyframes heroRing { from { opacity:0; transform:scale(.6); } to { opacity:1; transform:none; } }
+.hero-video-card { animation:heroWipe 1.3s cubic-bezier(.77,0,.18,1) .1s both; }
+.hero-shape--block { animation:heroSlide 1.2s cubic-bezier(.22,1,.36,1) .8s both; }
+.hero-shape--ring  { animation:heroRing 1.2s cubic-bezier(.22,1,.36,1) 1s both; }
+.hero-name         { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .45s both; }
+.hero-headline     { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .65s both; }
+.hero-actions      { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .85s both; }
 
 /* Pfeil-Glyphen gleiten beim Hover sanft nach rechts */
 .arrow { display:inline-block; transition:transform .3s var(--ease-out); }
 a:hover .arrow { transform:translateX(4px); }
-
-@media (prefers-reduced-motion:reduce) {
-  .beam, .beam-core { animation:none; }
-  .beam-core { opacity:.55; }
-  #dust { transition:none; }
-}
 
 /* ── Eindrücke: Bilderstrecke ──
    Native Scroll-Snap-Spur (Touch, Trackpad, Maus-Ziehen, Tastatur),
@@ -857,4 +790,4 @@ section[id] { scroll-margin-top:80px; }
 
 /* ── Das Café (weißer Einstieg nach dem Hero) ── */
 .cafe-photo { margin:0; }
-.cafe-photo img { display:block; width:100%; aspect-ratio:4 / 3; object-fit:cover; }
+.cafe-photo img { display:block; width:100%; aspect-ratio:5 / 4; object-fit:cover; object-position:center; }

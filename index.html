@@ -16,13 +16,12 @@
 <body>
 
   <!-- ─── Navigation ───────────────────────────── -->
-  <header class="site-header sticky top-0 z-50 backdrop-blur border-t border-b border-stone-200">
+  <header class="site-header sticky top-0 z-50 border-t border-b border-stone-200">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 keyline" style="position:relative;">
       <div class="h-20 flex items-center justify-between">
 
-        <a href="#" class="brand-link flex items-center gap-3">
+        <a href="#" class="brand-link flex items-center gap-3" aria-label="Niki&rsquo;s Soul Café – Startseite">
           <span class="logo-mark logo-mark--img"><img src="Logo.png" alt="" width="48" height="48" /></span>
-          <span class="brand-name text-xl font-medium tracking-normal" style="font-family:'Cormorant Garamond',serif;" aria-label="Niki&rsquo;s Soul Café"><span class="bw" aria-hidden="true"><span style="--d:.15s">Niki&rsquo;s</span></span> <span class="bw" aria-hidden="true"><span class="brand-accent" style="--d:.4s">Soul</span></span> <span class="bw" aria-hidden="true"><span style="--d:.65s">Café</span></span></span>
         </a>
 
         <nav class="hidden lg:flex items-center gap-9 text-xs font-semibold tracking-[.1em] uppercase">
@@ -131,9 +130,6 @@
 
   <!-- ─── Hero ──────────────────────────────────── -->
   <section class="hero">
-    <div class="beam" aria-hidden="true"><i></i></div>
-    <div class="beam-core" aria-hidden="true"></div>
-    <canvas id="dust" aria-hidden="true"></canvas>
 
     <div class="hero-inner max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -142,8 +138,6 @@
 
         <h1 class="hero-headline">Jeder Morgen ist ein <em>Geschenk<span class="hero-dot">.</span></em></h1>
 
-        <p class="hero-sub">Frühstück, Kaffee und Kuchen &ndash; hausgemacht und mit Herz. Komm vorbei, nimm dir Zeit und fühl dich bei uns zu Hause.</p>
-
         <div class="hero-actions">
           <a href="tel:+4915120229017" class="btn-primary hero-btn rounded-full">Tisch reservieren</a>
           <a href="#speisekarte" class="hero-secondary">Zur Speisekarte <span class="arrow">→</span></a>
@@ -151,10 +145,14 @@
       </div>
 
       <div class="hero-visual">
-        <div class="hero-video-card">
-          <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="cafe1-poster.jpg" aria-hidden="true">
-            <source src="Cafe1.mp4" type="video/mp4" />
-          </video>
+        <div class="hero-stack">
+          <span class="hero-shape hero-shape--ring" aria-hidden="true"></span>
+          <span class="hero-shape hero-shape--block" aria-hidden="true"></span>
+          <div class="hero-video-card">
+            <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="cafe1-poster.jpg" aria-hidden="true">
+              <source src="Cafe1.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </div>
     </div>
@@ -176,7 +174,7 @@
           </p>
         </div>
         <figure class="cafe-photo reveal">
-          <img src="aussenansicht.jpg" alt="Außenansicht von Niki&rsquo;s Soul Café" loading="lazy" />
+          <img src="second.png" alt="Niki&rsquo;s Soul Café" width="847" height="560" loading="lazy" />
         </figure>
       </div>
     </div>
@@ -643,15 +641,6 @@
       els.forEach(el => io.observe(el));
     })();
 
-    /* Header: oben weiß, nach dem Scrollen dunkles Glas */
-    (function headerState() {
-      const header = document.querySelector('.site-header');
-      if (!header) return;
-      const update = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
-      update();
-      window.addEventListener('scroll', update, { passive: true });
-    })();
-
     /* Speisekarte: auf-/zuklappen, Reiter, Deep-Links aus der Navigation */
     (function menuBook() {
       const toggle = document.getElementById('menu-toggle');
@@ -675,81 +664,6 @@
         setOpen(true); showTab(a.dataset.menuTab);
       }));
       document.querySelectorAll('a[href="#speisekarte"]:not([data-menu-tab])').forEach(a => a.addEventListener('click', () => setOpen(true)));
-    })();
-
-    /* Hero: Sternenstaub im Lichtkegel (Canvas). Der Kegel sitzt mobil in der
-       Mitte, ab 900px über der rechten Spalte. Läuft nur, solange der Hero
-       im Bild ist. Bei "Bewegung reduzieren" driften die Partikel nur halb so schnell. */
-    (function heroDust() {
-      const hero = document.querySelector('.hero');
-      const cv = document.getElementById('dust');
-      if (!hero || !cv || !cv.getContext) return;
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const wide = window.matchMedia('(min-width: 900px)');
-      const ctx = cv.getContext('2d');
-      let W = 0, H = 0, beamX = 0, P = [], raf = 0, last = 0, visible = true;
-
-      function size() {
-        const r = hero.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
-        W = r.width; H = r.height;
-        const copy = hero.querySelector('.hero-copy');
-        if (copy) {
-          const cr = copy.getBoundingClientRect();
-          beamX = cr.left - r.left + cr.width / 2;
-          hero.style.setProperty('--beam-x', beamX + 'px');
-        }
-        cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
-      function spawn() {
-        const n = W < 700 ? 40 : 107; P = [];
-        for (let i = 0; i < n; i++) {
-          const z = Math.random();
-          P.push({ x: Math.random() * W, y: Math.random() * H, z,
-            r: 0.8 + z * 1.4 + (Math.random() < 0.1 ? 1.5 : 0),
-            vx: (Math.random() - 0.5) * 9 * (0.4 + z), vy: (Math.random() - 0.4) * 7 * (0.4 + z),
-            ph: Math.random() * 6.283, ps: 0.4 + Math.random() * 0.9 });
-        }
-      }
-      /* Helligkeit des Strahls an Position x,y – folgt der Kegelform von .beam */
-      function beamAt(x, y) {
-        const t = (y + 0.12 * H) / (1.25 * H); if (t < 0 || t > 1) return 0;
-        const isWide = wide.matches;
-        const bw = isWide ? Math.min(W * 0.8, 1100) : Math.min(W * 1.1, 1500);
-        const cx = beamX || W * (isWide ? 0.75 : 0.5);
-        const hw = bw * (0.03 + 0.47 * t) * 1.05;
-        const d = Math.abs(x - cx) / hw; if (d >= 1) return 0;
-        let f = 1 - d; f = f * f * (3 - 2 * f);
-        return f * Math.max(0, 1 - t * 0.85);
-      }
-      function frame(now, still) {
-        const dt = (still ? 0 : Math.min((now - last) / 1000, 0.05)) * (reduce ? 0.5 : 1); last = now;
-        const s = now / 1000; ctx.clearRect(0, 0, W, H); ctx.fillStyle = '#fff';
-        for (const p of P) {
-          p.x += (p.vx + Math.sin(s * p.ps + p.ph) * 4 * (0.5 + p.z)) * dt;
-          p.y += (p.vy + Math.cos(s * p.ps * 0.8 + p.ph) * 3 * (0.5 + p.z)) * dt;
-          if (p.x < -4) p.x = W + 4; else if (p.x > W + 4) p.x = -4;
-          if (p.y < -4) p.y = H + 4; else if (p.y > H + 4) p.y = -4;
-          const f = beamAt(p.x, p.y); if (f < 0.01) continue;
-          const tw = 0.6 + 0.4 * Math.sin(s * p.ps * 2.2 + p.ph);
-          ctx.globalAlpha = Math.min(1, f * tw * (0.4 + 0.6 * p.z) * 5.5);
-          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
-        }
-      }
-      function loop(now) { frame(now); raf = visible ? requestAnimationFrame(loop) : 0; }
-      function start() { if (!raf && visible && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(loop); } }
-
-      size(); spawn();
-      if ('ResizeObserver' in window) new ResizeObserver(size).observe(hero.querySelector('.hero-copy'));
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
-      requestAnimationFrame(() => cv.classList.add('is-on'));
-      new IntersectionObserver((e) => { visible = e[0].isIntersecting; if (visible) start(); }).observe(hero);
-      document.addEventListener('visibilitychange', () => { if (!document.hidden) start(); });
-      start();
-      let lastW = W;
-      window.addEventListener('resize', () => {
-        size(); if (Math.abs(W - lastW) > 40) { spawn(); lastW = W; }
-      });
     })();
 
     /* Bilderstrecke: Pfeile, Fortschrittsbalken, Maus-Ziehen, Pfeiltasten.
