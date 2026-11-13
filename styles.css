@@ -27,15 +27,35 @@
   --edge:rgba(255,255,255,.16);        /* weiße Haarlinie   */
   --edge-strong:rgba(255,255,255,.42); /* Kanten & Diagonalen */
 
-  --paper:var(--surface);
   --night:var(--void);
 
   --ease-out:cubic-bezier(.16,1,.3,1); /* fließende, präzise Easing-Kurve für alle Interaktionen */
+
+  /* Design-System v2 ───────────────────────────────────────────
+     Farbe: warmes Papier statt Reinweiß für helle Flächen, Grau der Nav
+     für dunkle Flächen, Logo-Lila nur als Akzent. Regel: eine Akzentfarbe,
+     neutrale Flächen. Helle Kapitel wechseln zwischen --paper und --paper-2,
+     damit ein ruhiger Rhythmus entsteht. */
+  --paper:#fbf9f5;         /* helle Fläche                 */
+  --paper-2:#f2ede4;       /* helle Fläche, abgesetzt      */
+  --graphite:#232427;      /* dunkle Fläche (= Nav, Footer) */
+  --logo-purple:#27055c;   /* Logo-Lila – Rahmen, Formen    */
+  --accent-deep:#8a2fa6;   /* Lila auf hellem Grund         */
+
+  /* Abstände (8er-Raster) */
+  --s-1:.5rem; --s-2:1rem; --s-3:1.5rem; --s-4:2rem; --s-5:3rem; --s-6:4.5rem; --s-7:7rem;
+  --section-y:clamp(4.5rem, 9vw, 7rem);
+
+  /* Form: scharfe Kanten, dazu ein gesetzter Versatz als Markenelement */
+  --radius:2px;
+  --offset:clamp(.7rem, 1.6vw, 1.25rem);
+  --shadow-soft:0 30px 60px -36px rgba(35,36,39,.45);
 }
 
 /* ── Hintergrund-Schein: fester Radialverlauf hinter allen dunklen Kapiteln.
    Dunkle Sektionen sind transparent, weiße Kapitel und das Kontaktfoto
    decken ihn ab. Farben hier tauschen, um den Ton zu ändern. */
+:root { --panel:#17181b; --panel-raised:#2c2d32; }
 :root { --glow-a:#231113; --glow-b:#0a0a0b; --glow-c:#0e0809; }
 body::before {
   content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
@@ -58,14 +78,18 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 /* Helle Kapitel (Weiß): dieselben Bausteine, nur die Tokens kippen.
    Lila wird zur Schrift, Pink dunkelt für Lesbarkeit leicht nach. */
 .light {
-  background:#ffffff;
-  --ink:#111111;
-  --ink-soft:#4a4a4a;
-  --ink-faint:#767676;
+  background:
+    radial-gradient(55% 70% at 74% 42%, #ffffff 0%, rgba(255,255,255,0) 72%),
+    radial-gradient(40% 55% at 8% 100%, rgba(108,53,184,.07) 0%, rgba(108,53,184,0) 70%),
+    var(--paper);
+  --ink:#1b1a19;
+  --ink-soft:#4e4a45;
+  --ink-faint:#7b756d;
   --brand-bright:#8a2fa6;
-  --edge:rgba(0,0,0,.14);
-  --edge-strong:rgba(0,0,0,.42);
+  --edge:rgba(40,34,26,.14);
+  --edge-strong:rgba(40,34,26,.42);
 }
+.light.tint { background:var(--paper-2); }
 @media (prefers-reduced-motion:reduce) {
   html { scroll-behavior:auto; }
 }
@@ -121,15 +145,18 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 .site-header .group > div, .site-header .group > div * { transition:none !important; }
 .site-header .group > div {
   display:none; position:absolute; left:0; top:100%; margin-top:0 !important;
-  width:16rem; background:var(--surface-2); border:1px solid var(--edge);
+  width:max-content; min-width:12rem; max-width:20rem; padding:0;
+  background:var(--surface-2); border:1px solid var(--edge);
   border-top:2px solid var(--brand);
   opacity:1 !important; transform:none !important; pointer-events:auto !important;
 }
 .site-header .group:hover > div,
 .site-header .group:focus-within > div { display:block; }
 .site-header .group > div::before { content:""; position:absolute; left:0; right:0; top:-1rem; height:1rem; }
-.site-header .group a { color:#cfcfcf !important; }
+.site-header .group > div > div { padding:0 !important; }
+.site-header .group a { display:block; width:100%; margin:0; color:#cfcfcf !important; white-space:nowrap; }
 .site-header .group a:hover { background:rgba(255,255,255,.06) !important; color:#fff !important; box-shadow:inset 0 0 0 1px var(--brand); }
+.site-header .group a:focus-visible { outline:0; box-shadow:inset 0 0 0 1px var(--brand); }
 
 .logo-mark {
   width:3rem; height:3rem; flex-shrink:0;
@@ -143,157 +170,139 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 
 .hero-trust { font-size:.78rem; color:var(--ink-faint); font-weight:400; }
 
-/* ── Hero ───────────────────────────────────
-   Mobil: Text oben, Video darunter (eine Spalte).
-   Ab 900px: links das Video, rechts Name und Headline. */
+/* ── Hero: dunkle Bühne, Video als Karte ────────────────────────
+   Links Name, Headline und Buttons, rechts das Video als eigenes Bild mit
+   abgeschrägter Ecke unten rechts. Darunter ein Infostreifen im Raster.
+   Mobil: Text, Infostreifen, dann das Video (eine Spalte). */
 .hero {
+  --ink:#ffffff; --ink-soft:rgba(255,255,255,.8); --ink-faint:rgba(255,255,255,.58);
+  --edge:rgba(255,255,255,.22); --edge-strong:rgba(255,255,255,.5);
   position:relative; isolation:isolate; overflow:hidden;
   display:flex; align-items:center;
-  /* heller Hero: dieselben Bausteine, nur die Tokens kippen */
-  background:#fff;
-  --ink:#111111; --ink-soft:#4a4a4a; --ink-faint:#767676;
-  --logo-pink:#8a2fa6;
-  --edge:rgba(0,0,0,.14); --edge-strong:rgba(0,0,0,.42);
+  background:
+    radial-gradient(60% 80% at 78% 45%, rgba(92,58,36,.38) 0%, rgba(92,58,36,0) 70%),
+    #0d0a08;
+  color:#fff;
 }
-.hero .btn-primary { background-color:#000; color:#fff; border-color:#000; }
-.hero .btn-primary:hover { border-color:var(--logo-pink); }
 @media (min-width:900px) {
-  .hero { min-height:calc(var(--hero-lock, 100svh) - 5rem); }
+  .hero { min-height:max(41rem, calc(var(--hero-lock, 100svh) - 5rem)); }
 }
 
 .hero-inner {
-  position:relative; z-index:3; width:100%;
-  padding-top:clamp(2.5rem, 7vw, 4rem); padding-bottom:clamp(3rem, 8vw, 5rem);
-  display:flex; flex-direction:column; align-items:center; gap:clamp(2.5rem, 7vw, 3.5rem);
+  position:relative; width:100%;
+  display:flex; flex-direction:column; gap:clamp(1.75rem, 5vw, 2.5rem);
+  padding-top:clamp(2.5rem, 7vw, 4rem); padding-bottom:clamp(2.5rem, 7vw, 4rem);
 }
-.hero-copy {
-  display:flex; flex-direction:column; align-items:center; text-align:center; width:100%;
-}
-.hero-visual { width:100%; max-width:30rem; }
-.hero-stack { position:relative; isolation:isolate; width:100%; }
-.hero-shape { position:absolute; z-index:-1; pointer-events:none; }
-.hero-stack { --off:.9rem; }
-.hero-shape--block {
-  inset:0; background:#27055c;
-  transform:translate(var(--off), var(--off));
-}
-.hero-shape--ring {
-  width:clamp(5rem, 22vw, 8rem); aspect-ratio:1; border-radius:50%;
-  border:2px solid #27055c; top:-1.1rem; left:-1.1rem;
-}
-.hero-video-card {
-  position:relative; width:100%; aspect-ratio:4 / 3; overflow:hidden;
-  background:var(--surface-2) url('cafe1-poster.jpg') center / cover no-repeat;
-  border:1px solid var(--edge-strong);
-  box-shadow:0 40px 70px -40px rgba(40,10,60,.45);
-}
-.hero-video { display:block; width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+.hero-copy { order:1; display:flex; flex-direction:column; align-items:flex-start; text-align:left; width:100%; }
+.hero-bar  { order:2; }
+.hero-visual { order:3; margin:0; width:100%; }
 
 @media (min-width:900px) {
   .hero-inner {
-    display:grid; grid-template-columns:minmax(0, 5fr) minmax(0, 6fr); align-items:center;
-    gap:clamp(2rem, 5vw, 5rem);
-    padding-top:clamp(2rem, 5vh, 4rem); padding-bottom:clamp(3rem, 7vh, 5rem);
+    display:grid; align-items:center;
+    grid-template-columns:minmax(0, 6fr) minmax(0, 6fr);
+    grid-template-areas:"copy visual" "bar bar";
+    column-gap:clamp(2.5rem, 5vw, 5rem); row-gap:clamp(2rem, 5vh, 3.25rem);
+    padding-top:clamp(2.5rem, 7vh, 5rem); padding-bottom:clamp(2rem, 5vh, 3.5rem);
   }
-  .hero-visual { order:-1; max-width:none; justify-self:start; width:100%; }
-  .hero-video-card {
-    aspect-ratio:4 / 5; width:auto; max-width:100%;
-    height:clamp(22rem, 66svh, 38rem);
-  }
-  .hero-stack { width:fit-content; max-width:100%; }
-  .hero-stack { --off:1.6rem; }
-  .hero-shape--ring { width:9rem; top:-2.4rem; left:-2.4rem; }
+  .hero-copy { grid-area:copy; }
+  .hero-visual { grid-area:visual; }
+  .hero-bar { grid-area:bar; }
 }
 
-/* Name + seit 2025: eine Schrift (Inter, Versalien, gesperrt) – das Erste, was man liest */
+/* Video: eigene Karte, Ecke unten rechts abgeschrägt */
+.hero-card {
+  --cut:clamp(2.25rem, 7vw, 4.25rem);
+  position:relative; width:100%; aspect-ratio:4 / 3; overflow:hidden;
+  background:#1a1410 url('cafe1-poster.jpg') center / cover no-repeat;
+  clip-path:polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%);
+}
+@media (min-width:900px) { .hero-card { aspect-ratio:auto; height:clamp(22rem, 58svh, 36rem); } }
+.hero-video { display:block; width:100%; height:100%; object-fit:cover; object-position:center 30%; filter:brightness(.92) saturate(.95); }
+
+/* Name + seit 2025 */
 .hero-name {
-  font-family:'Inter',sans-serif; font-weight:700;
-  font-size:clamp(1.05rem, 3.4vw, 1.7rem); letter-spacing:.32em; text-transform:uppercase;
-  color:var(--ink); margin:0 0 clamp(2rem, 4vw, 3rem);
+  margin:0 0 clamp(1rem, 2.4vw, 1.6rem);
+  display:flex; flex-wrap:wrap; align-items:center; gap:.55rem 1.1rem;
+  font-family:'Inter',sans-serif; font-size:clamp(.74rem, 1.8vw, .85rem); font-weight:600;
+  letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.92);
 }
-.hero-name em { font-style:normal; color:inherit; }
-.hero-since {
-  display:flex; align-items:center; justify-content:center; gap:1.1rem; margin-top:1rem;
-  font-size:clamp(.72rem, 1.6vw, .85rem); font-weight:600; letter-spacing:.34em; color:#27055c;
-}
-.hero-since::before, .hero-since::after {
-  content:''; width:clamp(1.5rem, 4vw, 3rem); height:1px; flex:none; background:var(--edge-strong);
-}
+.hero-since { font-weight:500; letter-spacing:.3em; color:var(--ink-faint); }
+.hero-since::before { content:''; display:inline-block; width:2.25rem; height:1px; margin-right:1.1rem; vertical-align:middle; background:var(--edge-strong); }
 
-/* Eyebrow mit flankierenden Haarlinien */
-.hero-eyebrow {
-  display:flex; align-items:center; gap:1.1rem;
-  font-family:'Inter',sans-serif;
-  font-size:.72rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase;
-  color:var(--ink-soft); margin-bottom:clamp(1.4rem, 3vw, 2.3rem);
-}
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content:''; width:clamp(1.25rem, 3vw, 2.5rem); height:1px; flex:none;
-  background:var(--edge-strong);
-}
-
+/* Headline: die Hausschrift, groß und ruhig */
 .hero-headline {
-  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:500;
-  font-size:clamp(2.1rem, 8.8vw, 3.4rem);
-  line-height:1.04; letter-spacing:.005em;
-  color:var(--ink); margin:0 0 1.4rem; max-width:15ch;
-  text-wrap:balance;
+  margin:0 0 clamp(1.5rem, 3.2vw, 2.25rem);
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:500; font-style:normal;
+  font-size:clamp(2.9rem, 12vw, 4.6rem); line-height:.98; letter-spacing:-.018em; color:#fff;
 }
-@media (min-width:900px) { .hero-headline { font-size:clamp(2.5rem, 4.1vw, 4.3rem); } }
+@media (min-width:900px) { .hero-headline { font-size:clamp(2.9rem, 4.9vw, 5.1rem); } }
+.hero-headline .hl { display:block; }
 .hero-headline em { font-style:italic; font-weight:500; }
-.hero-headline .hero-dot { color:var(--logo-pink); }
 
-.hero-sub {
-  font-size:clamp(1rem,1.3vw,1.12rem); line-height:1.8; font-weight:300;
-  color:var(--ink-soft); max-width:42ch; margin:0 0 2.2rem;
-  text-wrap:pretty;
-}
-
-.hero-actions {
-  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-  gap:1.1rem 2.25rem;
-}
-.hero-btn { padding:.8rem 1.9rem; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; }
-
+.hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:1.1rem 2rem; }
+.hero .btn-primary { background-color:#fff; color:#17120f; border-color:#fff; }
+.hero .btn-primary:hover { border-color:var(--brand-300); }
+.hero-btn { padding:.85rem 1.9rem; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; }
 .hero-secondary {
-  font-family:'Inter',sans-serif;
-  font-size:.76rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  font-family:'Inter',sans-serif; font-size:.76rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
   color:var(--ink-soft); text-decoration:none;
 }
-.hero-secondary:hover { color:var(--ink); }
+.hero-secondary:hover { color:#fff; }
 
-/* Einstieg: ruhig gestaffelt, von weich auslaufender Kurve getragen.
-   Erst baut sich das Bild samt Formen auf, dann folgen Name, Headline
-   und Buttons im Abstand von je etwa einer Zehntelsekunde. */
-@keyframes heroUp   { from { opacity:0; transform:translate3d(0,22px,0); } to { opacity:1; transform:none; } }
-@keyframes heroWipe { from { clip-path:inset(0 0 100% 0); } to { clip-path:inset(0 0 0 0); } }
-@keyframes heroSlide{ from { opacity:0; transform:translate(0,0); } to { opacity:1; transform:translate(var(--off), var(--off)); } }
-@keyframes heroRing { from { opacity:0; transform:scale(.6); } to { opacity:1; transform:none; } }
-.hero-video-card { animation:heroWipe 1.3s cubic-bezier(.77,0,.18,1) .1s both; }
-.hero-shape--block { animation:heroSlide 1.2s cubic-bezier(.22,1,.36,1) .8s both; }
-.hero-shape--ring  { animation:heroRing 1.2s cubic-bezier(.22,1,.36,1) 1s both; }
-.hero-name         { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .45s both; }
-.hero-headline     { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .65s both; }
-.hero-actions      { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .85s both; }
+/* Infostreifen: Wo und wann, im Raster mit Haarlinie */
+.hero-bar {
+  display:flex; flex-wrap:wrap; gap:.5rem 2.5rem; width:100%;
+  padding-top:1.1rem; border-top:1px solid var(--edge);
+  font-size:.84rem; line-height:1.6; color:var(--ink-soft);
+}
+.hero-bar a { color:#fff; text-decoration:none; border-bottom:1px solid var(--edge-strong); }
+.hero-bar a:hover { border-bottom-color:#fff; }
 
 /* Pfeil-Glyphen gleiten beim Hover sanft nach rechts */
 .arrow { display:inline-block; transition:transform .3s var(--ease-out); }
 a:hover .arrow { transform:translateX(4px); }
+
+/* Einstieg: Karte wischt von links auf, Text folgt gestaffelt */
+@keyframes heroUp   { from { opacity:0; transform:translate3d(0,20px,0); } to { opacity:1; transform:none; } }
+@keyframes heroCard { from { clip-path:polygon(0 0, 0 0, 0 calc(100% - var(--cut)), 0 100%, 0 100%); }
+                      to   { clip-path:polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%); } }
+@keyframes heroFade { from { opacity:0; } to { opacity:1; } }
+.hero-card         { animation:heroCard 1.4s cubic-bezier(.77,0,.18,1) .15s both; }
+.hero-name         { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .3s both; }
+.hero-headline .hl:nth-child(1) { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .45s both; }
+.hero-headline .hl:nth-child(2) { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .6s both; }
+.hero-actions      { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) .8s both; }
+.hero-bar          { animation:heroUp 1.1s cubic-bezier(.22,1,.36,1) 1s both; }
+@media (prefers-reduced-motion:reduce) {
+  .hero-card, .hero-name, .hero-headline .hl, .hero-actions, .hero-bar { animation-name:heroFade; animation-duration:.7s; }
+}
 
 /* ── Eindrücke: Bilderstrecke ──
    Native Scroll-Snap-Spur (Touch, Trackpad, Maus-Ziehen, Tastatur),
    Karten pro Ansicht per CSS-Variable je Breite. Darunter eine feste
    Steuerleiste: Fortschrittsbalken + Pfeile (immer sichtbar, am Rand
    deaktiviert) – kein Hover nötig, auf jedem Gerät bedienbar. */
-.eindruecke { background:transparent; }
 
+
+.eindruecke {
+  /* gleicher Hintergrund wie der Hero */
+  background:
+    radial-gradient(60% 80% at 78% 45%, rgba(92,58,36,.38) 0%, rgba(92,58,36,0) 70%),
+    #0d0a08;
+}
+/* Abschnitt kompakter: weniger Luft und Kopf, Bilder unverändert groß */
+#eindruecke > div { padding-top:clamp(2.5rem, 4.5vw, 3.25rem) !important; padding-bottom:clamp(3.25rem, 4.6vw, 3.75rem) !important; }
+
+.eindruecke .chapter-head { margin-bottom:clamp(1.25rem, 2.6vw, 2rem); }
+.eindruecke .chapter-meta { margin-bottom:1rem; }
 .dish-reel { --per:1.35; --gap:1rem; position:relative; isolation:isolate; }
-/* Großes graues Dekor-Shape (gleiches Grau wie die Nav) hinter der ganzen Strecke:
+/* Großes Dekor-Shape (dunkler Einschub, Lila nur als feine Kopflinie) hinter der Strecke:
    die Bilder ragen oben über die Kante, die Steuerleiste sitzt im Grau. */
 .dish-reel::before {
   content:""; position:absolute; z-index:-1; pointer-events:none;
-  top:clamp(3rem, 9vw, 6rem); bottom:-2.25rem; left:-1rem; right:-1rem;
-  background:#232427;
+  top:clamp(3rem, 9vw, 6rem); bottom:-1.75rem; left:-1rem; right:-1rem;
+  background:var(--panel); border-top:2px solid var(--brand); box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
 }
 @media (min-width:860px) { .dish-reel::before { left:-2rem; right:-2rem; } }
 @media (min-width:560px)  { .dish-reel { --per:2.3; } }
@@ -325,7 +334,7 @@ a:hover .arrow { transform:translateX(4px); }
   display:block; width:100%; aspect-ratio:4 / 5; object-fit:cover; object-position:center 38%;
   background:var(--surface-2); -webkit-user-drag:none; user-select:none;
 }
-.reel-info { padding:.85rem 0 0; border-top:2px solid transparent; margin-top:-2px; }
+.reel-info { padding:.7rem 0 0; border-top:2px solid transparent; margin-top:-2px; }
 .reel-card-btn:hover .reel-info,
 .reel-card-btn:focus-visible .reel-info { border-top-color:var(--brand); }
 .reel-info h3 {
@@ -333,7 +342,7 @@ a:hover .arrow { transform:translateX(4px); }
   line-height:1.25; color:var(--ink); margin:0;
 }
 
-.reel-controls { display:flex; align-items:center; gap:1.5rem; margin-top:1.75rem; }
+.reel-controls { display:flex; align-items:center; gap:1.5rem; margin-top:1.25rem; }
 .reel-progress { position:relative; flex:1 1 auto; height:2px; background:var(--edge); }
 .reel-progress-thumb {
   position:absolute; top:-1px; left:0; height:4px; width:25%; background:var(--brand);
@@ -410,7 +419,7 @@ a:hover .arrow { transform:translateX(4px); }
 }
 
 /* ═══ Kapitel-System ═══════════════════════ */
-.paper { background:transparent; }
+.paper { background:var(--paper); }
 .chapter { position:relative; border-top:1px solid var(--edge); }
 .chapter:first-of-type { border-top:0; }
 
@@ -426,14 +435,21 @@ a:hover .arrow { transform:translateX(4px); }
   font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:600; font-style:italic;
   font-size:1.15rem; letter-spacing:.05em; color:var(--ink-soft);
 }
-.chapter-meta .eyebrow { margin:0; }
+.chapter-meta .eyebrow { margin:0; color:var(--ink-soft); }
+/* Kapitelmarke: kurze Lila-Linie vor dem Eyebrow */
+.chapter-meta .eyebrow::before {
+  content:''; display:inline-block; width:1.75rem; height:2px; margin-right:.8rem;
+  vertical-align:middle; background:var(--brand);
+}
+.light .chapter-meta .eyebrow::before { background:var(--accent-deep); }
+.chapter-index { display:none; }
 .chapter-meta::after {
   content:''; flex:1 1 auto; height:1px; background:var(--edge);
 }
 .chapter-title {
-  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:400;
-  font-size:clamp(1.95rem,3.7vw,2.85rem); line-height:1.08; letter-spacing:-.018em;
-  color:var(--ink); margin:0 0 1.35rem;
+  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:500;
+  font-size:clamp(2.2rem,4.4vw,3.4rem); line-height:1.04; letter-spacing:-.02em;
+  color:var(--ink); margin:0 0 1.35rem; text-wrap:balance;
 }
 .chapter-lead {
   font-size:clamp(.96rem,1.05vw,1.06rem); line-height:1.85; font-weight:400;
@@ -493,8 +509,9 @@ a:hover .arrow { transform:translateX(4px); }
 
 /* ── Torten & Kuchen: ein stilles Porträt, wie ein gerahmtes Foto
    auf dem Kaminsims – keine Effekte, nur Emma und ihre Torten. */
-.baker-portrait { margin:0; max-width:26rem; }
-.baker-frame { overflow:hidden; border:1px solid var(--edge); }
+.baker-portrait { margin:0 var(--offset) var(--offset) 0; max-width:26rem; }
+.baker-frame { position:relative; isolation:isolate; border:1px solid var(--edge); }
+.baker-frame::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--logo-purple); transform:translate(var(--offset), var(--offset)); }
 .baker-frame img { display:block; width:100%; height:auto; }
 .baker-portrait figcaption {
   margin-top:1.1rem;
@@ -519,12 +536,9 @@ a:hover .arrow { transform:translateX(4px); }
 .testimonial-row { padding:clamp(2rem,4vw,2.75rem) 0; border-top:1px solid var(--edge); }
 .testimonial-row:last-child { border-bottom:1px solid var(--edge); }
 .testimonial-text {
-  font-family:'Cormorant Garamond','Roboto Slab',serif; font-weight:400; font-style:italic;
-  font-size:clamp(1.12rem,1.55vw,1.35rem); color:var(--ink); line-height:1.66; max-width:54ch;
-}
-.testimonial-text::before {
-  content:'“'; font-family:'Cormorant Garamond','Roboto Slab',serif; font-style:normal;
-  color:var(--ink-soft); font-size:1.4em; line-height:0; margin-right:.12em; vertical-align:-.35em;
+  font-family:'Lora','Georgia',serif; font-weight:400; font-style:italic;
+  font-size:clamp(1.05rem,1.45vw,1.25rem); color:var(--ink); line-height:1.75; max-width:56ch;
+  text-wrap:pretty;
 }
 .testimonial-name {
   font-size:.7rem; color:var(--ink-faint); margin-top:1.35rem;
@@ -584,20 +598,21 @@ a:hover .arrow { transform:translateX(4px); }
 
 /* ── Footer ───────────────────────────────── */
 .site-footer {
-  background:transparent;
+  background:var(--graphite);
   border-top:1px solid var(--edge) !important;
-  border-bottom:1px solid var(--edge) !important;
+  border-bottom:0 !important;
 }
-.site-footer .border-b { border-bottom-color:var(--edge) !important; }
-.site-footer .text-white  { color:var(--ink) !important; }
-.site-footer .text-stone-300 { color:var(--ink-soft) !important; }
-.site-footer .text-stone-400 { color:var(--ink-faint) !important; }
-.footer-col-label {
-  font-size:.7rem; font-weight:600; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--ink-faint);
+/* Footer: eine ruhige Zeile – alles Wichtige steht schon im Kontakt-Bereich */
+.foot-inner {
+  display:flex; flex-direction:column; gap:.6rem; padding-block:1.5rem;
+  font-size:.78rem; line-height:1.6; color:var(--ink-faint);
 }
-.footer-link { display:block; font-size:.925rem; color:var(--ink-soft); line-height:1.9; text-decoration:none; }
-.footer-link:hover { color:var(--ink); }
+.foot-legal { display:flex; gap:1.5rem; }
+.foot-legal a { color:var(--ink-faint); text-decoration:none; }
+.foot-legal a:hover { color:#fff; }
+@media (min-width:640px) {
+  .foot-inner { flex-direction:row; justify-content:space-between; align-items:center; }
+}
 
 /* ── Keylines – vertikaler Satzspiegel-Rahmen ──
    Lila Haarlinien links/rechts, kurzer 45°-Anschlag
@@ -731,6 +746,7 @@ section[id] { scroll-margin-top:80px; }
 .legal-note strong { color:var(--ink); }
 
 .chapter-title .accent-word { color:var(--logo-pink); }
+.light .chapter-title .accent-word { color:var(--accent-deep); }
 
 /* Zurück-Button auf Impressum & Datenschutz */
 .back-link {
@@ -745,21 +761,28 @@ section[id] { scroll-margin-top:80px; }
 .back-link svg { width:22px; height:22px; }
 
 /* ── Speisekarte: zum Aufklappen, mit Reitern je Kategorie ── */
-.menu-section { background:transparent; }
+/* Speisekarte steht auf hellem Kapitel; Button und Panel bleiben dunkle
+   Einschübe, darin gelten wieder die dunklen Tokens. */
+.menu-toggle, .menu-panel {
+  --ink:#ffffff; --ink-soft:#cfcfcf; --ink-faint:#8c8c8c;
+  --edge:rgba(255,255,255,.16); --edge-strong:rgba(255,255,255,.42);
+  --brand-bright:#c15fd8;
+}
 .menu-toggle {
   display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
   width:100%; padding:1.4rem 1.6rem; cursor:pointer; text-align:left;
-  background:var(--surface-2); color:var(--ink); border:1px solid var(--edge);
+  background:var(--panel-raised); color:var(--ink); border:1px solid rgba(255,255,255,.08);
   border-left:4px solid var(--brand); border-radius:0;
   font-family:'Inter',sans-serif; font-size:.85rem; font-weight:700;
   letter-spacing:.14em; text-transform:uppercase;
 }
-.menu-toggle:hover { border-color:var(--brand); }
+.menu-toggle:hover { background:#34353a; }
+.menu-toggle[aria-expanded="true"] { background:var(--panel); }
 .menu-toggle small { display:block; margin-top:.35rem; font-size:.78rem; font-weight:400; letter-spacing:0; text-transform:none; color:var(--ink-soft); }
 .menu-toggle svg { flex:none; color:var(--brand); }
 .menu-toggle[aria-expanded="true"] svg { transform:rotate(180deg); }
 
-.menu-panel { border:1px solid var(--edge); border-top:0; background:rgba(0,0,0,.45); }
+.menu-panel { border:1px solid rgba(255,255,255,.08); border-top:0; background:var(--panel); }
 .menu-panel[hidden] { display:none; }
 
 .menu-tabs {
@@ -767,6 +790,20 @@ section[id] { scroll-margin-top:80px; }
   border-bottom:1px solid var(--edge);
 }
 .menu-tabs::-webkit-scrollbar { display:none; }
+.menu-tabs { scroll-snap-type:x proximity; overscroll-behavior-x:contain; }
+.menu-tab { scroll-snap-align:center; }
+@media (max-width:767px) {
+  /* Reiter laufen weich aus; der letzte bleibt dank Innenabstand frei lesbar */
+  .menu-tabs { padding-right:2.5rem; -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 2.5rem),transparent); mask-image:linear-gradient(90deg,#000 calc(100% - 2.5rem),transparent); }
+  .menu-tab { padding:1rem 1.15rem; }
+}
+@media (max-width:420px) {
+  .menu-toggle { padding:1.1rem 1rem; gap:1rem; letter-spacing:.1em; }
+  .menu-pane { padding:1.25rem 1rem; }
+  .menu-item-name { font-size:1.15rem; }
+  .menu-foot { padding:1rem; }
+}
+.menu-item-name { min-width:0; overflow-wrap:anywhere; }
 .menu-tab {
   flex:none; padding:1.1rem 1.6rem; cursor:pointer; background:none; border:0;
   border-bottom:3px solid transparent; margin-bottom:-1px;
@@ -798,4 +835,113 @@ section[id] { scroll-margin-top:80px; }
 
 /* ── Das Café (weißer Einstieg nach dem Hero) ── */
 .cafe-photo { margin:0; }
-.cafe-photo img { display:block; width:100%; aspect-ratio:5 / 4; object-fit:cover; object-position:center; }
+/* Bild links neben dem Text, Ecke unten links abgeschrägt */
+.cafe-photo { --cut:clamp(2.25rem, 7vw, 4.25rem); }
+.cafe-photo img {
+  display:block; width:100%; aspect-ratio:5 / 4; object-fit:cover; object-position:center;
+  clip-path:polygon(0 0, 100% 0, 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)));
+}
+
+
+/* ── Zusatzinformationen: leise, klein, an der passenden Stelle ── */
+.status-dot { display:inline-block; width:.5rem; height:.5rem; margin-right:.5rem; border-radius:50%; background:#9a948a; vertical-align:.08em; }
+.status-dot.is-open { background:#2f9e5b; box-shadow:0 0 0 3px rgba(47,158,91,.2); }
+
+/* Kurze Merkliste (Das Café, Speisekarte) */
+.info-list { list-style:none; margin:1.75rem 0 0; padding:0; display:grid; gap:.55rem; font-size:.9rem; color:var(--ink-soft); }
+.info-list li { position:relative; padding-left:1.25rem; line-height:1.55; }
+.info-list li::before { content:''; position:absolute; left:0; top:.62em; width:.55rem; height:2px; background:var(--brand); }
+.info-list--row { display:flex; flex-wrap:wrap; gap:.55rem 1.75rem; margin:0 0 clamp(1.5rem, 3vw, 2rem); }
+@media (max-width:540px) { .info-list--row { display:grid; } }
+
+.note-line { margin:1.5rem 0 0; font-size:.9rem; line-height:1.7; color:var(--ink-soft); max-width:46ch; }
+.text-link { color:var(--ink); font-weight:600; text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--brand); text-decoration-thickness:1.5px; }
+.text-link:hover { color:var(--brand-bright); }
+.info-col a.text-link { display:inline-block; margin-top:.5rem; font-size:.82rem; font-weight:600; }
+
+/* Kontakt: Status und heutige Zeile */
+.open-line { margin:.35rem 0 .6rem; font-size:.82rem; font-weight:500; color:var(--ink); }
+.hours-row.is-today span { color:var(--ink); font-weight:600; }
+
+/* Kontakt-Spalten setzen alle <span> auf block – Punkt und Pfeil bleiben inline */
+.info-col span.status-dot, .info-col .text-link .arrow { display:inline-block; }
+.info-col .text-link .arrow { margin-left:.25rem; }
+
+
+/* ── Höhensystem ─────────────────────────────────────────────────
+   Hero, Augenblicke, Torten, Gästestimmen, Fragen und Kontakt sind gleich
+   hoch (Bildschirmhöhe abzüglich Nav, mindestens 41 rem). Das Café und die
+   Speisekarte sind untereinander gleich hoch, aber niedriger. Inhalt wird
+   mittig gesetzt; wächst er darüber hinaus (z. B. aufgeklappte Speisekarte),
+   wächst der Abschnitt mit. Mobil gilt die natürliche Höhe des Inhalts. */
+:root { --sec-h:max(41rem, calc(var(--hero-lock, 100svh) - 5rem)); --sec-h-sm:36.5rem; }
+/* Mobil: Das Café und Speisekarte bleiben ebenfalls gleich hoch */
+@media (max-width:899px) {
+  .sec-h-sm { display:flex; flex-direction:column; min-height:40rem; }
+  .sec-h-sm > div { flex:1 0 auto; width:100%; display:flex; flex-direction:column; justify-content:center; }
+}
+@media (min-width:900px) {
+  .sec-h, .sec-h-sm { display:flex; flex-direction:column; }
+  .sec-h { min-height:var(--sec-h); }
+  .sec-h-sm { min-height:var(--sec-h-sm); }
+  .sec-h > div, .sec-h-sm > div:not(.ref-shapes) {
+    flex:1 0 auto; width:100%; display:flex; flex-direction:column; justify-content:center;
+  }
+  /* gleichmäßig kompakte Innenabstände in den gleich hohen Abschnitten */
+  .sec-fit > div:not(.ref-shapes) { padding-top:clamp(2.5rem, 6vh, 4rem) !important; padding-bottom:clamp(2.5rem, 6vh, 4rem) !important; }
+  .sec-fit .chapter-head { margin-bottom:clamp(1.5rem, 3vh, 2.25rem); }
+
+  /* Fragen: Titel links, Liste rechts */
+  .faq-wrap { max-width:none !important; width:100%; display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 8fr); column-gap:clamp(2.5rem, 6vw, 5rem); align-items:center; }
+  .faq-wrap .chapter-head { margin-bottom:0; }
+  .faq-item summary { padding:1.15rem 0; }
+  .faq-item .faq-panel p { padding-bottom:1.2rem; }
+
+  /* Torten: Text mittig zum Porträt */
+  #torten .grid { align-items:center; }
+
+  /* Kontakt: kompakter Kopf und Raster */
+  #kontakt .chapter-head { max-width:46rem; margin-bottom:clamp(1.75rem, 3.5vh, 2.25rem); }
+  #kontakt .chapter-title { margin-bottom:.9rem; }
+  #kontakt .chapter-rule { margin-bottom:clamp(1.5rem, 3.5vh, 2.25rem) !important; }
+  #kontakt .flex.flex-wrap { margin-top:1.25rem; margin-bottom:.75rem; }
+}
+
+
+/* ── Gästestimmen: Kopf mit Kreisen im Blick, Zitate im Modalfenster ── */
+.referenzen .chapter-head { max-width:34rem; margin-bottom:0; }
+.referenzen .review-open { margin-top:1.75rem; background-color:#1b1a19; color:#fff; border-color:#1b1a19; padding:.85rem 1.9rem; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; }
+.referenzen .review-open:hover { border-color:var(--brand); }
+
+.review-modal {
+  position:fixed; inset:0; z-index:310; display:flex; align-items:center; justify-content:center;
+  padding:clamp(1rem, 4vw, 3rem); background:rgba(13,10,8,.78);
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .3s var(--ease-out), visibility 0s linear .3s;
+}
+.review-modal.is-open { opacity:1; visibility:visible; pointer-events:auto; transition:opacity .3s var(--ease-out), visibility 0s linear 0s; }
+.review-panel {
+  position:relative; width:min(44rem, 100%); max-height:100%; overflow:auto;
+  padding:clamp(2rem, 6vw, 3.75rem) clamp(1.5rem, 6vw, 3.75rem) clamp(1.5rem, 4vw, 2.25rem);
+  background:var(--paper); color:#1b1a19; box-shadow:0 40px 80px -30px rgba(0,0,0,.6);
+  transform:translateY(12px); transition:transform .35s var(--ease-out);
+}
+.review-modal.is-open .review-panel { transform:none; }
+.review-close {
+  position:absolute; top:.9rem; right:.9rem; width:2.5rem; height:2.5rem; padding:0; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; background:none; color:#1b1a19; border:1px solid rgba(40,34,26,.25);
+}
+.review-close:hover, .review-nav:hover { background:#1b1a19; color:#fff; border-color:#1b1a19; }
+.review-close:focus-visible, .review-nav:focus-visible { outline:2px solid var(--brand-500); outline-offset:2px; }
+.review-eyebrow { margin:0 0 1.5rem; font-family:'Inter',sans-serif; font-size:.7rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:#7b756d; }
+.review-slide { margin:0; }
+.review-slide[hidden] { display:none; }
+.review-slide blockquote {
+  margin:0 0 1.5rem; font-family:'Lora','Georgia',serif; font-style:italic; font-weight:400;
+  font-size:clamp(1.15rem, 2.8vw, 1.6rem); line-height:1.6; color:#1b1a19; text-wrap:pretty;
+}
+.review-slide figcaption { font-size:.72rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#7b756d; }
+.review-controls { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:clamp(1.5rem, 4vw, 2.25rem); padding-top:1.1rem; border-top:1px solid rgba(40,34,26,.14); }
+.review-count { font-size:.78rem; letter-spacing:.14em; color:#7b756d; }
+.review-nav { width:2.5rem; height:2.5rem; padding:0; cursor:pointer; display:flex; align-items:center; justify-content:center; background:none; color:#1b1a19; border:1px solid rgba(40,34,26,.25); }

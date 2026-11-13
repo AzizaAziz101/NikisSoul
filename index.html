@@ -9,8 +9,31 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Niki's Soul Café",
+    "description": "Frühstücks- und Brunchcafé mit frisch geröstetem Kaffee, hausgemachtem Frühstück und Kuchen.",
+    "telephone": "+4915120229017",
+    "email": "hallo@nikis-soul-cafe.de",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Südwestkorso 59",
+      "postalCode": "14197",
+      "addressLocality": "Berlin",
+      "addressCountry": "DE"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday"], "opens": "09:00", "closes": "17:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "09:00", "closes": "16:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "09:00", "closes": "15:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday", "Sunday"], "opens": "10:00", "closes": "17:00" }
+    ]
+  }
+  </script>
   <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
@@ -130,13 +153,12 @@
 
   <!-- ─── Hero ──────────────────────────────────── -->
   <section class="hero">
-
     <div class="hero-inner max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="hero-copy">
-        <p class="hero-name">Niki&rsquo;s <em>Soul</em> Café<span class="hero-since">seit 2025</span></p>
+        <p class="hero-name">Niki&rsquo;s Soul Café<span class="hero-since">seit 2025</span></p>
 
-        <h1 class="hero-headline">Jeder Morgen ist ein <em>Geschenk<span class="hero-dot">.</span></em></h1>
+        <h1 class="hero-headline"><span class="hl">Jeder Morgen</span><span class="hl">ist ein <em>Geschenk.</em></span></h1>
 
         <div class="hero-actions">
           <a href="tel:+4915120229017" class="btn-primary hero-btn rounded-full">Tisch reservieren</a>
@@ -144,24 +166,26 @@
         </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="hero-stack">
-          <span class="hero-shape hero-shape--ring" aria-hidden="true"></span>
-          <span class="hero-shape hero-shape--block" aria-hidden="true"></span>
-          <div class="hero-video-card">
-            <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="cafe1-poster.jpg" aria-hidden="true">
-              <source src="Cafe1.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
+      <div class="hero-bar">
+        <span>Südwestkorso 59 &middot; 14197 Berlin</span>
+        <span data-open-status><span class="status-dot"></span>Öffnungszeiten weiter unten</span>
+        <a href="#kontakt">Öffnungszeiten &amp; Anfahrt</a>
       </div>
+
+      <figure class="hero-visual">
+        <div class="hero-card">
+          <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="cafe1-poster.jpg" aria-hidden="true">
+            <source src="Cafe1.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </figure>
     </div>
   </section>
 
   <!-- ─── Das Café ──────────────────────────────── -->
-  <section id="cafe" class="chapter light">
+  <section id="cafe" class="chapter light tint sec-h-sm">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
-      <div class="grid md:grid-cols-2 gap-x-16 gap-y-12 items-center">
+      <div class="max-w-3xl">
         <div class="reveal">
           <div class="chapter-meta">
             <span class="eyebrow">Das Café</span>
@@ -172,22 +196,23 @@
             Hand gebacken &ndash; mitten im Kiez am Südwestkorso. Komm vorbei,
             nimm dir Zeit und fühl dich willkommen.
           </p>
+          <ul class="info-list" aria-label="Gut zu wissen">
+            <li>Hunde sind willkommen (angeleint)</li>
+            <li>Laptop-Arbeit unter der Woche gern gesehen</li>
+            <li>Reservierung fürs Wochenende empfohlen</li>
+          </ul>
         </div>
-        <figure class="cafe-photo reveal">
-          <img src="second.png" alt="Niki&rsquo;s Soul Café" width="847" height="560" loading="lazy" />
-        </figure>
       </div>
     </div>
   </section>
 
   <!-- ─── Eindrücke ─────────────────────────────── -->
-  <section id="eindruecke" class="chapter eindruecke">
+  <section id="eindruecke" class="chapter eindruecke sec-h">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
       <header class="chapter-head reveal">
         <div class="chapter-meta">
           <span class="eyebrow">Augenblicke</span>
         </div>
-        <h2 class="chapter-title"><span class="accent-word">Augenblicke</span>, für die man dankbar ist</h2>
         <p class="chapter-lead">Frisch angerichtet, zum Dableiben gedacht.</p>
       </header>
 
@@ -276,12 +301,19 @@
   </div>
 
   <!-- ─── Speisekarte (aufklappbar) ───────────────── -->
-  <section id="speisekarte" class="chapter menu-section">
+  <section id="speisekarte" class="chapter menu-section light sec-h-sm">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
       <header class="chapter-head reveal">
         <h2 class="chapter-title">Speisekarte</h2>
         <p class="chapter-lead">Alle Gerichte und Getränke auf einen Blick &ndash; zum Aufklappen, nach Kategorien sortiert.</p>
       </header>
+
+      <ul class="info-list info-list--row" aria-label="Gut zu wissen">
+        <li>Täglich vegane &amp; glutenfreie Stücke</li>
+        <li>Brunch am Wochenende bis 15 Uhr</li>
+        <li>Mittagstisch wochentags 12&ndash;15 Uhr</li>
+        <li>Zum Mitnehmen im Mehrwegbehälter</li>
+      </ul>
 
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-panel">
         <span>Speisekarte öffnen<small>Frühstück, Kaffee, Kuchen, Getränke &amp; Mittagstisch</small></span>
@@ -356,7 +388,7 @@
   </section>
 
   <!-- ─── Torten & Kuchen ─────────────────────────── -->
-  <section class="chapter light">
+  <section id="torten" class="chapter light tint sec-h sec-fit">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
       <div class="grid md:grid-cols-[1.2fr_1fr] gap-x-16 gap-y-14 items-center">
         <header class="chapter-head reveal" style="margin-bottom:0;">
@@ -373,20 +405,20 @@
             dass sie überzeugt ist: Dieses Stück macht jemandem den Tag ein
             bisschen schöner.
           </p>
+          <p class="note-line">Torten für Geburtstage und kleine Feiern backen wir auf Bestellung &ndash; bitte ein paar Tage vorher melden. <a href="#kontakt" class="text-link">Anfrage stellen</a></p>
         </header>
 
         <figure class="baker-portrait reveal">
           <div class="baker-frame">
             <img src="Emma.png" alt="Emma, unsere Bäckerin, präsentiert zwei hausgebackene Torten im Café" loading="lazy" />
           </div>
-          <figcaption>Emma — mit Herz und Schürze</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
   <!-- ─── Gästestimmen ───────────────────────────── -->
-  <section class="paper chapter referenzen">
+  <section class="light chapter referenzen sec-h sec-fit">
     <svg class="ref-shapes" viewBox="0 0 460 430" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
       <circle class="disc" cx="165" cy="160" r="148"/>
       <circle class="disc" cx="300" cy="140" r="148"/>
@@ -407,29 +439,43 @@
           immer wiederkommen. Ein paar dankbare Worte aus unserem Gästebuch
           und von Google, mit freundlicher Erlaubnis geteilt.
         </p>
+        <button type="button" class="btn-primary hero-btn rounded-full review-open" id="review-open" aria-haspopup="dialog" aria-controls="review-modal">Stimmen lesen</button>
       </header>
 
-      <div class="reveal-stagger">
-        <div class="testimonial-row">
-          <p class="testimonial-text">„Der beste Cappuccino in Laufweite – und die Zimtschnecken sind gefährlich gut. Ich komme fast jeden Morgen vor der Arbeit vorbei.“</p>
-          <p class="testimonial-name">Lena K. — Stammgast</p>
-        </div>
-        <div class="testimonial-row">
-          <p class="testimonial-text">„Wir sind mit zwei kleinen Kindern reingekommen und wurden so herzlich empfangen, dass wir geblieben sind, bis der Kuchen alle war.“</p>
-          <p class="testimonial-name">Familie M. — Sonntagsbrunch</p>
-        </div>
-        <div class="testimonial-row">
-          <p class="testimonial-text">„Ich arbeite hier regelmäßig mit dem Laptop. Guter Kaffee, schnelles WLAN, und niemand schaut komisch, wenn man etwas länger bleibt.“</p>
-          <p class="testimonial-name">Sven B. — Freelancer aus dem Kiez</p>
-        </div>
-      </div>
     </div>
   </section>
 
+  <!-- ─── Modalfenster: Gästestimmen ─────────────── -->
+  <div class="review-modal" id="review-modal" role="dialog" aria-modal="true" aria-labelledby="review-title" aria-hidden="true">
+    <div class="review-panel">
+      <button type="button" class="review-close" aria-label="Schließen"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <p class="review-eyebrow" id="review-title">Dankbare Worte</p>
+      <div class="review-stage" aria-live="polite">
+        <figure class="review-slide">
+          <blockquote>„Der beste Cappuccino in Laufweite – und die Zimtschnecken sind gefährlich gut. Ich komme fast jeden Morgen vor der Arbeit vorbei.“</blockquote>
+          <figcaption>Lena K. — Stammgast</figcaption>
+        </figure>
+        <figure class="review-slide" hidden>
+          <blockquote>„Wir sind mit zwei kleinen Kindern reingekommen und wurden so herzlich empfangen, dass wir geblieben sind, bis der Kuchen alle war.“</blockquote>
+          <figcaption>Familie M. — Sonntagsbrunch</figcaption>
+        </figure>
+        <figure class="review-slide" hidden>
+          <blockquote>„Ich arbeite hier regelmäßig mit dem Laptop. Guter Kaffee, schnelles WLAN, und niemand schaut komisch, wenn man etwas länger bleibt.“</blockquote>
+          <figcaption>Sven B. — Freelancer aus dem Kiez</figcaption>
+        </figure>
+      </div>
+      <div class="review-controls">
+        <button type="button" class="review-nav review-prev" aria-label="Vorherige Stimme"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <span class="review-count" aria-hidden="true">1 / 3</span>
+        <button type="button" class="review-nav review-next" aria-label="Nächste Stimme"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── FAQ ────────────────────────────────────── -->
-  <section class="chapter light">
+  <section id="faq" class="chapter light tint sec-h sec-fit">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline" style="position:relative;">
-      <div class="max-w-3xl">
+      <div class="max-w-3xl faq-wrap">
       <header class="chapter-head reveal">
         <div class="chapter-meta">
           <span class="chapter-index">IV</span>
@@ -477,7 +523,7 @@
   <hr class="seam seam--pd" aria-hidden="true">
 
   <!-- ─── Kontakt ───────────────────────────────── -->
-  <section id="kontakt" class="chapter chapter--night" >
+  <section id="kontakt" class="chapter chapter--night sec-h sec-fit">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-28 keyline-dark kontakt-bg" style="position:relative;">
       <header class="chapter-head reveal">
         <div class="chapter-meta">
@@ -502,86 +548,36 @@
           <span class="col-label">Adresse</span>
           <span>Südwestkorso 59</span>
           <span>14197 Berlin</span>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=S%C3%BCdwestkorso+59%2C+14197+Berlin" target="_blank" rel="noopener" class="text-link">Route planen <span class="arrow">→</span></a>
         </div>
         <div class="info-col py-8 md:py-0 md:px-10">
           <span class="col-label">Öffnungszeiten</span>
+          <p class="open-line" data-open-status><span class="status-dot"></span>Öffnungszeiten siehe unten</p>
           <div class="mt-1">
-            <div class="hours-row"><span>Mo – Di</span><span>09:00 – 17:00 Uhr</span></div>
-            <div class="hours-row"><span>Mi</span><span>09:00 – 16:30 Uhr</span></div>
-            <div class="hours-row"><span>Do</span><span>09:00 – 15:00 Uhr</span></div>
-            <div class="hours-row"><span>Fr – So</span><span>10:00 – 17:00 Uhr</span></div>
+            <div class="hours-row" data-days="1,2"><span>Mo – Di</span><span>09:00 – 17:00 Uhr</span></div>
+            <div class="hours-row" data-days="3"><span>Mi</span><span>09:00 – 16:30 Uhr</span></div>
+            <div class="hours-row" data-days="4"><span>Do</span><span>09:00 – 15:00 Uhr</span></div>
+            <div class="hours-row" data-days="5,6,0"><span>Fr – So</span><span>10:00 – 17:00 Uhr</span></div>
           </div>
         </div>
         <div class="info-col pt-8 md:pt-0 md:pl-10">
           <span class="col-label">Direkt</span>
           <a href="tel:+4915120229017">01512 0229017</a>
           <a href="mailto:hallo@nikis-soul-cafe.de">hallo@nikis-soul-cafe.de</a>
-          <span class="info-note">Wir antworten meist noch<br>am selben Tag.</span>
+          <span class="info-note">Zum Reservieren bitte Datum, Uhrzeit und Personenzahl nennen. Wir antworten meist noch am selben Tag.</span>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ─── Footer ───────────────────────────────── -->
-  <footer class="site-footer" style="border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08);">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 keyline-dark keyline-foot" style="position:relative;">
-
-      <div class="grid md:grid-cols-[1.3fr_1fr_1fr_1fr] gap-x-10 gap-y-12 pb-14 border-b border-stone-800">
-        <div>
-          <span class="text-white font-semibold text-lg" style="font-family:'Cormorant Garamond',serif; letter-spacing:.06em;">NIKI'S SOUL CAFÉ</span>
-          <p class="text-stone-300 text-sm leading-[1.85] mt-4" style="max-width:32ch;">
-            Ein kleiner Ort für große Dankbarkeit: frisch gerösteter Kaffee,
-            hausgemachtes Frühstück und Kuchen, mitten im Kiez von Berlin.
-          </p>
-        </div>
-
-        <div>
-          <span class="footer-col-label">Karte</span>
-          <nav class="flex flex-col gap-3 mt-4">
-            <a href="#speisekarte" data-menu-tab="kaffee" class="footer-link">Kaffee &amp; Espresso</a>
-            <a href="#speisekarte" data-menu-tab="fruehstueck" class="footer-link">Frühstück &amp; Brunch</a>
-            <a href="#speisekarte" data-menu-tab="kuchen" class="footer-link">Kuchen &amp; Gebäck</a>
-            <a href="#speisekarte" data-menu-tab="mittag" class="footer-link">Mittagstisch</a>
-          </nav>
-        </div>
-
-        <div>
-          <span class="footer-col-label">Café</span>
-          <nav class="flex flex-col gap-3 mt-4">
-            <a href="#eindruecke" class="footer-link">Über uns</a>
-            <a href="#eindruecke" class="footer-link">Team</a>
-            <a href="#kontakt" class="footer-link">Jobs</a>
-            <a href="#kontakt" class="footer-link">Kontakt</a>
-          </nav>
-        </div>
-
-        <div>
-          <span class="footer-col-label">Kontakt</span>
-          <div class="flex flex-col gap-3 mt-4">
-            <a href="tel:+4915120229017" class="footer-link">01512 0229017</a>
-            <a href="mailto:hallo@nikis-soul-cafe.de" class="footer-link">hallo@nikis-soul-cafe.de</a>
-            <a href="#kontakt" class="footer-link" style="color:var(--brand-bright);">Anfahrt &amp; Öffnungszeiten <span class="arrow">→</span></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-stone-400 text-sm">
-        <span>&copy; 2026 Niki's Soul Café. Alle Rechte vorbehalten.</span>
-        <div class="flex gap-6">
-          <a href="impressum.html" class="footer-link" style="display:inline;">Impressum</a>
-          <a href="datenschutz.html" class="footer-link" style="display:inline;">Datenschutz</a>
-        </div>
-      </div>
-
-      <p class="mt-8 text-xs leading-[1.8]" style="color:var(--ink-faint); max-width:78ch;">
-        Sämtliche Inhalte dieser Website – Texte, Bilder, Grafiken, das Design,
-        die Gestaltung sowie der zugrunde liegende Quellcode – sind
-        urheberrechtlich geschützt (§§&nbsp;2&nbsp;ff. UrhG). Jede
-        Vervielfältigung, Bearbeitung, Übernahme oder Nachbildung – auch
-        auszugsweise und unabhängig von der Technik – bedarf der vorherigen
-        schriftlichen Zustimmung von Niki&rsquo;s Soul Café.
-      </p>
-
+  <footer class="site-footer">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 foot-inner">
+      <span>&copy; 2026 Niki&rsquo;s Soul Café &middot; Alle Inhalte urheberrechtlich geschützt.</span>
+      <nav class="foot-legal" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
     </div>
   </footer>
 
@@ -641,6 +637,56 @@
       els.forEach(el => io.observe(el));
     })();
 
+    /* Gästestimmen im Modalfenster: ein Zitat nach dem anderen,
+       Pfeile/Tastatur zum Blättern, Esc oder Klick daneben schließt. */
+    (function reviewModal() {
+      const modal = document.getElementById('review-modal');
+      const opener = document.getElementById('review-open');
+      if (!modal || !opener) return;
+      const slides = Array.from(modal.querySelectorAll('.review-slide'));
+      const count = modal.querySelector('.review-count');
+      const closeBtn = modal.querySelector('.review-close');
+      const prevBtn = modal.querySelector('.review-prev');
+      const nextBtn = modal.querySelector('.review-next');
+      let index = 0, lastFocused = null;
+      function show(i) {
+        index = (i + slides.length) % slides.length;
+        slides.forEach((el, n) => { el.hidden = n !== index; });
+        count.textContent = (index + 1) + ' / ' + slides.length;
+      }
+      function open() {
+        lastFocused = document.activeElement;
+        show(0);
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+      function close() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocused && lastFocused.focus) lastFocused.focus();
+      }
+      opener.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
+      prevBtn.addEventListener('click', () => show(index - 1));
+      nextBtn.addEventListener('click', () => show(index + 1));
+      modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') show(index + 1);
+        if (e.key === 'ArrowLeft') show(index - 1);
+        if (e.key === 'Tab') {
+          const f = [closeBtn, prevBtn, nextBtn];
+          const i = f.indexOf(document.activeElement);
+          e.preventDefault();
+          f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+        }
+      });
+    })();
+
     /* Speisekarte: auf-/zuklappen, Reiter, Deep-Links aus der Navigation */
     (function menuBook() {
       const toggle = document.getElementById('menu-toggle');
@@ -654,12 +700,29 @@
         toggle.setAttribute('aria-expanded', String(open));
         label.firstChild.textContent = open ? 'Speisekarte schließen' : 'Speisekarte öffnen';
       }
-      function showTab(key) {
-        tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === key)));
+      function showTab(key, focus) {
+        tabs.forEach(t => {
+          const on = t.dataset.tab === key;
+          t.setAttribute('aria-selected', String(on));
+          t.tabIndex = on ? 0 : -1;
+          if (on) {
+            const bar = t.parentElement;
+            bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: 'smooth' });
+            if (focus) t.focus();
+          }
+        });
         panes.forEach(p => { p.hidden = p.id !== 'pane-' + key; });
       }
       toggle.addEventListener('click', () => setOpen(panel.hidden));
-      tabs.forEach(t => t.addEventListener('click', () => showTab(t.dataset.tab)));
+      tabs.forEach((t, i) => {
+        t.addEventListener('click', () => showTab(t.dataset.tab));
+        t.addEventListener('keydown', (e) => {
+          const k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!k) return;
+          e.preventDefault();
+          showTab(tabs[(i + k + tabs.length) % tabs.length].dataset.tab, true);
+        });
+      });
       document.querySelectorAll('[data-menu-tab]').forEach(a => a.addEventListener('click', () => {
         setOpen(true); showTab(a.dataset.menuTab);
       }));
@@ -805,6 +868,40 @@
         if (e.key === 'ArrowRight') next();
         if (e.key === 'ArrowLeft')  prev();
       });
+    })();
+
+    /* Öffnungsstatus – gerechnet in Berliner Zeit, unabhängig vom Gerät.
+       Zeiten wie im Kontakt-Bereich; Index 0 = Sonntag. */
+    (function openStatus() {
+      const els = document.querySelectorAll('[data-open-status]');
+      if (!els.length) return;
+      const HOURS = { 0:[10,0,17,0], 1:[9,0,17,0], 2:[9,0,17,0], 3:[9,0,16,30], 4:[9,0,15,0], 5:[10,0,17,0], 6:[10,0,17,0] };
+      const WD = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+      const fmt = new Intl.DateTimeFormat('en-US', { timeZone:'Europe/Berlin', weekday:'short', hour:'numeric', minute:'numeric', hour12:false });
+      const label = (h, m) => String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+      function render() {
+        const p = Object.fromEntries(fmt.formatToParts(new Date()).map(x => [x.type, x.value]));
+        const wd = WD[p.weekday];
+        const min = (parseInt(p.hour, 10) % 24) * 60 + parseInt(p.minute, 10);
+        const [oh, om, ch, cm] = HOURS[wd];
+        const open = oh * 60 + om, close = ch * 60 + cm;
+        let dot = '<span class="status-dot"></span>', text;
+        if (min >= open && min < close) {
+          dot = '<span class="status-dot is-open"></span>';
+          text = 'Jetzt geöffnet · bis ' + label(ch, cm) + ' Uhr';
+        } else if (min < open) {
+          text = 'Geschlossen · öffnet heute um ' + label(oh, om) + ' Uhr';
+        } else {
+          const n = HOURS[(wd + 1) % 7];
+          text = 'Geschlossen · öffnet morgen um ' + label(n[0], n[1]) + ' Uhr';
+        }
+        els.forEach(el => { el.innerHTML = dot + text; });
+        document.querySelectorAll('.hours-row[data-days]').forEach(row => {
+          row.classList.toggle('is-today', row.dataset.days.split(',').map(Number).includes(wd));
+        });
+      }
+      render();
+      setInterval(render, 60000);
     })();
 
     /* Hero-Video zuverlässig starten (einige Browser brauchen den Play-Anstoß per JS) */
