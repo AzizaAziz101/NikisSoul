@@ -50,39 +50,8 @@
         <nav class="hidden lg:flex items-center gap-9 text-xs font-semibold tracking-[.1em] uppercase">
           <a href="#" class="py-2 text-stone-500 hover:text-stone-900">Startseite</a>
 
-          <div class="relative group">
-            <button class="inline-flex items-center gap-1.5 py-2 text-stone-500 hover:text-stone-900 uppercase focus:outline-none" aria-haspopup="true" aria-expanded="false">
-              Über uns
-              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
-              </svg>
-            </button>
-            <div class="dd">
-              <div class="py-2 normal-case tracking-normal font-medium">
-                <a href="#cafe" class="block px-4 py-2.5 text-sm text-stone-700">Das Café</a>
-                <a href="#eindruecke" class="block px-4 py-2.5 text-sm text-stone-700">Team</a>
-                <a href="#kontakt" class="block px-4 py-2.5 text-sm text-stone-700">Jobs</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative group">
-            <button class="inline-flex items-center gap-1.5 py-2 text-stone-500 hover:text-stone-900 uppercase focus:outline-none" aria-haspopup="true" aria-expanded="false">
-              Karte
-              <svg class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
-              </svg>
-            </button>
-            <div class="dd">
-              <div class="py-2 normal-case tracking-normal font-medium">
-                <a href="#speisekarte" data-menu-tab="kaffee" class="block px-4 py-2.5 text-sm text-stone-700">Kaffee &amp; Espresso</a>
-                <a href="#speisekarte" data-menu-tab="fruehstueck" class="block px-4 py-2.5 text-sm text-stone-700">Frühstück &amp; Brunch</a>
-                <a href="#speisekarte" data-menu-tab="kuchen" class="block px-4 py-2.5 text-sm text-stone-700">Kuchen &amp; Gebäck</a>
-                <a href="#speisekarte" data-menu-tab="getraenke" class="block px-4 py-2.5 text-sm text-stone-700">Kalte Getränke</a>
-                <a href="#speisekarte" data-menu-tab="mittag" class="block px-4 py-2.5 text-sm text-stone-700">Mittagstisch</a>
-              </div>
-            </div>
-          </div>
+          <a href="#cafe" class="py-2 text-stone-500 hover:text-stone-900">Über uns</a>
+          <a href="#speisekarte" class="py-2 text-stone-500 hover:text-stone-900">Karte</a>
 
           <a href="#kontakt" class="py-2 text-stone-500 hover:text-stone-900">Kontakt</a>
         </nav>
@@ -117,27 +86,8 @@
         <nav>
         <a href="#" class="mob-nav-link" onclick="closeMob()">Startseite</a>
 
-        <div class="mob-nav-link" id="mob-about-btn" role="button" tabindex="0">
-          <span>Über uns</span>
-          <svg class="mob-chevron" id="mob-about-chev" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
-        </div>
-        <div class="mob-sub hidden" id="mobile-about-menu">
-          <a href="#cafe" onclick="closeMob()">Das Café</a>
-          <a href="#eindruecke" onclick="closeMob()">Team</a>
-          <a href="#kontakt" onclick="closeMob()">Jobs</a>
-        </div>
-
-        <div class="mob-nav-link" id="mob-services-btn" role="button" tabindex="0">
-          <span>Karte</span>
-          <svg class="mob-chevron" id="mob-services-chev" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
-        </div>
-        <div class="mob-sub hidden" id="mobile-services-menu">
-          <a href="#speisekarte" data-menu-tab="kaffee" onclick="closeMob()">Kaffee &amp; Espresso</a>
-          <a href="#speisekarte" data-menu-tab="fruehstueck" onclick="closeMob()">Frühstück &amp; Brunch</a>
-          <a href="#speisekarte" data-menu-tab="kuchen" onclick="closeMob()">Kuchen &amp; Gebäck</a>
-          <a href="#speisekarte" data-menu-tab="getraenke" onclick="closeMob()">Kalte Getränke</a>
-          <a href="#speisekarte" data-menu-tab="mittag" onclick="closeMob()">Mittagstisch</a>
-        </div>
+        <a href="#cafe" class="mob-nav-link" onclick="closeMob()">Über uns</a>
+        <a href="#speisekarte" class="mob-nav-link" onclick="closeMob()">Karte</a>
 
         <a href="#kontakt" class="mob-nav-link" onclick="closeMob()">Kontakt</a>
         </nav>
@@ -605,21 +555,6 @@
     });
 
     mobBackdrop.addEventListener('click', closeMob);
-
-    /* ── Mobile Sub-Menüs ── */
-    function setupMobSub(btnId, panelId, chevId) {
-      const btn   = document.getElementById(btnId);
-      const panel = document.getElementById(panelId);
-      const chev  = document.getElementById(chevId);
-      let open = false;
-      btn.addEventListener('click', () => {
-        open = !open;
-        panel.classList.toggle('hidden', !open);
-        if (chev) chev.style.transform = open ? 'rotate(180deg)' : '';
-      });
-    }
-    setupMobSub('mob-about-btn',    'mobile-about-menu',    'mob-about-chev');
-    setupMobSub('mob-services-btn', 'mobile-services-menu', 'mob-services-chev');
 
     /* Scroll-Reveal für Kapitel-Inhalte (inkl. gestaffelter Gruppen) */
     (function revealOnScroll() {
