@@ -124,10 +124,10 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 
 /* ── Header – feste Größe, dauerhaft einfarbiges UI-Grau, weiße Schrift ── */
 .site-header {
-  background:#232427;
+  background:transparent;
   backdrop-filter:none; -webkit-backdrop-filter:none;
   border-top-color:transparent !important;
-  border-bottom-color:var(--edge) !important;
+  border-bottom-color:transparent !important;
 }
 .site-header .h-20 { height:5rem; }
 
@@ -180,8 +180,8 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
   position:relative; isolation:isolate; overflow:hidden;
   display:flex; align-items:center;
   background:
-    radial-gradient(60% 80% at 78% 45%, rgba(92,58,36,.38) 0%, rgba(92,58,36,0) 70%),
-    #0d0a08;
+    radial-gradient(60% 80% at 78% 45%, rgba(142,103,71,.28) 0%, rgba(142,103,71,0) 70%),
+    #211a16;
   color:#fff;
 }
 @media (min-width:900px) {
@@ -288,8 +288,8 @@ a:hover .arrow { transform:translateX(4px); }
 .eindruecke {
   /* gleicher Hintergrund wie der Hero */
   background:
-    radial-gradient(60% 80% at 78% 45%, rgba(92,58,36,.38) 0%, rgba(92,58,36,0) 70%),
-    #0d0a08;
+    radial-gradient(60% 80% at 78% 45%, rgba(142,103,71,.28) 0%, rgba(142,103,71,0) 70%),
+    #211a16;
 }
 /* Abschnitt kompakter: weniger Luft und Kopf, Bilder unverändert groß */
 #eindruecke > div { padding-top:clamp(2.5rem, 4.5vw, 3.25rem) !important; padding-bottom:clamp(3.25rem, 4.6vw, 3.75rem) !important; }
@@ -302,7 +302,7 @@ a:hover .arrow { transform:translateX(4px); }
 .dish-reel::before {
   content:""; position:absolute; z-index:-1; pointer-events:none;
   top:clamp(3rem, 9vw, 6rem); bottom:-1.75rem; left:-1rem; right:-1rem;
-  background:var(--panel); border-top:2px solid var(--brand); box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
+  background:var(--panel); border-top:0; box-shadow:inset 0 0 0 1px rgba(255,255,255,.05);
 }
 @media (min-width:860px) { .dish-reel::before { left:-2rem; right:-2rem; } }
 @media (min-width:560px)  { .dish-reel { --per:2.3; } }
@@ -589,7 +589,7 @@ a:hover .arrow { transform:translateX(4px); }
 .hours-row span:first-child { color:var(--ink-faint); min-width:6.5rem; }
 .kontakt-bg {
   background:
-    linear-gradient(rgba(0,0,0,.86), rgba(0,0,0,.86)),
+    linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.68)),
     url('416782850_11662228.jpg') center 22% / cover no-repeat;
 }
 .info-col .info-note {
