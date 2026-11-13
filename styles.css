@@ -124,8 +124,8 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 
 /* ── Header – feste Größe, dauerhaft einfarbiges UI-Grau, weiße Schrift ── */
 .site-header {
-  background:rgba(35,36,39,.84);
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  background:#211a16;
+  backdrop-filter:none; -webkit-backdrop-filter:none;
   border-top:0 !important;
   border-bottom-color:transparent !important;
 }
@@ -589,7 +589,7 @@ a:hover .arrow { transform:translateX(4px); }
 .hours-row span:first-child { color:var(--ink-faint); min-width:6.5rem; }
 .kontakt-bg {
   background:
-    linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.68)),
+    linear-gradient(rgba(33,26,22,.68), rgba(33,26,22,.68)),
     url('416782850_11662228.jpg') center 22% / cover no-repeat;
 }
 .info-col .info-note {
