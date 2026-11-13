@@ -124,9 +124,9 @@ a { transition: color .15s, background-color .15s, border-color .15s; }
 
 /* ── Header – feste Größe, dauerhaft einfarbiges UI-Grau, weiße Schrift ── */
 .site-header {
-  background:transparent;
-  backdrop-filter:none; -webkit-backdrop-filter:none;
-  border-top-color:transparent !important;
+  background:rgba(35,36,39,.84);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-top:0 !important;
   border-bottom-color:transparent !important;
 }
 .site-header .h-20 { height:5rem; }
