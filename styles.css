@@ -756,7 +756,7 @@ a:hover .arrow { transform:translateX(4px); }
   background:var(--ink); border-radius:0;
   transform-origin:center;
 }
-#mob-btn { display:flex; flex-direction:column; gap:5px; padding:.5rem; background:none; border:none; cursor:pointer; border-radius:50%; transition:background-color .3s ease; }
+#mob-btn { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; width:48px; height:48px; padding:0; flex:none; background:none; border:none; cursor:pointer; border-radius:50%; transition:background-color .3s ease; }
 #mob-btn:hover { background:rgba(255,255,255,.08); }
 #mob-btn .icon-bar { transition:transform .56s cubic-bezier(.22,1,.36,1), opacity .24s ease; }
 #mob-btn.open .bar-1 { transform:translateY(6.5px) rotate(45deg); }
