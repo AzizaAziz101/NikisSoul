@@ -1051,6 +1051,20 @@ h1, h2, h3, h4,
 .menu-item { border-color:rgba(255,255,255,.14); }
 .menu-item-price, .menu-tag { color:#d9a9e1; border-color:#b875c7; }
 .menu-item-name { color:#fff; }
+.menu-pane:not([hidden]) .menu-item { animation:menu-item-arrive 680ms cubic-bezier(.22,1,.36,1) both; }
+.menu-pane:not([hidden]) .menu-item:nth-child(1) { animation-delay:40ms; }
+.menu-pane:not([hidden]) .menu-item:nth-child(2) { animation-delay:100ms; }
+.menu-pane:not([hidden]) .menu-item:nth-child(3) { animation-delay:160ms; }
+.menu-pane:not([hidden]) .menu-item:nth-child(4) { animation-delay:220ms; }
+.menu-pane:not([hidden]) .menu-item:nth-child(5) { animation-delay:280ms; }
+.menu-pane:not([hidden]) .menu-item:nth-child(6) { animation-delay:340ms; }
+@keyframes menu-item-arrive {
+  from { opacity:0; transform:translate3d(0, 9px, 0); }
+  to { opacity:1; transform:translate3d(0, 0, 0); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .menu-pane:not([hidden]) .menu-item { animation:none; }
+}
 .menu-foot { border-color:rgba(255,255,255,.14); }
 
 .referenzen { background:#f3edf6; }
